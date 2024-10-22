@@ -18,8 +18,8 @@
       "",
       "export const Default: Story = {",
       "  args: {},",
-      "};"
+      "};",
     ],
-    "description": "Storybook Template"
-  }
+    "description": "Storybook Template",
+  },
 }
