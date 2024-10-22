@@ -3,7 +3,7 @@ name: NFE1-1-8-MOODI
 on:
   push:
     branches:
-      - 8-fix-cicd-중-발생한-husky-와-node-버전-불일치-해결
+      - main
 
 jobs:
   deploy:
