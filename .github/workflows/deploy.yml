@@ -3,7 +3,7 @@ name: Alogrithm Front CI/CD
 on:
   push:
     branches:
-      - init-프로젝트-세팅
+      - main
 
 jobs:
   deploy:
