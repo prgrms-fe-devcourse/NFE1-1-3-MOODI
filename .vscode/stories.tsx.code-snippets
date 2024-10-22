@@ -1,0 +1,25 @@
+{
+  "Storybook Component Template": {
+    "prefix": "story",
+    "body": [
+      "import type { Meta, StoryObj } from '@storybook/react';",
+      "",
+      "import ${TM_FILENAME_BASE/(.*)\\.stories$/${1}/} from './${TM_FILENAME_BASE/(.*)\\.stories$/${1}/}';",
+      "",
+      "const meta: Meta<typeof ${TM_FILENAME_BASE/(.*)\\.stories$/${1}/}> = {",
+      "  component: ${TM_FILENAME_BASE/(.*)\\.stories$/${1}/},",
+      "  title: '${TM_FILENAME_BASE/(.*)\\.stories$/${1}/}',",
+      "  tags: ['autodocs'],",
+      "  argTypes: {},",
+      "};",
+      "export default meta;",
+      "",
+      "type Story = StoryObj<typeof ${TM_FILENAME_BASE/(.*)\\.stories$/${1}/}>;",
+      "",
+      "export const Default: Story = {",
+      "  args: {},",
+      "};"
+    ],
+    "description": "Storybook Template"
+  }
+}
