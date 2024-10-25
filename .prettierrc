@@ -1,10 +1,10 @@
 {
-  "endOfLine": "auto",
-  "singleQuote": true,
-  "semi": false,
-  "useTabs": false,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "printWidth": 120,
-  "arrowParens": "always"
+    "endOfLine": "auto",
+    "singleQuote": true,
+    "semi": false,
+    "useTabs": false,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "printWidth": 120,
+    "arrowParens": "always"
 }
