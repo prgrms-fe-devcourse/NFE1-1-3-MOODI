@@ -102,7 +102,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     line-height: 1;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Pretendard', sans-serif;
   }
   ol,
   ul {
