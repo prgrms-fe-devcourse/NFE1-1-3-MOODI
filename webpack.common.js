@@ -7,7 +7,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 module.exports = {
-    entry: './src/Index.tsx',
+    entry: './src/app/Index.tsx',
     output: {
         path: path.join(__dirname, './dist'),
         filename: '[name].js'
