@@ -4,5 +4,5 @@ const webpack = require('webpack')
 
 module.exports = merge(common, {
     mode: 'production',
-    devtool: 'hidden-source-map',
+    devtool: 'hidden-source-map'
 })

@@ -7,11 +7,11 @@ module.exports = merge(common, {
     devtool: 'eval',
     devServer: {
         port: 3000,
-        hot: true,
+        hot: true
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development'),
-        }),
-    ],
+            'process.env.NODE_ENV': JSON.stringify('development')
+        })
+    ]
 })

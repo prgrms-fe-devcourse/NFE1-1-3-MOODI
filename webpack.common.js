@@ -10,45 +10,45 @@ module.exports = {
     entry: './src/Index.tsx',
     output: {
         path: path.join(__dirname, './dist'),
-        filename: '[name].js',
+        filename: '[name].js'
     },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
-            '@/components': path.resolve(__dirname, './src/components'),
+            '@/components': path.resolve(__dirname, './src/components')
         },
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 use: ['babel-loader', 'ts-loader'],
-                exclude: /node_modules/,
+                exclude: /node_modules/
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'assets/[name][ext]',
-                },
-            },
-        ],
+                    filename: 'assets/[name][ext]'
+                }
+            }
+        ]
     },
     plugins: [
         new webpack.ProvidePlugin({
-            React: 'react',
+            React: 'react'
         }),
         new HtmlWebpackPlugin({
-            template: './public/index.html',
+            template: './public/index.html'
         }),
         new CleanWebpackPlugin(),
         new webpack.DefinePlugin({
-            'process.env': JSON.stringify(process.env),
-        }),
-    ],
+            'process.env': JSON.stringify(process.env)
+        })
+    ]
 }
