@@ -42,6 +42,8 @@ export default [
           unnamedComponents: 'arrow-function',
         },
       ],
+      'import/prefer-default-export': 'off',
+      'import/order': 'off',
     },
     overrides: [
       {
@@ -50,7 +52,6 @@ export default [
           '@typescript-eslint/no-require-imports': 'off',
           'global-require': 'off',
           '@typescript-eslint/no-unused-vars': 'off',
-          'import/order': 'off',
         },
       },
     ],
