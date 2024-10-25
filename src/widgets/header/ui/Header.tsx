@@ -1,15 +1,10 @@
 import { Container, Logo, Nav, NavItem } from './Header.styled'
 
-interface HeaderProps {
-  isLoggedIn?: boolean
-  logoUrl?: string
-}
-
 const Header = () => {
   return (
     <Container>
       <Logo>
-        <img src="/image/logo.svg" alt="logo" />
+        <img src="/logo.svg" alt="logo" />
       </Logo>
       <Nav>
         <NavItem>홈</NavItem>
