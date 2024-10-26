@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.header`
     display: flex;
@@ -7,12 +7,12 @@ export const Container = styled.header`
     justify-content: space-between;
     padding: 0.5rem;
     margin: 0 10% 0 10%;
-`
+`;
 
 export const Logo = styled.div`
     display: flex;
     cursor: pointer;
-`
+`;
 
 export const Nav = styled.div`
     display: flex;
@@ -21,7 +21,7 @@ export const Nav = styled.div`
     align-items: center;
     gap: 1rem;
     font-size: 15px;
-`
+`;
 
 export const NavItem = styled.div`
     display: flex;
@@ -31,4 +31,4 @@ export const NavItem = styled.div`
     &:hover {
         background-color: #f2f2f2;
     }
-`
+`;
