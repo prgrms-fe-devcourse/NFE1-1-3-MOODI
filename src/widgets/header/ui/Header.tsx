@@ -1,9 +1,10 @@
-import { Container, Logo, Nav, NavItem } from './Header.styled'
+import React from 'react';
+import { Container, Logo, Nav, NavItem } from './Header.styled';
 
 const Header = () => {
     return (
         <Container>
-            <Logo>
+            <Logo to="/">
                 <img src="/logo.svg" alt="logo" />
             </Logo>
             <Nav>
@@ -13,7 +14,7 @@ const Header = () => {
                 <NavItem>마이페이지</NavItem>
             </Nav>
         </Container>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
