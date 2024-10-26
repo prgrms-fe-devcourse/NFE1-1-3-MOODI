@@ -1,6 +1,6 @@
 // visibility-button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import VisibilityButton from './VisibilityButton';
+import {VisibilityButton} from './VisibilityButton';
 
 const meta: Meta<typeof VisibilityButton> = {
     title: 'Features/DiaryVisibility/VisibilityButton',

@@ -20,10 +20,12 @@ export const StyledButton = styled.button<ButtonProps>`
     border-radius: 14px;
     transition: all 0.2s ease;
     background-color: ${(props) => (props.isActive ? '#FFF4F1' : '#ffffff')};
-    border: 1px solid ${(props) => (props.isActive ? '#FF480E' : 'rgba(0, 0, 0, 0.1)')};
+    border: 1px solid
+        ${(props) => (props.isActive ? '#FF480E' : 'rgba(0, 0, 0, 0.1)')};
     &:hover {
         cursor: pointer;
-        background-color: ${(props) => (props.isActive ? '#FFF4F1' : 'rgba(0, 0, 0, 0.1)')};
+        background-color: ${(props) =>
+            props.isActive ? '#FFF4F1' : 'rgba(0, 0, 0, 0.1)'};
     }
 `;
 
