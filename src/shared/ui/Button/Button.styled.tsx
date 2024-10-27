@@ -15,10 +15,11 @@ export const StyledButton = styled.button<ButtonProps>`
         props.hasBorder && props.isActive ? '1px solid #FF480E' : 'none'};
     color: ${(props) =>
         props.hasBorder && props.isActive ? '#FF480E' : '#FFFFFF'};
-    font-size: ${(props) => props.fontSize || '16px'};
-    height: ${(props) => props.height || '44px'};
-    width: ${(props) => props.width || '300px'};
-    border-radius: 10px; // 고정 값
+    font-size: ${(props) => props.fontSize};
+    font-family: 'Pretendard', sans-serif;
+    height: ${(props) => props.height};
+    width: ${(props) => props.width};
+    border-radius: 10px;
     transition: background-color 0.2s ease;
 
     &:hover {
