@@ -1,5 +1,5 @@
-import React from 'react'
-import GlobalStyles from './styles/globalStyles'
+import React from 'react';
+import GlobalStyles from './styles/globalStyles';
 
 const App: React.FC = () => {
     return (
@@ -7,7 +7,7 @@ const App: React.FC = () => {
             <GlobalStyles />
             hello world!!!
         </>
-    )
-}
+    );
+};
 
-export default App
+export default App;
