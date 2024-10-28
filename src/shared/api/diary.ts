@@ -24,7 +24,9 @@ interface DiaryQueryParams {
  * @param year 해당 년을 기준으로 데이터를 가져옵니다.
  */
 
-const getDiaryApi = async (params: DiaryQueryParams): Promise<Diary | null> => {
+export const getDiaryApi = async (
+    params: DiaryQueryParams
+): Promise<Diary | null> => {
     try {
         const queryParams: DiaryQueryParams = {
             ...(params.page && { page: params.page }),
@@ -51,5 +53,3 @@ const getDiaryApi = async (params: DiaryQueryParams): Promise<Diary | null> => {
         return null;
     }
 };
-
-export default getDiaryApi;
