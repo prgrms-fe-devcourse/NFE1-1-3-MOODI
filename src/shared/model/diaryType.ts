@@ -1,7 +1,7 @@
-import { SubEmotion } from '@/shared/model/subEmotionType';
-import { Reaction } from '@/shared/model/reactionType';
+import { SubEmotion } from './subEmotionType';
+import { Reaction } from './reactionType';
 
-interface Diary {
+export interface Diary {
     id: number;
     title: string;
     content: string;
@@ -15,5 +15,3 @@ interface Diary {
     author_email: string;
     reactions: Reaction[];
 }
-
-export default Diary;
