@@ -4,7 +4,7 @@ import { Container, Logo, Nav, NavItem } from './Header.styled';
 const Header = () => {
     return (
         <Container>
-            <Logo to="/">
+            <Logo>
                 <img src="/logo.svg" alt="logo" />
             </Logo>
             <Nav>
