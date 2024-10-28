@@ -1,12 +1,12 @@
 import React from 'react';
-import { Container, StyledButton } from './EmotionButton.styled';
-import { EmotionButtonProps } from '../model/type';
+import { Container, StyledButton } from './ConditionButton.styled';
+import { ConditionButtonProps } from '../model/type';
 
-export const EmotionButton = ({
+export const ConditionButton = ({
     children,
     isActive,
     onClick
-}: EmotionButtonProps) => {
+}: ConditionButtonProps) => {
     return (
         <Container>
             <StyledButton isActive={isActive} onClick={onClick} type="button">
