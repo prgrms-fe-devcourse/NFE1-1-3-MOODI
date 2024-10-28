@@ -15,7 +15,7 @@ type Story = StoryObj<typeof DiaryVisibilityControls>;
 export const Public: Story = {
     args: {
         isPublic: true,
-        onChange: action('visibility changed')  // 클릭 시 액션 로그를 볼 수 있음
+        onChange: action('visibility changed')
     }
 };
 
