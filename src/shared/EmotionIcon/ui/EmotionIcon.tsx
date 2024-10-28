@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
-import { Emotions, getEmotionInfo } from '../model/EmotionEnum';
+import { Emotions, getEmotionInfo } from '../../model/EmotionEnum';
 import { StyledEmotionIcon } from './EmotionIcon.styled';
 
 interface EmotionProps {
