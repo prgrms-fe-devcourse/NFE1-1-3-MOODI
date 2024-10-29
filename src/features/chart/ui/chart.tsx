@@ -1,5 +1,9 @@
 import React from 'react';
-import { DataType } from '../model/types';
+import {
+    DailyEmotionType,
+    WeeklyEmotionSummaryType
+} from '@/shared/model/moodTypes';
+
 import {
     LineChart,
     Line,
@@ -9,48 +13,74 @@ import {
     Tooltip,
     ResponsiveContainer
 } from 'recharts';
+import isDailyEmotion from '../lib/isDailyEmotion';
 
-const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const emotions = ['매우나쁨', '나쁨', '보통', '좋음', '매우좋음'];
 
-const data: DataType[] = [
-    { name: 'Sun', value: '매우나쁨' },
-    { name: 'Mon', value: '나쁨' },
-    { name: 'Tue', value: '보통' },
-    { name: 'Wed', value: '좋음' },
-    { name: 'Thu', value: '매우좋음' },
-    { name: 'Fri', value: '나쁨' },
-    { name: 'Sat', value: '매우나쁨' }
-];
+interface ChartProps {
+    data: DailyEmotionType[] | WeeklyEmotionSummaryType[];
+}
 
-const Chart = () => {
+const Chart = ({ data }: ChartProps) => {
     return (
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={500}>
             <LineChart
                 data={data}
                 margin={{ top: 20, right: 10, left: 10, bottom: 20 }}
             >
                 <CartesianGrid vertical={false} />
-                <XAxis
-                    dataKey="name"
-                    angle={0}
-                    dy={10}
-                    height={50}
-                    axisLine={false}
-                />
-                <YAxis
-                    type="category"
-                    dataKey="value"
-                    tickLine={false}
-                    axisLine={false}
-                    ticks={emotions}
-                />
-                <Tooltip />
-                <Line
-                    type="monotone"
-                    dataKey="value"
-                    stroke="#FF480E"
-                    activeDot={{ r: 8 }}
+                {isDailyEmotion(data) ? (
+                    <>
+                        <XAxis
+                            dataKey="day"
+                            angle={0}
+                            dy={10}
+                            height={50}
+                            axisLine={false}
+                        />
+                        <YAxis
+                            type="category"
+                            dataKey="mood"
+                            tickLine={false}
+                            axisLine={false}
+                        />
+                        <Line
+                            type="monotone"
+                            dataKey="mood"
+                            stroke="#FF480E"
+                            activeDot={{ r: 8 }}
+                            connectNulls
+                        />
+                    </>
+                ) : (
+                    <>
+                        <XAxis
+                            dataKey="week"
+                            angle={0}
+                            dy={10}
+                            height={50}
+                            axisLine={false}
+                        />
+                        <YAxis
+                            type="category"
+                            dataKey="mostFrequentEmotion"
+                            tickLine={false}
+                            axisLine={false}
+                            ticks={emotions}
+                        />
+                        <Line
+                            type="monotone"
+                            dataKey="mostFrequentEmotion"
+                            stroke="#FF480E"
+                            activeDot={{ r: 8 }}
+                            connectNulls
+                        />
+                    </>
+                )}
+                <Tooltip
+                    formatter={(value) =>
+                        value === '정보 없음' ? '정보 없음' : value
+                    }
                 />
             </LineChart>
         </ResponsiveContainer>

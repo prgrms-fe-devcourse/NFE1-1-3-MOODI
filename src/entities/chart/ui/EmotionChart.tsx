@@ -9,8 +9,8 @@ import {
 import { InfoStyled } from '@/shared/ui/Info/Info.styeld';
 import Chart from '@/features/chart/ui/Chart';
 import caculateEmotion from '../lib/caculateEmotion';
-import useGetDiaries from '@/shared/hooks/useGetDiaries';
 import useGetMood from '@/shared/hooks/useGetMood';
+import isWeekly from '../lib/isWeekly';
 
 interface EmotionChart {
     userName: string;
@@ -18,17 +18,35 @@ interface EmotionChart {
 
 const EmotionChart = ({ userName = 'test' }: EmotionChart) => {
     const { year, month, week } = caculateEmotion();
-    const { data } = useGetMood({ year, month, week });
+
+    const { data, isLoading, error } = useGetMood({ year, month });
+
+    if (isLoading) return <div>Loading...</div>;
+
+    console.log(data);
+
+    if (error)
+        return <div>Error: 데이터를 불러오는 중 오류가 발생했습니다.</div>;
+
     return (
         <EmotionChartStlyed>
             <Title>{userName}</Title>
-            <InfoStyled>{`${month}월 ${week}주차 ${userName}님의 평균 감정은 ${data.mostFrequentEmotion}입니다.`}</InfoStyled>
+            <InfoStyled>
+                {data
+                    ? `${data.period} ${userName}님의 빈번한 감정은 ${data.mostFrequentEmotion === null ? '정보가 없습니다.' : data.mostFrequentEmotion}`
+                    : '데이터를 불러오는 중입니다...'}
+            </InfoStyled>
             <ChartWrapper>
                 <ButtonContainer>
                     <ChartButtonStlyed>월간</ChartButtonStlyed>
                     <ChartButtonStlyed>주간</ChartButtonStlyed>
                 </ButtonContainer>
-                <Chart />
+                {data &&
+                    (isWeekly(data) ? (
+                        <Chart data={data.allEmotions} />
+                    ) : (
+                        <Chart data={data.weeklyResults} />
+                    ))}
             </ChartWrapper>
         </EmotionChartStlyed>
     );
