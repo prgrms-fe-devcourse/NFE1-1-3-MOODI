@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 
@@ -137,6 +137,6 @@ const GlobalStyles = createGlobalStyle`
     color: black;
     text-decoration-line: none;
   }
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;

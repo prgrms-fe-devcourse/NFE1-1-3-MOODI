@@ -1,13 +1,18 @@
-import { FlatCompat } from '@eslint/eslintrc'
+import { FlatCompat } from '@eslint/eslintrc';
 
 const compat = new FlatCompat({
     baseDirectory: process.cwd()
-})
+});
 
 export default [
     {
         // ESLint가 무시할 파일 패턴
-        ignores: ['**/*stories*', '**/webpack*.js', '**/webpack/**/*.js', 'src/stories/**']
+        ignores: [
+            '**/*stories*',
+            '**/webpack*.js',
+            '**/webpack/**/*.js',
+            'src/stories/**'
+        ]
     },
     ...compat.config({
         env: {
@@ -31,11 +36,24 @@ export default [
             'react-hooks/exhaustive-deps': 'warn',
             '@typescript-eslint/no-require-imports': 'off',
             'global-require': 'off',
-            '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+            '@typescript-eslint/no-unused-vars': [
+                'warn',
+                { argsIgnorePattern: '^_' }
+            ],
             'react/react-in-jsx-scope': 'off',
-            'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
-            'import/extensions': ['error', 'ignorePackages', { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
-            'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+            'react/jsx-filename-extension': [
+                1,
+                { extensions: ['.jsx', '.tsx'] }
+            ],
+            'import/extensions': [
+                'error',
+                'ignorePackages',
+                { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }
+            ],
+            'import/no-extraneous-dependencies': [
+                'error',
+                { devDependencies: true }
+            ],
             'react/function-component-definition': [
                 'error',
                 {
@@ -65,4 +83,4 @@ export default [
             }
         }
     })
-]
+];

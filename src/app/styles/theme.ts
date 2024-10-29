@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme } from 'styled-components';
 
 const theme: DefaultTheme = {
     layout: {
@@ -20,6 +20,6 @@ const theme: DefaultTheme = {
     border: {
         default: '1px solid #E0E0E0'
     }
-}
+};
 
-export default theme
+export default theme;
