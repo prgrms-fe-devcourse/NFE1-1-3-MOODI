@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyledEmotionButtonList } from './EmotionButtonList.styled';
-import EmotionButton from '../../../shared/EmotionButton/ui/EmotionButton';
-import { Emotions } from '../../../shared/model/EmotionEnum';
+import EmotionButton from '../../EmotionButton/ui/EmotionButton';
+import { Emotions } from '../../model/EmotionEnum';
 
 interface EmotionListProps {
     onSelectionChange: (selectedEmotions: Emotions[]) => void; // prop 추가

@@ -5,7 +5,7 @@ import EmotionButtonList from './EmotionButtonList';
 
 const meta: Meta<typeof EmotionButtonList> = {
   component: EmotionButtonList,
-  title: 'EmotionButtonList',
+  title: 'Shared/EmotionButtonList',
   tags: ['autodocs'],
   argTypes: {
     onSelectionChange: {
