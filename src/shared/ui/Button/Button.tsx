@@ -1,15 +1,6 @@
 import React from 'react';
 import { StyledButton } from './Button.styled';
-
-export interface ButtonProps {
-    children: React.ReactNode;
-    fontSize: string;
-    isActive: boolean;
-    hasBorder: boolean;
-    height: string;
-    width: string;
-    onClick: () => void;
-}
+import { ButtonProps } from './Button.types';
 
 const Button = ({
     children,
