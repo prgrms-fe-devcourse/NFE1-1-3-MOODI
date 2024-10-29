@@ -11,7 +11,8 @@ export default [
             '**/*stories*',
             '**/webpack*.js',
             '**/webpack/**/*.js',
-            'src/stories/**'
+            'src/stories/**',
+            '.storybook'
         ]
     },
     ...compat.config({
