@@ -21,8 +21,8 @@ const EmotionButton = ({
     }, [initialClicked]);
 
     const handleClick = () => {
-        setIsClicked((prev) => !prev); // 클릭 시 상태 토글
-        onClick(); // 부모 컴포넌트의 onClick 호출
+        setIsClicked((prev) => !prev);
+        onClick();
     };
     return (
         <StyledEmotionButton clicked={isClicked} onClick={handleClick}>
