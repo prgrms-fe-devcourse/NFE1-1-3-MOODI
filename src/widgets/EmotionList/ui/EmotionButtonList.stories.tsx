@@ -1,0 +1,26 @@
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+
+import EmotionButtonList from './EmotionButtonList';
+
+const meta: Meta<typeof EmotionButtonList> = {
+  component: EmotionButtonList,
+  title: 'EmotionButtonList',
+  tags: ['autodocs'],
+  argTypes: {
+    onSelectionChange: {
+        description: '선택된 감정 리스트가 변경될 때 호출되는 함수입니다.\n 로그에서 선택된 버튼 목록을 확인할수있습니다',
+      },
+  },
+};
+export default meta;
+
+type Story = StoryObj<typeof EmotionButtonList>;
+
+export const Default: Story = {
+    args: {
+      onSelectionChange: (selectedEmotions) => {
+        console.log('selected:', selectedEmotions);
+      },
+    },
+  };
