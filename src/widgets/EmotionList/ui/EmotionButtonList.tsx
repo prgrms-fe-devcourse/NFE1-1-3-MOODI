@@ -17,7 +17,7 @@ const EmotionList = ({ onSelectionChange }: EmotionListProps) => {
                 ? prev.filter((e) => e !== emotion)
                 : [...prev, emotion];
 
-            onSelectionChange(newSelection); // 외부로 선택 상태 전달
+            onSelectionChange(newSelection);
             return newSelection;
         });
     };
