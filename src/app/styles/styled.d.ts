@@ -14,12 +14,16 @@ declare module 'styled-components' {
             orange_warn: string;
             orange_button: string;
             orange_reaction: string;
+            orange_selected: string;
             green: string;
             white: string;
             white_bg: string;
         };
         border: {
             default: string;
+            normal: string;
+            not_selected: string;
+            selected: string;
         };
     }
 }
