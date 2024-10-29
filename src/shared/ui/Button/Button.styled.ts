@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { ButtonProps } from './Button';
+import { ButtonProps } from './Button.types';
 
-export const StyledButton = styled.button<ButtonProps>`
+export const StyledButton = styled.button.withConfig({
+    shouldForwardProp: (prop) => !['isActive', 'hasBorder'].includes(prop)
+})<ButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +21,7 @@ export const StyledButton = styled.button<ButtonProps>`
     font-family: 'Pretendard', sans-serif;
     height: ${(props) => props.height};
     width: ${(props) => props.width};
-    border-radius: 10px;
+    border-radius: ${(props) => props.borderradius};
     transition: background-color 0.2s ease;
 
     &:hover {

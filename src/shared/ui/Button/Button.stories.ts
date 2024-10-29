@@ -1,9 +1,8 @@
-// src/shared/ui/Button/Button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import Button from './Button';
 
 const meta: Meta<typeof Button> = {
-    title: 'Shared/Button',
+    title: 'Shared/UI/Button',
     component: Button,
     tags: ['autodocs']
 };
@@ -16,6 +15,7 @@ export const Default: Story = {
         children: '로그인',
         isActive: true,
         hasBorder: false,
+        borderradius: '10px',
         height: '44px',
         width: '300px',
         fontSize: '16px',
