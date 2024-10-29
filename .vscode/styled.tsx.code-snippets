@@ -1,7 +1,14 @@
 {
     "Styled Component": {
         "prefix": "stc",
-        "body": ["import styled from 'styled-components';", "", "export const $1 = styled.$2`", "  $3", "`;", ""],
+        "body": [
+            "import styled from 'styled-components';",
+            "",
+            "export const $1 = styled.$2`",
+            "  $3",
+            "`;",
+            ""
+        ],
         "description": "Create a styled component"
     }
 }

@@ -1,10 +1,10 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const path = require('path')
-const webpack = require('webpack')
-const dotenv = require('dotenv')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
 
-dotenv.config()
+dotenv.config();
 
 module.exports = {
     entry: './src/app/Index.tsx',
@@ -51,4 +51,4 @@ module.exports = {
             'process.env': JSON.stringify(process.env)
         })
     ]
-}
+};
