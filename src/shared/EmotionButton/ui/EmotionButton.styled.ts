@@ -6,7 +6,7 @@ interface IsClicked {
 }
 
 export const StyledEmotionButton = styled.button<IsClicked>`
-    max-width: 150px;
+    width: auto;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -21,8 +21,8 @@ export const StyledEmotionButton = styled.button<IsClicked>`
     padding: 10px 20px;
     cursor: pointer;
     transition:
-        background-color 0.3s,
-        border-color 0.3s;
+        background-color 0.2s,
+        border-color 0.2s;
 
     &:hover {
         background-color: ${({ clicked }) =>
