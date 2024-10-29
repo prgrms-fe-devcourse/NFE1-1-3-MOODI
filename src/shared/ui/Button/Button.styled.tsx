@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { ButtonProps } from './Button';
+import { ButtonProps } from './Button.types';
 
-export const StyledButton = styled.button<ButtonProps>`
+export const StyledButton = styled.button.withConfig({
+    shouldForwardProp: (prop) => !['isActive', 'hasBorder'].includes(prop)
+})<ButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
