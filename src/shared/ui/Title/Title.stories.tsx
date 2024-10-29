@@ -13,5 +13,7 @@ export default meta;
 type Story = StoryObj<typeof Title>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    title: '아이디',
+  },
 };
