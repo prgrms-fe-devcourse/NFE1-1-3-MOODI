@@ -1,12 +1,12 @@
 import { StyledCalendar, DateInnerContent } from './calendarUiCss';
 import { useState, useEffect } from 'react';
-import moment from 'moment';
 import { calendarDataFetch } from '../calendar-logic/calendarDataFetch';
 import {
     getActiveMonth,
     handleTileClick
 } from '../calendar-logic/calendarLogic';
 import { getEmoticonPath } from '../get-emotion-path/getEmotionPath';
+import moment from 'moment';
 
 const CalendarUi: React.FC = () => {
     const curDate = new Date();

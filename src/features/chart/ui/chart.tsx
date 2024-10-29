@@ -37,7 +37,6 @@ const Chart = () => {
                     dy={10}
                     height={50}
                     axisLine={false}
-                    ticks={daysOfWeek}
                 />
                 <YAxis
                     type="category"
