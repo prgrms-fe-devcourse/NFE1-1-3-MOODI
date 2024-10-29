@@ -32,7 +32,10 @@ export const getDiaryApi = async (
         };
 
         const response = await api.get('/diary', {
-            params: queryParams
+            params: queryParams,
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
 
         return response.data;
