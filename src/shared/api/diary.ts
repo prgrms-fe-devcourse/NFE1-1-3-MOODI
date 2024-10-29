@@ -1,17 +1,8 @@
+import { DiaryQueryParamsType } from '../model/diaryQueryParamType';
 import defaultApi from '@/shared/api/api';
-import { Diary } from '../model/diaryType';
+import { DiaryType } from '../model/diaryType';
 
 const api = defaultApi();
-
-interface DiaryQueryParams {
-    page?: number;
-    limit?: number;
-    user_email?: string;
-    is_public?: 0 | 1;
-    sort_by?: 'latest';
-    month?: number;
-    year?: number;
-}
 
 /**
  * 일기와 관련된 정보를 불러옵니다.
@@ -25,10 +16,10 @@ interface DiaryQueryParams {
  */
 
 export const getDiaryApi = async (
-    params: DiaryQueryParams
-): Promise<Diary | null> => {
+    params: DiaryQueryParamsType
+): Promise<DiaryType | null> => {
     try {
-        const queryParams: DiaryQueryParams = {
+        const queryParams: DiaryQueryParamsType = {
             ...(params.page && { page: params.page }),
             ...(params.limit && { limit: params.limit }),
             ...(params.user_email && { user_email: params.user_email }),

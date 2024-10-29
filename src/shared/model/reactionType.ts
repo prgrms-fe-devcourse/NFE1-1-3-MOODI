@@ -1,4 +1,4 @@
-export interface Reaction {
+export interface ReactionType {
     id: number;
     type: string;
     user_email: string;

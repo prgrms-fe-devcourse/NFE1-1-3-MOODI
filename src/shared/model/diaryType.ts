@@ -1,7 +1,7 @@
-import { SubEmotion } from './subEmotionType';
-import { Reaction } from './reactionType';
+import { SubEmotionType } from './subEmotionType';
+import { ReactionType } from './reactionType';
 
-export interface Diary {
+export interface DiaryType {
     id: number;
     title: string;
     content: string;
@@ -9,9 +9,9 @@ export interface Diary {
     music_url: string;
     mood: string;
     emotion: string;
-    sub_emotion: SubEmotion;
+    sub_emotion: SubEmotionType;
     created_date: string;
     updated_date: string;
     author_email: string;
-    reactions: Reaction[];
+    reactions: ReactionType[];
 }
