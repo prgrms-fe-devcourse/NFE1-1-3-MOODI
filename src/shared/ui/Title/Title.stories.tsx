@@ -14,6 +14,6 @@ type Story = StoryObj<typeof Title>;
 
 export const Default: Story = {
   args: {
-    title: '아이디',
+    children: '아이디',
   },
 };

@@ -1,3 +1,3 @@
 export interface TitleProps {
-    title: string;
+    children: React.ReactNode;
 }
