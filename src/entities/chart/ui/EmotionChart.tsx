@@ -1,5 +1,5 @@
-import Title from '@/shared/ui/Title/Title';
 import React from 'react';
+import Title from '@/shared/ui/Title/Title';
 import {
     ButtonContainer,
     ChartButtonStlyed,
@@ -8,6 +8,7 @@ import {
     EmotionChartStlyed
 } from './EmotionChart.styled';
 import Chart from '@/features/chart/ui/Chart';
+import { InfoStyled } from '@/shared/ui/Info/Info.styeld';
 
 interface EmotionChart {
     userName: string;
@@ -22,7 +23,7 @@ const EmotionChart = ({ userName = 'test' }: EmotionChart) => {
     return (
         <EmotionChartStlyed>
             <Title>{userName}</Title>
-            <ChartInfoStyled>{`${month}월 ${week}주차 ${userName}님의 평균 감정은 ${feelingAverage}입니다.`}</ChartInfoStyled>
+            <InfoStyled>{`${month}월 ${week}주차 ${userName}님의 평균 감정은 ${feelingAverage}입니다.`}</InfoStyled>
             <ChartWrapper>
                 <ButtonContainer>
                     <ChartButtonStlyed>월간</ChartButtonStlyed>
