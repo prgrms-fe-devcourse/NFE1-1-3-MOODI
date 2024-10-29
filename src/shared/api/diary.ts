@@ -13,6 +13,7 @@ const api = defaultApi();
  * @param sort_by 정렬 기준을 정의합니다.
  * @param month 해당 월을 기준으로 데이터를 가져옵니다.
  * @param year 해당 년을 기준으로 데이터를 가져옵니다.
+ * @param week 해당 주를 기준으로 데이터를 가져옵니다.
  */
 
 export const getDiaryApi = async (
@@ -28,7 +29,8 @@ export const getDiaryApi = async (
             }),
             ...(params.sort_by && { sort_by: params.sort_by }),
             ...(params.month && { month: params.month }),
-            ...(params.year && { year: params.year })
+            ...(params.year && { year: params.year }),
+            ...(params.year && { year: params.week })
         };
 
         const response = await api.get('/diary', {
