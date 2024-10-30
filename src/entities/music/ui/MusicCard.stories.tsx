@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {MusicCard} from './MusicCard';
+import React from 'react';
 
 const meta: Meta<typeof MusicCard> = {
     title: 'entities/music/MusicCard',
@@ -18,7 +19,7 @@ export const Default: Story = {
         thumbnailUrl: sampleImageUrl,
         title: "Supernatural",
         artist: "뉴진스",
-        isPlaying: false,
+        $isPlaying: false,
         onPlay: () => {},
     },
 };
@@ -28,7 +29,7 @@ export const Playing: Story = {
         thumbnailUrl: sampleImageUrl,
         title: "뉴진스",
         artist: "Supernatural",
-        isPlaying: true,
+        $isPlaying: true,
         onPlay: () => {},
     },
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import InputForm from '@/shared/ui/InputForm/InputForm';
 import { Container, SearchFormWrapper } from './MusicSearchInput.styled';
 import { useState } from 'react';
@@ -7,9 +8,9 @@ import Button from '@/shared/ui/Button/Button';
 export const MusicSearchInput = ({ onSearch }: MusicSearchInputProps) => {
     const [searchKeyword, setSearchKeyword] = useState('');
 
+    // TODO - 디바운싱
     const handleContentChange = (value: string) => {
         setSearchKeyword(value);
-        console.log(value);
     };
 
     const handleSearchClick = () => {

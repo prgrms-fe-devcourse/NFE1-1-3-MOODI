@@ -1,4 +1,4 @@
-// EmotionButtonGroup.stories.tsx
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { SearchModeButtonGroup } from './SearchModeButtonGroup';
 import { SEARCH_TYPE } from '../model/type';

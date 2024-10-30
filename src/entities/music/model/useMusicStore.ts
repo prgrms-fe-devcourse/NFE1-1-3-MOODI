@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { MusicItem } from './type';
+import React from 'react';
 
 interface MusicStore {
     selectedMusic: MusicItem | null;

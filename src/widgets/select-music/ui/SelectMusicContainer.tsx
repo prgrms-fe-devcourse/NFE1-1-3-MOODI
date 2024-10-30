@@ -12,17 +12,16 @@ import {
 } from '@/features/diary-write/search-mode-selector/model/type';
 import { searchMusic } from '@/entities/music';
 
-// 테스트
+// GPT 테스트용 리스트입니다
+// 실제로는 API가 내려준 리스트가 들어옵니다.
 const testList = ['뉴진스 supernatural'];
 
+// TODO - 로딩스피너 추가
 export const SelectMusicContainer = () => {
-    // 초기 리스트 상태는 GPT 추천입니다.
     const [selectedType, setSelectedType] = useState<SearchType>(
         SEARCH_TYPE.GPT
     );
     const [searchKeyword, setSearchKeyword] = useState<string>('');
-    // const [selectedMusicItem, setSelectedMusicItem] =
-    //     useState<MusicItem | null>(null);
     const [responseUserMusicList, setresponseUserMusicList] = useState<
         MusicItem[]
     >([]);
@@ -35,23 +34,13 @@ export const SelectMusicContainer = () => {
         setSelectedType(type);
     };
 
-    // // 현재 유저가 선택한 음악 정보 (제출)
-    // const handleMusicChange = (item: MusicItem) => {
-    //     setSelectedMusicItem(item);
-    // };
-
     // 검색어 처리
     const handleSearchChange = (value: string) => {
         console.log('검색어 : ', value);
         setSearchKeyword(value);
     };
 
-    // 테스트
-    // useEffect(() => {
-    //     console.log(selectedMusicItem);
-    // }, [selectedMusicItem]);
-
-    // musicList를 구성하기 위한 musicItem 리스트를 불러옵니다.
+    // 검색
     useEffect(() => {
         const fetchMusicData = async () => {
             try {
@@ -72,7 +61,7 @@ export const SelectMusicContainer = () => {
             }
         };
         fetchMusicData();
-    }, [searchKeyword]);
+    }, [selectedType, searchKeyword]);
 
     return (
         <Container>
@@ -90,7 +79,6 @@ export const SelectMusicContainer = () => {
                         ? responseUserMusicList
                         : responseGptMusicList
                 }
-                // onChange={handleMusicChange}
             />
         </Container>
     );

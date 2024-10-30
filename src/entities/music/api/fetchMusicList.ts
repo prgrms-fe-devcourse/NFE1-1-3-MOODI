@@ -1,6 +1,7 @@
 import { MusicItem, YouTubeResponse, SpotifyResponse } from '../model/type';
 import defaultApi from '../../../shared/api/api';
 import axios from 'axios';
+import React from 'react';
 
 /**
  * 스포티파이 토큰 발급
@@ -74,25 +75,24 @@ export const searchMusic = async (query: string): Promise<MusicItem> => {
             .items[0] as SpotifyResponse;
 
         // 유튜브 검색
-        // api 할당량 제한으로 주석처리해두었습니다.
-        // const youtubeResponse = await youtubeApi.get('/search', {
-        //     params: {
-        //         q: `${spotifyTrack.name} ${spotifyTrack.artists[0].name}`,
-        //         part: 'snippet',
-        //         type: 'video',
-        //         maxResults: 1
-        //     }
-        // });
+        const youtubeResponse = await youtubeApi.get('/search', {
+            params: {
+                q: `${spotifyTrack.name} ${spotifyTrack.artists[0].name}`,
+                part: 'snippet',
+                type: 'video',
+                maxResults: 1
+            }
+        });
 
-        // const youtubeVideo = youtubeResponse.data.items[0] as YouTubeResponse;
+        const youtubeVideo = youtubeResponse.data.items[0] as YouTubeResponse;
 
         return {
             title: spotifyTrack.name,
             artist: spotifyTrack.artists[0].name,
             thumbnailUrl: spotifyTrack.album.images[0].url,
-            youtubeId: 'M5aEiDSx7kI'
+            // youtubeId: 'M5aEiDSx7kI'
             // api 할당량 제한으로 그냥 아무 영상 id로 고정하고 테스트 중입니다.
-            // youtubeId: youtubeVideo.id.videoId
+            youtubeId: youtubeVideo.id.videoId
         };
     } catch (error) {
         console.error('스포티파이 음악 검색 실패 :', error);

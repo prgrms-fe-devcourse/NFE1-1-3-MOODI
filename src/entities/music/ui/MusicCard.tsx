@@ -6,7 +6,8 @@ import {
     StyledImg,
     TextWrap,
     Title,
-    Artist
+    Artist,
+    IconWrapper
 } from './MusicCard.styled';
 import { MusicCardProps } from '../model/type';
 
@@ -35,6 +36,17 @@ export const MusicCard = ({
             <ThumbnailContainer>
                 <Thumbnail $isPlaying={$isPlaying} onClick={handlePlay}>
                     <StyledImg src={thumbnailUrl} alt={title} />
+                    <IconWrapper $show>
+                        {$isPlaying ? (
+                            <span className="material-symbols-outlined">
+                                pause
+                            </span>
+                        ) : (
+                            <span className="material-symbols-outlined">
+                                play_arrow
+                            </span>
+                        )}
+                    </IconWrapper>
                 </Thumbnail>
             </ThumbnailContainer>
             <TextWrap>
