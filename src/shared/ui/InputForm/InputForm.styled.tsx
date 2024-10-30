@@ -28,9 +28,8 @@ export const StyledInput = styled.input<{
     height: string;
 }>`
     height: ${(props) => props.height};
-    /* width: 100%;
-    box-sizing: border-box; */
-    width: calc(100% - 32px);
+    width: 100%;
+    box-sizing: border-box;
     padding: 0 16px;
     font-size: 16px;
     color: #000000;

@@ -24,7 +24,8 @@ const InputForm = ({
     isDropdown = false,
     isTextarea = false,
     options = ['남성', '여성'],
-    onChange
+    onChange,
+    onKeyDown
 }: InputFormProps) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -85,6 +86,7 @@ const InputForm = ({
                         placeholder={placeholder}
                         height={height}
                         onChange={handleInputChange}
+                        onKeyDown={onKeyDown}
                     />
                     {isPassword && (
                         <TogglePasswordButton
