@@ -1,102 +1,53 @@
+// MusicCardList.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import { MusicCardList } from './MusicCardList';
-import { MusicItem } from '../model/type';
-import { http, HttpResponse } from 'msw';
+import { SEARCH_TYPE } from '@/features/diary-write/search-mode-selector/model/type';
+import { MusicItem } from '@/entities/music/model/type';
 
-const meta: Meta<typeof MusicCardList> = {
-    title: 'features/diary-write/MusicCardList',
+const meta = {
+    title: 'Features/DiaryWrite/MusicCardList',
     component: MusicCardList,
-    tags: ['autodocs'],
-    parameters: {
-        msw: {
-            handlers: [
-                http.get('/search', () => {
-                    return HttpResponse.json({
-                        title: '테스트 곡',
-                        artist: '테스트 아티스트',
-                        thumbnailUrl: 'https://via.placeholder.com/300',
-                        youtubeId: 'test-youtube-id'
-                    })
-                }),
-            ],
-        },
-    },
-};
+    tags: ['autodocs']
+} satisfies Meta<typeof MusicCardList>;
 
 export default meta;
-type Story = StoryObj<typeof MusicCardList>;
+type Story = StoryObj<typeof meta>;
 
-const responseMusicList = [
-    '뉴진스 supernatural',
-    '에스파 spicy',
-    '아이브 love dive'
+const sampleMusicList: MusicItem[] = [
+    {
+        title: "Sample Music 1",
+        thumbnailUrl: "thumbnail_url_1",
+        artist: "Artist 1",
+        youtubeId: "video_id_1"
+    },
+    {
+        title: "Sample Music 2",
+        thumbnailUrl: "thumbnail_url_2",
+        artist: "Artist 2",
+        youtubeId: "video_id_2"
+    }
 ];
 
-// GPT
-export const GPT: Story = {
+export const GPTRecommend: Story = {
     args: {
-        type: "gpt",
-        responseMusicList: responseMusicList,
-        onChange: (music) => console.log('선택된 음악:', music),
-    },
+        type: SEARCH_TYPE.GPT,
+        responseMusicList: sampleMusicList,
+        // onChange: (item: MusicItem) => console.log('Selected:', item)
+    }
 };
 
-// 사용자 검색
 export const UserSearch: Story = {
     args: {
-        type: "userSearch",
-        responseMusicList: responseMusicList,
-        onChange: (music) => console.log('선택된 음악:', music),
-    },
+        type: SEARCH_TYPE.USER,
+        responseMusicList: sampleMusicList,
+        // onChange: (item: MusicItem) => console.log('Selected:', item)
+    }
 };
 
-// 로딩
-export const Loading: Story = {
+export const Empty: Story = {
     args: {
-        type: "gpt",
-        responseMusicList: responseMusicList,
-        onChange: (music) => console.log('선택된 음악:', music),
-    },
-    parameters: {
-        msw: {
-            handlers: [
-                http.get('/search', async () => {
-                    await new Promise((resolve) => setTimeout(resolve, 3000)); // 3초 지연
-                    return HttpResponse.json({
-                        title: '로딩 테스트 곡',
-                        artist: '로딩 테스트 아티스트',
-                        thumbnailUrl: 'https://via.placeholder.com/300',
-                        youtubeId: 'loading-test-id'
-                    })
-                }),
-            ],
-        },
-    },
-};
-
-// 에러
-export const Error: Story = {
-    args: {
-        type: "gpt",
-        responseMusicList: responseMusicList,
-        onChange: (music) => console.log('선택된 음악:', music),
-    },
-    parameters: {
-        msw: {
-            handlers: [
-                http.get('/search', () => {
-                    return HttpResponse.error();
-                }),
-            ],
-        },
-    },
-};
-
-// 빈 리스트
-export const EmptyList: Story = {
-    args: {
-        type: "gpt",
+        type: SEARCH_TYPE.USER,
         responseMusicList: [],
-        onChange: (music) => console.log('선택된 음악:', music),
-    },
+        // onChange: (item: MusicItem) => console.log('Selected:', item)
+    }
 };

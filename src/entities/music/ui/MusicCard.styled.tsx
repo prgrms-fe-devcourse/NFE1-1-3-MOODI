@@ -1,7 +1,11 @@
 import styled, { keyframes, css } from 'styled-components';
 
+interface ContainerProps {
+    $isSelected: boolean;
+}
+
 interface ThumbnailProps {
-    isPlaying: boolean;
+    $isPlaying: boolean;
 }
 
 const colorAnimation = keyframes`
@@ -16,7 +20,7 @@ const colorAnimation = keyframes`
     }
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<ContainerProps>`
     width: 250px;
     height: 300px;
     display: flex;
@@ -24,6 +28,8 @@ export const Container = styled.div`
     align-items: center;
     border-radius: 10px;
     transition: all 0.2s ease;
+    border: ${(props) => (props.$isSelected ? '2px solid #a6a6a6' : 'none')};
+    background-color: ${(props) => (props.$isSelected ? '#efefef' : 'none')};
     &:hover {
         background-color: #f2f2f2;
         cursor: pointer;
@@ -62,7 +68,7 @@ export const Thumbnail = styled.div<ThumbnailProps>`
         z-index: 2;
 
         ${(props) =>
-            props.isPlaying &&
+            props.$isPlaying &&
             css`
                 animation: ${colorAnimation} 2s ease-in-out infinite;
             `}
@@ -76,7 +82,7 @@ export const Thumbnail = styled.div<ThumbnailProps>`
         width: 100%;
         height: 100%;
         background-color: ${(props) =>
-            props.isPlaying ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0)'};
+            props.$isPlaying ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0)'};
         transition: background-color 0.2s ease;
         z-index: 1;
     }
@@ -85,7 +91,7 @@ export const Thumbnail = styled.div<ThumbnailProps>`
         cursor: pointer;
         &::after {
             background-color: ${(props) =>
-                props.isPlaying ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.2)'};
+                props.$isPlaying ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.2)'};
         }
     }
 `;

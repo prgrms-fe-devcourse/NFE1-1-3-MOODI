@@ -15,9 +15,10 @@ export const MusicCard = ({
     thumbnailUrl,
     title,
     artist,
-    isPlaying = false,
+    $isPlaying = false,
     onPlay,
-    onClick
+    onClick,
+    $isSelected = false
 }: MusicCardProps) => {
     /**
      * 이벤트 버블링을 막아서 썸네일을 클릭했을 때는 노래 재생만 처리합니다.
@@ -30,9 +31,9 @@ export const MusicCard = ({
         }
     };
     return (
-        <Container onClick={onClick}>
+        <Container onClick={onClick} $isSelected={$isSelected}>
             <ThumbnailContainer>
-                <Thumbnail isPlaying={isPlaying} onClick={handlePlay}>
+                <Thumbnail $isPlaying={$isPlaying} onClick={handlePlay}>
                     <StyledImg src={thumbnailUrl} alt={title} />
                 </Thumbnail>
             </ThumbnailContainer>
