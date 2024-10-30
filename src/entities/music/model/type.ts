@@ -14,9 +14,10 @@ export interface MusicCardProps {
     thumbnailUrl: string; // 스포티파이 썸네일
     title: string; // 곡 제목
     artist: string; // 곡 아티스트
-    isPlaying?: boolean; // 재생 상태
+    $isPlaying?: boolean; // 재생 상태
     onPlay?: (youtubeId: string) => void; // 재생 함수
     onClick: () => void; // 클릭시 아이템 셋팅
+    $isSelected?: boolean;
 }
 
 export interface MusicListQueryParams {
