@@ -4,6 +4,7 @@ export const StyledEmotionIcon = styled.div<{ width: string; height: string }>`
     position: relative;
     width: ${({ width }) => width};
     height: ${({ height }) => height};
+
     & > img {
         position: absolute;
         top: 0;

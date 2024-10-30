@@ -17,20 +17,18 @@ export default meta;
 
 type Story = StoryObj<typeof EmotionButton>;
 
-// 기본 스토리
 export const Default: Story = {
   args: {
-    emotion: Emotions.Happy, // Emotions 열거형에서 감정 값 사용
-    initialClicked: false, // 기본값으로 클릭되지 않은 상태
-    onClick: () => {}, // 기본 onClick 핸들러
+    emotion: Emotions.Happy,
+    initialClicked: false, 
+    onClick: () => {}, 
   },
 };
 
-// 클릭된 상태 스토리
 export const Clicked: Story = {
   args: {
-    emotion: Emotions.Sad, // Emotions 열거형에서 감정 값 사용
-    initialClicked: true, // 클릭된 상태
-    onClick: () => {}, // 기본 onClick 핸들러
+    emotion: Emotions.Sad, 
+       initialClicked: true, 
+    onClick: () => {}, 
   },
 };

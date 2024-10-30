@@ -9,7 +9,9 @@ export const StyledReactionButton = styled.button<reactionBtnProps>`
     display: flex;
     flex-direction: ${({ isHorizontal }) => (isHorizontal ? 'row' : 'column')};
     align-items: ${({ isHorizontal }) => (isHorizontal ? 'center' : 'center')};
-    padding: ${({ isHorizontal }) => (isHorizontal ? '0 20px' : '20px')};
+    padding: ${({ isHorizontal }) => (isHorizontal ? '0 20px' : '5px')};
+    width: ${({ isHorizontal }) => (isHorizontal ? '70px' : '80px')};
+    height: ${({ isHorizontal }) => (isHorizontal ? '30px' : '100px')};
 
     gap: 5px;
     background-color: ${({ clicked }) =>

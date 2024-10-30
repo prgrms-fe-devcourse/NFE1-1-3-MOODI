@@ -1,5 +1,6 @@
 import { StyledReactionButton } from '../../ReactionButton/ui/ReactionButton.styled';
 import React from 'react';
+import { StyledEmotionIcon } from '../../EmotionIcon/ui/EmotionIcon.styled';
 
 interface ReactionAddButtonProps {
     isClicked: boolean;
@@ -13,25 +14,19 @@ const ReactionAddButton = ({
     isHorizontal,
     onClick
 }: ReactionAddButtonProps) => {
-    const width = isHorizontal ? '20px' : '60px';
-    const height = isHorizontal ? '20px' : '60px';
-
     const handleClick = () => {
         onClick();
     };
 
     return (
         <StyledReactionButton
-            clicked={isClicked}
             isHorizontal={isHorizontal}
+            clicked={isClicked}
             onClick={handleClick}
         >
-            <img
-                src="./emoji_plus.svg"
-                alt="추가"
-                width={width}
-                height={height}
-            />
+            <StyledEmotionIcon width="80%" height="80%">
+                <img src="./emoji/emoji_happy.svg" alt="이미지 추가" />
+            </StyledEmotionIcon>
         </StyledReactionButton>
     );
 };

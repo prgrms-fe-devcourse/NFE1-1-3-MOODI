@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledReactionButton } from './ReactionButton.styled';
 import EmotionIcon from '../../EmotionIcon/ui/EmotionIcon';
-import { Emotions } from '../../model/EmotionEnum';
+import { Emotions, getEmotionInfo } from '../../model/EmotionEnum';
 
 interface ReactionButtonProps {
     emotion: Emotions;
@@ -21,9 +21,6 @@ export const ReactionButton = ({
     isClicked,
     onClick
 }: ReactionButtonProps) => {
-    const width = isHorizontal ? '20px' : '60px';
-    const height = isHorizontal ? '20px' : '60px';
-
     const handleClick = () => {
         onClick(emotion);
     };
@@ -33,8 +30,9 @@ export const ReactionButton = ({
             isHorizontal={isHorizontal}
             clicked={isClicked}
             onClick={handleClick}
+            title={getEmotionInfo(emotion).description}
         >
-            <EmotionIcon emotion={emotion} width={width} height={height} />
+            <EmotionIcon emotion={emotion} width="100%" height="100%" />
             <p>{reactionCnt.toLocaleString()}</p>
         </StyledReactionButton>
     );
