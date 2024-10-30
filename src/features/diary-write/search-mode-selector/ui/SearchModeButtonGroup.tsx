@@ -20,7 +20,7 @@ export const SearchModeButtonGroup = ({
                 isActive={selectedType === SEARCH_TYPE.USER}
                 onClick={() => onChange(SEARCH_TYPE.USER)}
                 type="button"
-                aria-label="직접 검색하기"
+                aria-label="제목으로 검색하기"
             >
                 직접 검색하기
             </StyledButton>
