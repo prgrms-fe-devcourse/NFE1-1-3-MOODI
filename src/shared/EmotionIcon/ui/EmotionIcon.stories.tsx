@@ -4,7 +4,7 @@ import EmotionIcon from './EmotionIcon';
 import { Emotions } from '../../model/EmotionEnum';
 
 const meta: Meta<typeof EmotionIcon> = {
-  title: 'Shared/EmotionIcon',
+  title: 'Shared/ui/EmotionIcon',
   component: EmotionIcon,
   tags: ['autodocs'],
   argTypes: {
