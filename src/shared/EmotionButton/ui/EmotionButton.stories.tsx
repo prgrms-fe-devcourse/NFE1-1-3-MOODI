@@ -6,7 +6,7 @@ import { Emotions } from '../../model/EmotionEnum'; // Emotions 열거형 import
 
 const meta: Meta<typeof EmotionButton> = {
   component: EmotionButton,
-  title: 'Shared/EmotionButton',
+  title: 'Shared/UI/EmotionButton',
   tags: ['autodocs'],
   argTypes: {
     onClick: { action: 'clicked' }, // 클릭 액션을 로그로 남기기

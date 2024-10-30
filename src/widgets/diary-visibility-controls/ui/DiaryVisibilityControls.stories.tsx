@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import {DiaryVisibilityControls} from './DiaryVisibilityControls';
 
 const meta: Meta<typeof DiaryVisibilityControls> = {
-    title: 'Widgets/DiaryVisibilityControls',
+    title: 'Widgets/UI/DiaryVisibilityControls',
     component: DiaryVisibilityControls,
     tags: ['autodocs'],
 };
