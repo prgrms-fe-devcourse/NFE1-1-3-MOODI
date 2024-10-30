@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Chart from './Chart';
+import {
+  DailyEmotionType,
+} from '@/shared/model/moodTypes';
 
 const meta: Meta<typeof Chart> = {
   component: Chart,
@@ -11,7 +14,7 @@ export default meta;
 
 type Story = StoryObj<typeof Chart>;
 
-const dailyEmotionData = [
+const dailyEmotionData : DailyEmotionType[]  = [
   { day: 'Mon' as const, mood: null },
   { day: 'Tue' as const, mood: '나쁨' },
   { day: 'Wed' as const, mood: '나쁨' },
