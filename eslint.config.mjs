@@ -62,7 +62,8 @@ export default [
                 }
             ],
             'import/prefer-default-export': 'off',
-            'import/order': 'off'
+            'import/order': 'off',
+            'react/prop-types': 'off'
         },
         overrides: [
             {
