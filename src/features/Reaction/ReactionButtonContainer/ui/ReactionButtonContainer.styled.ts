@@ -7,8 +7,6 @@ export const StyledReactionContainer = styled.div`
     align-items: center;
     width: 100%;
 
-    border: 1px solid green;
-
     & > button {
         width: calc(20%-10px);
         margin: 5px;
