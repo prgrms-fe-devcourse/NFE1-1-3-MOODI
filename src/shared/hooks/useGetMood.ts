@@ -1,7 +1,6 @@
 import { WeeklyDataType, MonthlyDataType } from '../model/moodTypes';
 import { useQuery } from '@tanstack/react-query';
 import { moodQueryParamType } from '../model/moodQueryParamType';
-import React from 'react';
 import { getMoodApi } from '../api/mood';
 
 /**
@@ -12,11 +11,14 @@ import { getMoodApi } from '../api/mood';
  */
 
 const useGetMood = (params: moodQueryParamType) => {
+    const { week, ...restParams } = params;
+    const modifiedParams = week ? params : restParams;
+
     const { data, isLoading, error } = useQuery<
         WeeklyDataType | MonthlyDataType | null
     >({
-        queryKey: ['moodi', params],
-        queryFn: () => getMoodApi(params)
+        queryKey: ['moodi', modifiedParams],
+        queryFn: () => getMoodApi(modifiedParams)
     });
 
     return { data, isLoading, error };

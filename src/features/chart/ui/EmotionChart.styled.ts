@@ -19,15 +19,19 @@ export const ChartButtonStlyed = styled.button`
     background-color: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.17);
     border-radius: 38px;
+    font-weight: bold;
 `;
 
 export const ChartWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 80%;
+    box-shadow: 0px 4px 20px 0px rgba(200, 200, 200, 0.3);
+    padding: 50px 90px 90px 90px;
 `;
 
 export const EmotionChartStlyed = styled.div`
-    width: 952px;
+    max-width: 952px;
     margin: auto;
 `;

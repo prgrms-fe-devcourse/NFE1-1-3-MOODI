@@ -1,5 +1,5 @@
 export interface moodQueryParamType {
     year: number;
     month: number;
-    week?: number;
+    week?: number | null;
 }
