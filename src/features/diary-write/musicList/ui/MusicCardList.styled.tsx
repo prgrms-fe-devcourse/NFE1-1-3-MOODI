@@ -8,7 +8,7 @@ export const Container = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 35px;
     width: 100%;
-    padding: 2rem;
+    /* padding: 2rem; */
 `;
 
 export const HiddenYoutubeContainer = styled.div`

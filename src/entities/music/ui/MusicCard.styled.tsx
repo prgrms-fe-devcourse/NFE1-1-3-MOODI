@@ -22,7 +22,7 @@ const colorAnimation = keyframes`
 
 export const Container = styled.div<ContainerProps>`
     width: 250px;
-    height: 300px;
+    /* height: 300px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,6 +35,8 @@ export const Container = styled.div<ContainerProps>`
         cursor: pointer;
     }
     padding: 1rem;
+    justify-content: center;
+    gap: 0.5rem;
 `;
 
 export const ThumbnailContainer = styled.div`
@@ -45,6 +47,27 @@ export const ThumbnailContainer = styled.div`
     align-items: center;
 `;
 
+export const IconWrapper = styled.div<{ $show: boolean }>`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    opacity: ${(props) => (props.$show ? 1 : 0)};
+    transition: opacity 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .material-symbols-outlined {
+        font-size: 35px;
+        color: #ffffff;
+    }
+`;
+
 export const Thumbnail = styled.div<ThumbnailProps>`
     border-radius: 100%;
     width: 220px;
@@ -53,6 +76,14 @@ export const Thumbnail = styled.div<ThumbnailProps>`
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
+
+    ${IconWrapper} {
+        opacity: ${(props) => (props.$isPlaying ? 1 : 0)};
+    }
+
+    &:hover ${IconWrapper} {
+        opacity: 1;
+    }
 
     &::before {
         content: '';
