@@ -9,29 +9,37 @@ export const MusicSearchInput = ({ onSearch }: MusicSearchInputProps) => {
 
     const handleContentChange = (value: string) => {
         setSearchKeyword(value);
-        onSearch(value);
         console.log(value);
     };
 
-    const handleSearchSubmit = () => {};
+    const handleSearchClick = () => {
+        onSearch(searchKeyword);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter' && searchKeyword.trim()) {
+            onSearch(searchKeyword);
+        }
+    };
 
     return (
         <Container>
-            <SearchFormWrapper onSubmit={handleSearchSubmit}>
+            <SearchFormWrapper>
                 <InputForm
                     label=""
                     width="100%"
                     height="52px"
                     value={searchKeyword}
                     onChange={handleContentChange}
-                    placeholder="검색어를 입력해주세요."
+                    placeholder="제목을 입력해주세요."
+                    onKeyDown={handleKeyDown}
                 />
                 <Button
                     isActive={searchKeyword.trim().length > 0}
                     height="52px"
                     width="120px"
                     fontSize="16px"
-                    onClick={handleSearchSubmit}
+                    onClick={handleSearchClick}
                     hasBorder={false}
                 >
                     검색

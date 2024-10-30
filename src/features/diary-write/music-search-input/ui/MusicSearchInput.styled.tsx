@@ -7,8 +7,9 @@ export const Container = styled.div`
     width: 100%;
 `;
 
-export const SearchFormWrapper = styled.form`
+export const SearchFormWrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: flex-end;
+    gap: 0.5rem;
 `;
