@@ -15,7 +15,7 @@ import {
 } from 'recharts';
 import isDailyEmotion from '../lib/isDailyEmotion';
 
-const emotions = ['매우나쁨', '나쁨', '보통', '좋음', '매우좋음'];
+const emotions = ['매우 나쁨', '나쁨', '보통', '좋음', '매우 좋음'];
 
 interface ChartProps {
     data: DailyEmotionType[] | WeeklyEmotionSummaryType[];
@@ -43,6 +43,9 @@ const Chart = ({ data }: ChartProps) => {
                             dataKey="mood"
                             tickLine={false}
                             axisLine={false}
+                            domain={emotions}
+                            ticks={emotions}
+                            allowDuplicatedCategory={false}
                         />
                         <Line
                             type="monotone"
@@ -66,7 +69,9 @@ const Chart = ({ data }: ChartProps) => {
                             dataKey="mostFrequentEmotion"
                             tickLine={false}
                             axisLine={false}
+                            domain={emotions}
                             ticks={emotions}
+                            allowDuplicatedCategory={false}
                         />
                         <Line
                             type="monotone"
@@ -79,7 +84,9 @@ const Chart = ({ data }: ChartProps) => {
                 )}
                 <Tooltip
                     formatter={(value) =>
-                        value === '정보 없음' ? '정보 없음' : value
+                        value === '정보 없음' || value === null
+                            ? '정보 없음'
+                            : value
                     }
                 />
             </LineChart>

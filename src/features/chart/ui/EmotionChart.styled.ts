@@ -1,3 +1,4 @@
+import { SkeletonProps } from '@/shared/model/skeletonPropsTpye';
 import styled from 'styled-components';
 
 export const ChartInfoStyled = styled.h4`
@@ -6,7 +7,7 @@ export const ChartInfoStyled = styled.h4`
     color: #a4a4a4;
 `;
 
-export const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div<SkeletonProps>`
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
@@ -22,7 +23,7 @@ export const ChartButtonStlyed = styled.button`
     font-weight: bold;
 `;
 
-export const ChartWrapper = styled.div`
+export const ChartWrapper = styled.div<SkeletonProps>`
     display: flex;
     flex-direction: column;
     align-items: center;

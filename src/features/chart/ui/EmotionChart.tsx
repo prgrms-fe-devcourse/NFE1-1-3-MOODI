@@ -35,18 +35,20 @@ const EmotionChart = ({ userName = 'test' }: EmotionChartProps) => {
         ...(currentWeek !== null && { week: currentWeek })
     };
 
-    const { data } = useGetMood(moodParams);
+    const { data, isLoading } = useGetMood(moodParams);
+
+    console.log(data);
 
     return (
         <EmotionChartStlyed>
-            <Title>{userName}</Title>
-            <InfoStyled>
+            <Title isLoading={isLoading}>{userName}</Title>
+            <InfoStyled isLoading={isLoading}>
                 {data
-                    ? `${data.period} ${userName}님의 빈번한 감정은 ${data.mostFrequentEmotion === null ? '정보가 없습니다.' : data.mostFrequentEmotion}`
+                    ? `${data.period} ${userName}님의 평균 감정은 ${data.mostFrequentEmotion === null ? '정보가 없습니다.' : `${data.mostFrequentEmotion} 입니다.`}`
                     : '데이터를 불러오는 중입니다...'}
             </InfoStyled>
 
-            <ButtonContainer>
+            <ButtonContainer isLoading={isLoading}>
                 <ChartButtonStlyed
                     onClick={() => {
                         handleChangeViewMode('month');
@@ -64,7 +66,7 @@ const EmotionChart = ({ userName = 'test' }: EmotionChartProps) => {
                     주간 변경
                 </ChartButtonStlyed>
             </ButtonContainer>
-            <ChartWrapper>
+            <ChartWrapper isLoading={isLoading}>
                 <DateSlider
                     year={currentYear}
                     month={currentMonth}
@@ -77,7 +79,8 @@ const EmotionChart = ({ userName = 'test' }: EmotionChartProps) => {
                         handleChangeViewMode(newDate.viewMode);
                     }}
                 />
-                {data &&
+                {!isLoading &&
+                    data &&
                     (isWeekly(data) ? (
                         <Chart data={data.allEmotions} />
                     ) : (

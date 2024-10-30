@@ -4,7 +4,7 @@ import EmotionChart from './EmotionChart';
 
 const meta: Meta<typeof EmotionChart> = {
   component: EmotionChart,
-  title: 'entities/ui/EmotionChart',
+  title: 'features/ui/EmotionChart',
   tags: ['autodocs'],
   argTypes: {},
 };

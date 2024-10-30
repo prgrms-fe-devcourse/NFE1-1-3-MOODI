@@ -3,10 +3,11 @@ import { InfoStyled } from './Info.styeld';
 
 interface InfoProps {
     children: ReactNode;
+    isLoading: boolean;
 }
 
-const Info = ({ children }: InfoProps) => {
-    return <InfoStyled>{children}</InfoStyled>;
+const Info = ({ children, isLoading }: InfoProps) => {
+    return <InfoStyled isLoading={isLoading}>{children}</InfoStyled>;
 };
 
 export default Info;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyledTitle } from './Title.styled';
+import { TitleStyled } from './Title.styled';
 import { TitleProps } from './Title.types';
 
-const Title = ({ children }: TitleProps) => {
-    return <StyledTitle>{children}</StyledTitle>;
+const Title = ({ children, isLoading }: TitleProps) => {
+    return <TitleStyled isLoading={isLoading}>{children}</TitleStyled>;
 };
 
 export default Title;
