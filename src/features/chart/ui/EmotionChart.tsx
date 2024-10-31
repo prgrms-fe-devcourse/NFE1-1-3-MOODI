@@ -37,8 +37,6 @@ const EmotionChart = ({ userName = 'test' }: EmotionChartProps) => {
 
     const { data, isLoading } = useGetMood(moodParams);
 
-    console.log(data);
-
     return (
         <EmotionChartStlyed>
             <Title isLoading={isLoading}>{userName}</Title>
