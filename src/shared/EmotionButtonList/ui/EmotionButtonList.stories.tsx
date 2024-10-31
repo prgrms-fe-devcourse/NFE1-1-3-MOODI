@@ -18,8 +18,8 @@ const meta: Meta<typeof EmotionButtonList> = {
     },
     initialSelectedEmotions: {
       control: { 
-        type: 'array',
-        options: Object.values(Emotions), 
+        type: 'object',
+        // options: Object.values(Emotions), 
       },
       description: '초기 선택된 감정 목록입니다.\n\n' + 
       '배열의 크기가 maxSelections 수량보다 클 경우, 앞에서부터 maxSelections 수량만큼 설정됩니다.',
