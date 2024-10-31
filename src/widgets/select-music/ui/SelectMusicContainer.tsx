@@ -10,30 +10,29 @@ import {
     SEARCH_TYPE
 } from '@/features/diary-write/search-mode-selector/model/type';
 import { useMusicSearch } from '@/entities/music';
-
-// GPT 테스트용 리스트입니다
-// 실제로는 API가 내려준 리스트가 들어옵니다.
-const testdata = '뉴진스 supernatural';
+import { SelectMusicContainerProps } from '../model/type';
 
 // TODO - 로딩스피너 추가
-export const SelectMusicContainer = () => {
+export const SelectMusicContainer = ({
+    gptRecommendMusicList
+}: SelectMusicContainerProps) => {
     const [selectedType, setSelectedType] = useState<SearchType>(
         SEARCH_TYPE.GPT
-    ); // 현재 선택된 리스트 타입
-    const [searchKeyword, setSearchKeyword] = useState<string>(''); // 현재 검색 키워드
+    );
+    const [searchKeyword, setSearchKeyword] = useState<string>('');
     const userMusic = useMusicSearch(
         selectedType === SEARCH_TYPE.USER ? searchKeyword : ''
     );
     const gptMusic = useMusicSearch(
-        selectedType === SEARCH_TYPE.GPT ? testdata : ''
+        selectedType === SEARCH_TYPE.GPT ? gptRecommendMusicList[0] : ''
     );
 
     const userMusicList = useMemo(() => {
         return userMusic && userMusic.data ? [userMusic.data] : [];
-    }, [userMusic?.data]);
+    }, [userMusic]);
     const gptMusicList = useMemo(() => {
         return gptMusic && gptMusic.data ? [gptMusic.data] : [];
-    }, [gptMusic?.data]);
+    }, [gptMusic]);
 
     /**
      * 리스트 타입 세팅
