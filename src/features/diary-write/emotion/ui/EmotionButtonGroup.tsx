@@ -44,7 +44,7 @@ export const EmotionButtonGroup: React.FC<EmotionButtonGroupProps> = ({
                 return newKeywords;
             });
 
-            setActiveButton(activeButton + 1);
+            setActiveButton(activeButton !== 4 ? activeButton + 1 : 0);
         }
     };
 
