@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const Section = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    padding: 0 200px 0 200px;
 `;

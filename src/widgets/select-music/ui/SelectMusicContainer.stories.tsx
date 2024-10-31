@@ -28,7 +28,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 기본 스토리
-export const Default: Story = {
-   args: {}
-};
+// // 기본 스토리
+// export const Default: Story = {
+//    args: {}
+// };

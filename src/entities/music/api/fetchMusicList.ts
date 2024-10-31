@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { MusicItem, YouTubeResponse, SpotifyResponse } from '../model/type';
+import { YouTubeResponse, SpotifyResponse } from '../model/type';
 import defaultApi from '../../../shared/api/api';
-import { useQuery } from '@tanstack/react-query';
 
 /**
  * 스포티파이 토큰 발급

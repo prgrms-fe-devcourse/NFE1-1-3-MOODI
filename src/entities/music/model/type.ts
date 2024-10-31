@@ -38,3 +38,13 @@ export interface YouTubeResponse {
         videoId: string;
     };
 }
+
+export interface gptQueryParamsType {
+    mood?: string;
+    emotion?: string;
+    subemotion?: string[];
+    title?: string;
+    content?: string;
+}
+
+export type gptAnswerType = string[];
