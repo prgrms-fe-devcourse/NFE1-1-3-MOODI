@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { http, HttpResponse } from 'msw';
 import { MusicItem } from '../../../entities/music/model/type';
 
