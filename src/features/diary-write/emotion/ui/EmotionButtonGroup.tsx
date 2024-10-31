@@ -77,7 +77,9 @@ export const EmotionButtonGroup: React.FC<EmotionButtonGroupProps> = ({
                 onSelectionChange={handleClickEmotion}
                 maxSelections={1}
                 isPrimary
-                initialSelectedEmotions={[keywords[activeButton]]}
+                initialSelectedEmotions={
+                    keywords[activeButton] ? [keywords[activeButton]] : []
+                }
             />
         </EmotionButtonContainer>
     );
