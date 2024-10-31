@@ -18,9 +18,15 @@ export const EmotionButtonGroup: React.FC<EmotionButtonGroupProps> = ({
     const [keywords, setKeywords] =
         useState<(Emotions | null)[]>(initialKeywords);
     const [activeButton, setActiveButton] = useState(0);
+    const [lastClicked, setLastClicked] = useState<
+        'keyword' | 'emotion' | null
+    >(null);
 
     const handleClickKeyword = (index: number) => {
+        setLastClicked('keyword');
+
         setActiveButton(index);
+
         setKeywords((prevKeywords) => {
             const newKeywords = [...prevKeywords];
             newKeywords[index] = null;
@@ -32,6 +38,8 @@ export const EmotionButtonGroup: React.FC<EmotionButtonGroupProps> = ({
     };
 
     const handleClickEmotion = (selectedEmotions: Emotions[]) => {
+        setLastClicked('emotion');
+
         const newEmotion = selectedEmotions[0];
 
         if (keywords[activeButton] !== newEmotion) {
@@ -44,7 +52,8 @@ export const EmotionButtonGroup: React.FC<EmotionButtonGroupProps> = ({
                 return newKeywords;
             });
 
-            setActiveButton(activeButton !== 4 ? activeButton + 1 : 0);
+            if (lastClicked !== 'keyword')
+                setActiveButton(activeButton !== 4 ? activeButton + 1 : 0);
         }
     };
 
