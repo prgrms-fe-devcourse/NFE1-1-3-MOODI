@@ -54,3 +54,27 @@ export const getEmotionInfo = (emotion: Emotions) => {
     const imagePath = `${imageBasePath}/emoji_${emotionName}.svg`;
     return { description, imagePath };
 };
+
+export const emotionMapping: Record<string, Emotions> = {
+    기뻐요: Emotions.Happy,
+    자신있어요: Emotions.Confident,
+    감사해요: Emotions.Grateful,
+    편안해요: Emotions.Comfortable,
+    신이나요: Emotions.Fun,
+    즐거워요: Emotions.Excited,
+    만족스러워요: Emotions.Satisfied,
+    사랑스러워요: Emotions.Lovely,
+    모르겠어요: Emotions.Not_sure,
+    부끄러워요: Emotions.Embarrassed,
+    놀라워요: Emotions.Surprised,
+    '아무 생각이 없어요': Emotions.Blank,
+    슬퍼요: Emotions.Sad,
+    우울해요: Emotions.Depressed,
+    실망스러워요: Emotions.Disappointed,
+    후회돼요: Emotions.Regret,
+    짜증나요: Emotions.Annoyed,
+    화나요: Emotions.Angry,
+    외로워요: Emotions.Lonely,
+    충격받았어요: Emotions.Shocked,
+    곤란해요: Emotions.Awkward
+};
