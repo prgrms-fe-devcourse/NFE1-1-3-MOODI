@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button<{ isActive: boolean }>`
-    width: 192px;
+    width: 175px;
     height: 134px;
     border: 1px solid
         ${(props) =>
