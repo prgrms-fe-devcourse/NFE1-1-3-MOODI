@@ -10,11 +10,13 @@ interface DiaryListItemProps {
 const DiaryListItemUi: React.FC<DiaryListItemProps> = ({ data }) => {
     return (
         <Wrapper>
-            <ImageBox />
+            <ImageBox imgUrl={data.music_imgurl} musicName={data.music_title} />
             <ContentBox
                 title={data.title}
+                time={data.updated_date}
                 content={data.content}
                 emotion={data.emotion}
+                userName={data.author_username}
             />
         </Wrapper>
     );
