@@ -2,11 +2,11 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import ReactionButtonContainer from './ReactionButtonContainer';
-import { Emotions } from '../../../../shared/model/EmotionEnum';
+import { Emotions } from '../../../shared/model/EmotionEnum';
 
 const meta: Meta<typeof ReactionButtonContainer> = {
   component: ReactionButtonContainer,
-  title: 'features/ReactionButtonContainer',
+  title: 'entities/ReactionButtonContainer',
   tags: ['autodocs'],
   argTypes: {   
     isHorizontal: {
