@@ -38,11 +38,6 @@ export const MusicCardList = ({
         }
     };
 
-    // 테스트
-    useEffect(() => {
-        console.log(selectedMusic);
-    }, [selectedMusic]);
-
     // TODO - iframe 유튜브 api 모듈로 변경
     return (
         <Container>
@@ -58,7 +53,8 @@ export const MusicCardList = ({
                     />
                 )}
             </HiddenYoutubeContainer>
-            {responseMusicList.length === 0 ? (
+            {responseMusicList.length === 0 &&
+            responseMusicList !== undefined ? (
                 <EmptyMusicCard />
             ) : (
                 responseMusicList.map((music) => (

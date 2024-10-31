@@ -1,7 +1,8 @@
+import React from 'react';
+import axios from 'axios';
 import { MusicItem, YouTubeResponse, SpotifyResponse } from '../model/type';
 import defaultApi from '../../../shared/api/api';
-import axios from 'axios';
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 /**
  * 스포티파이 토큰 발급
@@ -55,13 +56,14 @@ const youtubeApi = defaultApi({
 });
 
 /**
- * 음악 검색 함수
- * @param query 검색어 - gpt 응답 / 사용자 직접 입력
+ * 검색어를 이용해 스포티파이 트랙을 검색합니다.
+ * @param query
  * @returns
  */
-export const searchMusic = async (query: string): Promise<MusicItem> => {
+export const spotifySearch = async (
+    query: string
+): Promise<SpotifyResponse> => {
     try {
-        // 스포티파이 검색
         const spotifyApi = await createSpotifyApi();
         const spotifyResponse = await spotifyApi.get('/search', {
             params: {
@@ -70,32 +72,39 @@ export const searchMusic = async (query: string): Promise<MusicItem> => {
                 limit: 1
             }
         });
+        return spotifyResponse.data.tracks.items[0] as SpotifyResponse;
+    } catch (error) {
+        console.log('스포티파이 데이터 패치 에러 : ', error);
+        throw new Error('스포티파이 검색 실패');
+    }
+};
 
-        const spotifyTrack = spotifyResponse.data.tracks
-            .items[0] as SpotifyResponse;
-
-        // 유튜브 검색
+/**
+ * 유튜브 ID를 검색해서 반환합니다.
+ * @param param0 트랙명, 가수 이름
+ * @returns 유튜브 ID
+ */
+export const youtubeSearch = async ({
+    trackName,
+    artistName
+}: {
+    trackName: string;
+    artistName: string;
+}) => {
+    try {
+        console.log('유튜브 검색이 실행되다.');
         const youtubeResponse = await youtubeApi.get('/search', {
             params: {
-                q: `${spotifyTrack.name} ${spotifyTrack.artists[0].name}`,
+                q: `${trackName} ${artistName}`,
                 part: 'snippet',
                 type: 'video',
                 maxResults: 1
             }
         });
-
         const youtubeVideo = youtubeResponse.data.items[0] as YouTubeResponse;
-
-        return {
-            title: spotifyTrack.name,
-            artist: spotifyTrack.artists[0].name,
-            thumbnailUrl: spotifyTrack.album.images[0].url,
-            // youtubeId: 'M5aEiDSx7kI'
-            // api 할당량 제한으로 그냥 아무 영상 id로 고정하고 테스트 중입니다.
-            youtubeId: youtubeVideo.id.videoId
-        };
+        return youtubeVideo.id.videoId;
     } catch (error) {
-        console.error('스포티파이 음악 검색 실패 :', error);
-        throw error;
+        console.log('유튜브 데이터 패치 에러 : ', error);
+        throw new Error('유튜브 검색 실패');
     }
 };
