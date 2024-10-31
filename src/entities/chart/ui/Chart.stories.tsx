@@ -6,7 +6,7 @@ import {
 
 const meta: Meta<typeof Chart> = {
   component: Chart,
-  title: 'entities/UI/CHART',
+  title: 'entities/UI/Chart',
   tags: ['autodocs'],
   argTypes: {},
 };
