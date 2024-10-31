@@ -21,7 +21,7 @@ export const StyledButton = styled.button.withConfig({
     font-family: 'Pretendard', sans-serif;
     height: ${(props) => props.height};
     width: ${(props) => props.width};
-    border-radius: 10px;
+    border-radius: ${(props) => props.borderradius};
     transition: background-color 0.2s ease;
 
     &:hover {

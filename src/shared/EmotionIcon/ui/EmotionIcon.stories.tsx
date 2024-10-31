@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import EmotionIcon from './EmotionIcon';
-import { Emotions } from '../model/EmotionEnum';
+import { Emotions } from '../../model/EmotionEnum';
 
 const meta: Meta<typeof EmotionIcon> = {
-  title: 'Shared/EmotionIcon',
+  title: 'Shared/ui/EmotionIcon',
   component: EmotionIcon,
   tags: ['autodocs'],
   argTypes: {

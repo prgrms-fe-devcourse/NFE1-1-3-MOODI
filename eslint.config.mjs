@@ -11,7 +11,8 @@ export default [
             '**/*stories*',
             '**/webpack*.js',
             '**/webpack/**/*.js',
-            'src/stories/**'
+            'src/stories/**',
+            '.storybook'
         ]
     },
     ...compat.config({
@@ -45,15 +46,8 @@ export default [
                 1,
                 { extensions: ['.jsx', '.tsx'] }
             ],
-            'import/extensions': [
-                'error',
-                'ignorePackages',
-                { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }
-            ],
-            'import/no-extraneous-dependencies': [
-                'error',
-                { devDependencies: true }
-            ],
+            'import/extensions': 'off',
+            'import/no-extraneous-dependencies': 'off',
             'react/function-component-definition': [
                 'error',
                 {
@@ -62,7 +56,8 @@ export default [
                 }
             ],
             'import/prefer-default-export': 'off',
-            'import/order': 'off'
+            'import/order': 'off',
+            'react/prop-types': 'off'
         },
         overrides: [
             {

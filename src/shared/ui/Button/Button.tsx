@@ -6,6 +6,7 @@ const Button = ({
     children,
     isActive = true,
     hasBorder = false,
+    borderradius = '10px',
     height,
     width,
     fontSize,
@@ -15,6 +16,7 @@ const Button = ({
         <StyledButton
             isActive={isActive}
             hasBorder={hasBorder}
+            borderradius={borderradius}
             height={height}
             width={width}
             fontSize={fontSize}

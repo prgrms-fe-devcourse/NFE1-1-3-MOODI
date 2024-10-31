@@ -6,4 +6,5 @@ export interface DiaryQueryParamsType {
     sort_by?: 'latest';
     month?: number;
     year?: number;
+    week?: number;
 }
