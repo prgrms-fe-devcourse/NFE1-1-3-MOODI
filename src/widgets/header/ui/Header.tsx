@@ -1,11 +1,12 @@
 import React from 'react';
 import { Container, Logo, Nav, NavItem } from './Header.styled';
+import LogoImage from '@/shared/assets/logo.svg';
 
 const Header = () => {
     return (
         <Container>
             <Logo>
-                <img src="/logo.svg" alt="logo" />
+                <img src={LogoImage} alt="logo" />
             </Logo>
             <Nav>
                 <NavItem>홈</NavItem>
