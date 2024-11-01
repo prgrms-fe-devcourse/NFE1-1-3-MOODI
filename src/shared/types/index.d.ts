@@ -15,5 +15,5 @@ declare module '*.jpeg' {
 
 declare module '*.svg' {
     const path: string;
-    export default path;
+    export default content;
 }
