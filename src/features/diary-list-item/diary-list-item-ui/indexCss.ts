@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
     align-items: center;
     position: relative;
     transition: 0.2s;
+    margin: 1rem 0;
 
     &:hover {
         cursor: pointer;

@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Paragraph = styled.p`
-    max-height: 30px;
+    height: 30px;
     margin: 0.6rem 0;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
