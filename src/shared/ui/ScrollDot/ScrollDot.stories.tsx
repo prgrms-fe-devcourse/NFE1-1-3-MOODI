@@ -4,7 +4,7 @@ import ScrollDot from './ScrollDot';
 
 const meta: Meta<typeof ScrollDot> = {
   component: ScrollDot,
-  title: 'shaerd/ui/ScrollDot',
+  title: 'shared/ui/ScrollDot',
   tags: ['autodocs'],
   argTypes: {},
 };

@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Overlay from './Overlay';
+import Account from './Account';
 
-const meta: Meta<typeof Overlay> = {
-  component: Overlay,
-  title: 'shared/ui/Overlay',
+const meta: Meta<typeof Account> = {
+  component: Account,
+  title: 'Widgets/ui/Account',
   tags: ['autodocs'],
   argTypes: {},
 };
 export default meta;
 
-type Story = StoryObj<typeof Overlay>;
+type Story = StoryObj<typeof Account>;
 
 export const Default: Story = {
   args: {},

@@ -47,7 +47,6 @@ const InputForm = ({
                 <StyledLabel>{label}</StyledLabel>
                 {hasError ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
             </LableContainer>
-            {/* 성별 선택 폼 */}
             {isDropdown && (
                 <StyledSelect
                     height={height}
@@ -64,7 +63,6 @@ const InputForm = ({
                     ))}
                 </StyledSelect>
             )}
-            {/* 본문 내용 작성 폼 */}
             {isTextarea && !isDropdown && (
                 <StyledTextarea
                     value={value}
@@ -73,7 +71,6 @@ const InputForm = ({
                     onChange={handleInputChange}
                 />
             )}
-            {/* 일반 및 비밀번호 작성 폼 */}
             {!isDropdown && !isTextarea && (
                 <div style={{ position: 'relative' }}>
                     <StyledInput

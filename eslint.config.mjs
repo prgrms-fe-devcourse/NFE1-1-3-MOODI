@@ -32,6 +32,7 @@ export default [
             'prettier'
         ],
         rules: {
+            'react/require-default-props': 'off',
             'prettier/prettier': 'error',
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'warn',
