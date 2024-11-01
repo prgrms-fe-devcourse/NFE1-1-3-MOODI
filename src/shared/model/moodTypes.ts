@@ -1,4 +1,10 @@
-type EmotionType = '좋음' | '나쁨' | '보통' | '매우 좋음' | '매우 나쁨' | null;
+export type EmotionType =
+    | '좋음'
+    | '나쁨'
+    | '보통'
+    | '매우 좋음'
+    | '매우 나쁨'
+    | null;
 
 export interface DailyEmotionType {
     day: 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun';

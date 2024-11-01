@@ -1,39 +1,39 @@
-// import React from 'react';
-// import type { Meta, StoryObj } from '@storybook/react';
-// import EmotionButtonList from './EmotionButtonList'; 
-// import { Emotions } from '../../../shared/model/EmotionEnum';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import EmotionButtonList from './EmotionButtonList'; 
+import { Emotions } from '../../../shared/model/EmotionEnum';
 
-// const meta: Meta<typeof EmotionButtonList> = {
-//   component: EmotionButtonList,
-//   title: 'Shared/EmotionButtonList',
-//   tags: ['autodocs'],
-//   argTypes: {
-//     isPrimary: {
-//       control: { type: 'boolean' },
-//       description: '대표 감정 : true, 서브 감정 : false ',
-//     },
-//     maxSelections: {
-//       control: { type: 'number' },
-//       description: '사용자가 선택할 수 있는 최대 감정 버튼 개수',
-//     },
-//     initialSelectedEmotions: {
-//       control: { 
-//         type: 'array',
-//         options: Object.values(Emotions), 
-//       },
-//       description: '초기 선택된 감정 목록입니다.\n\n' + 
-//       '배열의 크기가 maxSelections 수량보다 클 경우, 앞에서부터 maxSelections 수량만큼 설정됩니다.',
-//     },
-//     onSelectionChange: {    
-//       description: '선택된 감정 목록이 변경될 때 호출되는 콜백 함수',
-//       action: 'onSelectionChange',
-//     },
-//   },
-// };
+const meta: Meta<typeof EmotionButtonList> = {
+  component: EmotionButtonList,
+  title: 'Shared/EmotionButtonList',
+  tags: ['autodocs'],
+  argTypes: {
+    isPrimary: {
+      control: { type: 'boolean' },
+      description: '대표 감정 : true, 서브 감정 : false ',
+    },
+    maxSelections: {
+      control: { type: 'number' },
+      description: '사용자가 선택할 수 있는 최대 감정 버튼 개수',
+    },
+    initialSelectedEmotions: {
+      control: { 
+        type: 'select',
+        options: Object.values(Emotions), 
+      },
+      description: '초기 선택된 감정 목록입니다.\n\n' + 
+      '배열의 크기가 maxSelections 수량보다 클 경우, 앞에서부터 maxSelections 수량만큼 설정됩니다.',
+    },
+    onSelectionChange: {    
+      description: '선택된 감정 목록이 변경될 때 호출되는 콜백 함수',
+      action: 'onSelectionChange',
+    },
+  },
+};
 
-// export default meta;
+export default meta;
 
-// type Story = StoryObj<typeof EmotionButtonList>;
+type Story = StoryObj<typeof EmotionButtonList>;
 
 // export const Default: Story = {
 //   args: {

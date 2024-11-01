@@ -10,5 +10,5 @@ export type Condition = (typeof CONDITIONS)[number];
 
 export interface ConditionButtonGroupProps {
     selectedCondition: Condition | null;
-    onChange: (condition: Condition) => void;
+    onConditionChange: (condition: Condition) => void;
 }

@@ -28,26 +28,29 @@ const sampleMusicList: MusicItem[] = [
     }
 ];
 
-export const GPTRecommend: Story = {
+export const GptSearchMode: Story = {
     args: {
-        type: SEARCH_TYPE.GPT,
+        type: 'gptSearch',
         responseMusicList: sampleMusicList,
-        // onChange: (item: MusicItem) => console.log('Selected:', item)
+        selectedMusic: null,  // 추가
+        onChange: (music) => console.log('Selected music:', music)  // 추가
     }
 };
 
-export const UserSearch: Story = {
+export const UserSearchMode: Story = {
     args: {
-        type: SEARCH_TYPE.USER,
+        type: 'userSearch',
         responseMusicList: sampleMusicList,
-        // onChange: (item: MusicItem) => console.log('Selected:', item)
+        selectedMusic: null,  // 추가
+        onChange: (music) => console.log('Selected music:', music)  // 추가
     }
 };
 
-export const Empty: Story = {
+export const EmptyList: Story = {
     args: {
-        type: SEARCH_TYPE.USER,
+        type: 'userSearch',
         responseMusicList: [],
-        // onChange: (item: MusicItem) => console.log('Selected:', item)
+        selectedMusic: null,  // 추가
+        onChange: (music) => console.log('Selected music:', music)  // 추가
     }
 };

@@ -11,9 +11,11 @@ import {
 } from '@/features/diary-write/search-mode-selector/model/type';
 import { useMusicSearch } from '@/entities/music';
 import { SelectMusicContainerProps } from '../model/type';
+import { MusicItem } from '@/entities/music/model/type';
 
 // TODO - 로딩스피너 추가
 export const SelectMusicContainer = ({
+    onMusicSelect,
     gptRecommendMusicList
 }: SelectMusicContainerProps) => {
     const [selectedType, setSelectedType] = useState<SearchType>(
@@ -33,6 +35,13 @@ export const SelectMusicContainer = ({
     const gptMusicList = useMemo(() => {
         return gptMusic && gptMusic.data ? [gptMusic.data] : [];
     }, [gptMusic]);
+
+    const [selectedMusic, setSelectedMusic] = useState<MusicItem | null>(null);
+
+    const handleMusicSelect = (music: MusicItem | null) => {
+        setSelectedMusic(music);
+        onMusicSelect?.(music); // 부모로 선택된 음악 전달
+    };
 
     /**
      * 리스트 타입 세팅
@@ -62,11 +71,13 @@ export const SelectMusicContainer = ({
             )}
             <MusicCardList
                 type={selectedType}
+                selectedMusic={selectedMusic}
                 responseMusicList={
                     selectedType === SEARCH_TYPE.USER
                         ? userMusicList
                         : gptMusicList
                 }
+                onChange={handleMusicSelect}
             />
         </Container>
     );
