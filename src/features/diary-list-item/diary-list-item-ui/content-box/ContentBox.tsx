@@ -17,6 +17,7 @@ interface ContentBoxProps {
     content: string;
     emotion: string;
     userName: string;
+    id: number;
 }
 
 const ContentBox: React.FC<ContentBoxProps> = ({
@@ -24,7 +25,8 @@ const ContentBox: React.FC<ContentBoxProps> = ({
     time,
     content,
     emotion,
-    userName
+    userName,
+    id
 }) => {
     // 시간차이 계산
     const targetDate = new Date(time);
@@ -52,7 +54,7 @@ const ContentBox: React.FC<ContentBoxProps> = ({
             <Paragraph>{content}</Paragraph>
             <Bottom>
                 <Time>{timeAgo}</Time>
-                <Reaction />
+                <Reaction>{id}</Reaction>
             </Bottom>
             <Emotion imgPath={getEmoticonPath(emotion)} />
         </Wrapper>

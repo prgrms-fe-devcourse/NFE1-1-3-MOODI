@@ -22,8 +22,8 @@ const moveImgAnimation = keyframes`
 
 export const StyledButton = styled.button`
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 60px;
+    right: 90px;
     width: 91px;
     height: 91px;
     border: none;
@@ -85,7 +85,6 @@ export const StyledText = styled.span`
 
 export const Container = styled.div`
     width: 100%;
-    height: 1200px;
 `;
 
 export const StyledImg = styled.img`

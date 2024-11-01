@@ -17,6 +17,7 @@ const DiaryListItemUi: React.FC<DiaryListItemProps> = ({ data }) => {
                 content={data.content}
                 emotion={data.emotion}
                 userName={data.author_username}
+                id={data.id}
             />
         </Wrapper>
     );

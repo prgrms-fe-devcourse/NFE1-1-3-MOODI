@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const Box = styled.div<{ imgUrl: string }>`
     width: 135px;
     height: 115px;
-    border: 1px solid black;
     border-radius: 15px;
     background-image: url(${(props) => props.imgUrl});
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: gray;
     position: relative;
     overflow: hidden;
     display: flex;
