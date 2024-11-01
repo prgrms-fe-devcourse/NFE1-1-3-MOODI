@@ -73,7 +73,6 @@ export const DiaryWritePage = () => {
 
     return (
         <Container>
-            <Header />
             <Section>
                 {/* <WriteDiaryContainer onDiarySubmit={handleDiarySubmit} /> */}
                 <SelectEmotionContainer
