@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyledReactionContainer } from './ReactionButtonContainer.styled';
 import { Emotions } from '../../../shared/model/EmotionEnum';
 import ReactionButton from '../../../shared/ReactionButton/ui/ReactionButton';
 import ReactionAddButton from '../../../shared/ReactionAddButton/ui/ReactionAddButton';
 import useModal from '@/shared/hooks/useModal';
 import EmotionList from '@/shared/EmotionButtonList/ui/EmotionButtonList';
-
-interface Reaction {
-    emotion: Emotions;
-    reactionCnt: number;
-    isClicked: boolean;
-}
+import { Reaction } from '../model/reaction';
 
 interface ReactionListProps {
     reactions: Reaction[];
@@ -29,12 +24,11 @@ const ReactionButtonContainer = ({
     isAddBtnVisible = false,
     onReactionUpdate
 }: ReactionListProps) => {
-    const [clickedEmotions, setClickedEmotions] = React.useState<Emotions[]>(
-        []
-    );
+    const [clickedEmotions, setClickedEmotions] = useState<Emotions[]>([]);
     const [updatedReactions, setUpdatedReactions] =
-        React.useState<Reaction[]>(reactions);
-    const { openModal, ModalComponent } = useModal(); // useModal 훅 호출
+        useState<Reaction[]>(reactions);
+
+    const { openModal, ModalComponent } = useModal();
 
     useEffect(() => {
         const initialClickedEmotions = reactions
@@ -70,14 +64,21 @@ const ReactionButtonContainer = ({
         });
     };
 
-    const handleOnClick = () => {
-        openModal(); // 모달 열기
+    // 이모티콘 추가버튼 클릭
+    const handleOnClickAddButton = () => {
+        openModal();
     };
 
     // 모달 안에서 선택한 옵션을 확인할 수 있는 부분
     const onClickTest = (selectedEmotions: Emotions[]) => {
+        console.log('기존 데이터 :', reactions);
         console.log('선택된 감정:', selectedEmotions);
     };
+
+    // 모달에는 내가 선택한 값을 전달
+    const initialSelectedEmotions = reactions
+        .filter((reaction) => reaction.isClicked)
+        .map((reaction) => reaction.emotion);
 
     return (
         <StyledReactionContainer>
@@ -96,16 +97,16 @@ const ReactionButtonContainer = ({
                 <ReactionAddButton
                     isHorizontal={isHorizontal}
                     isClicked={false}
-                    onClick={handleOnClick}
+                    onClick={handleOnClickAddButton}
                 />
             )}
 
             <ModalComponent>
                 <div>
                     <EmotionList
-                        isPrimary
-                        maxSelections={1}
-                        initialSelectedEmotions={[Emotions.Happy]}
+                        isPrimary={false}
+                        maxSelections={22}
+                        initialSelectedEmotions={initialSelectedEmotions}
                         onSelectionChange={onClickTest}
                     />
                 </div>

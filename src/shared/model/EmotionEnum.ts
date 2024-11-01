@@ -22,7 +22,7 @@ export enum Emotions {
     Awkward = 'Awkward'
 }
 
-const emotionDescriptions: Record<Emotions, string> = {
+export const emotionDescriptions: Record<Emotions, string> = {
     [Emotions.Happy]: '기뻐요',
     [Emotions.Confident]: '자신있어요',
     [Emotions.Grateful]: '감사해요',
