@@ -3,7 +3,7 @@ name: NFE1-1-8-MOODI
 on:
     push:
         branches:
-            - main
+            - 31-fix-svg가-불러와지지-않는-오류
 
 jobs:
     deploy:

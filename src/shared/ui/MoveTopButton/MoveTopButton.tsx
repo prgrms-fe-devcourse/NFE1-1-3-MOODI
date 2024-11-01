@@ -5,6 +5,7 @@ import {
     StyledImg,
     StyledText
 } from './MoveTopButton.styled';
+import arrow from '@/shared/assets/arrow_up.svg';
 
 const MoveTopButton = () => {
     /** 화면 최상단으로 이동하는 이벤트 */
@@ -15,7 +16,7 @@ const MoveTopButton = () => {
     return (
         <Container>
             <StyledButton onClick={handleClick}>
-                <StyledImg src="/arrow_up.svg" />
+                <StyledImg src={arrow} />
                 <StyledText>Top</StyledText>
             </StyledButton>
         </Container>
