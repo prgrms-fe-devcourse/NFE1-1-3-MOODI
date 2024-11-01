@@ -6,7 +6,7 @@ interface InfoProps {
     isLoading: boolean;
 }
 
-const Info = ({ children, isLoading }: InfoProps) => {
+const Info = ({ children, isLoading = false }: InfoProps) => {
     return <InfoStyled isLoading={isLoading}>{children}</InfoStyled>;
 };
 

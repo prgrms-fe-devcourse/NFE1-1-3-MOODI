@@ -4,7 +4,7 @@ import Overlay from './Overlay';
 
 const meta: Meta<typeof Overlay> = {
   component: Overlay,
-  title: 'Shaerd/ui/Overlay',
+  title: 'shared/ui/Overlay',
   tags: ['autodocs'],
   argTypes: {},
 };

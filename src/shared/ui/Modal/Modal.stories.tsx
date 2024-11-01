@@ -4,7 +4,7 @@ import React from 'react';
 
 const meta: Meta<typeof Modal> = {
   component: Modal,
-  title: 'Shaerd/ui/Modal',
+  title: 'shared/ui/Modal',
   tags: ['autodocs'],
   argTypes: {},
 };
