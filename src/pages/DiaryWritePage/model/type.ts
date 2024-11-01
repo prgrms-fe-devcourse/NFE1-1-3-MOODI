@@ -1,7 +1,7 @@
-import { EmotionType } from '@/shared/model/moodTypes';
+import { ConditionType } from '@/shared/model/conditionTypes';
 
 export interface MoodDataType {
-    mood: EmotionType;
+    mood: ConditionType;
     emotion: string | null;
     subEmotion: (string | null)[];
 }

@@ -1,7 +1,7 @@
 import {
     WeeklyDataType,
     MonthlyDataType
-} from '../../../shared/model/moodTypes';
+} from '../../../shared/model/conditionTypes';
 
 const isWeekly = (
     data: WeeklyDataType | MonthlyDataType

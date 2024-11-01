@@ -1,4 +1,4 @@
-import { WeeklyDataType, MonthlyDataType } from '../model/moodTypes';
+import { WeeklyDataType, MonthlyDataType } from '../model/conditionTypes';
 import { moodQueryParamType } from '../model/moodQueryParamType';
 import defaultApi from '@/shared/api/api';
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Container, HiddenYoutubeContainer } from './MusicCardList.styled';
 import { MusicItem, MusicCardListProps } from '../model/type';
 import { EmptyMusicCard, MusicCard } from '../../../../entities/music';
-import useMusicStore from '@/entities/music/model/useMusicStore';
 
 export const MusicCardList = ({
     responseMusicList,
@@ -38,7 +37,6 @@ export const MusicCardList = ({
         }
     };
 
-    // TODO - iframe 유튜브 api 모듈로 변경
     return (
         <Container>
             <HiddenYoutubeContainer>

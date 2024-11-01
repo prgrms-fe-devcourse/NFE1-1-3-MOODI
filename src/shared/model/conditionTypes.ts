@@ -1,4 +1,4 @@
-export type EmotionType =
+export type ConditionType =
     | '좋음'
     | '나쁨'
     | '보통'
@@ -6,26 +6,26 @@ export type EmotionType =
     | '매우 나쁨'
     | null;
 
-export interface DailyEmotionType {
+export interface DailyConditionType {
     day: 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun';
-    mood: EmotionType;
+    mood: ConditionType;
 }
 
 export interface WeeklyDataType {
     period: string;
-    mostFrequentEmotion: EmotionType;
+    mostFrequentEmotion: ConditionType;
     frequency: number | null;
-    allEmotions: DailyEmotionType[];
+    allEmotions: DailyConditionType[];
 }
 
-export interface WeeklyEmotionSummaryType {
+export interface WeeklyConditionSummaryType {
     week: number;
-    mostFrequentEmotion: EmotionType;
+    mostFrequentEmotion: ConditionType;
 }
 
 export interface MonthlyDataType {
     period: string;
-    weeklyResults: WeeklyEmotionSummaryType[];
+    weeklyResults: WeeklyConditionSummaryType[];
     frequency: number | null;
-    mostFrequentEmotion: EmotionType;
+    mostFrequentEmotion: ConditionType;
 }
