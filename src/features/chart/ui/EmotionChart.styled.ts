@@ -27,7 +27,7 @@ export const ChartWrapper = styled.div<SkeletonProps>`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 100%;
     box-shadow: 0px 4px 20px 0px rgba(200, 200, 200, 0.3);
     padding: 50px 90px 90px 90px;
 `;
