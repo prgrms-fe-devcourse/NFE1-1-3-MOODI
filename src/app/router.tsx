@@ -1,11 +1,11 @@
 import MainPage from '@/pages/MainPage';
-import Header from '@/widgets/header/ui/Header';
 import { createBrowserRouter } from 'react-router-dom';
+import Layout from './layout/Layout';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Header />,
+        element: <Layout />,
         children: [
             {
                 path: '/',
