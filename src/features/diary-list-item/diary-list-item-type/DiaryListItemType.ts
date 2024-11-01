@@ -19,7 +19,7 @@ export interface DiaryListItemType {
     mood: string;
     emotion: string;
     sub_emotion: SubEmotionType | null; // string type needed if it's stored as JSON string
-    created_date: string;
+    title_date: string;
     updated_date: string;
     author_email: string;
     music_title: string;

@@ -18,7 +18,7 @@ export const getEmoticonPath = (emotion: string) => {
         후회돼요: 'emoji_regret',
         짜증나요: 'emoji_annoyed',
         화나요: 'emoji_angry',
-        외로워요: 'emoji_lonley',
+        외로워요: 'emoji_lonely',
         충격받았어요: 'emoji_shocked',
         곤란해요: 'emoji_awkward'
     };

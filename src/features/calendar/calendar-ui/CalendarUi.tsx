@@ -5,7 +5,7 @@ import {
     getActiveMonth,
     handleTileClick
 } from '../calendar-logic/calendarLogic';
-import { getEmoticonPath } from '../get-emotion-path/getEmotionPath';
+import { getEmoticonPath } from '@/shared/model/getEmotionPath';
 import moment from 'moment';
 
 const CalendarUi: React.FC = () => {
@@ -14,7 +14,7 @@ const CalendarUi: React.FC = () => {
     const monthOfActiveDate = moment(vlu).format('YYYY-MM');
     const [activeMonth, setActiveMonth] = useState(monthOfActiveDate);
     const [fetchedData, setFetchedData] = useState<
-        { id: number; created_date: string; emotion: string | null }[]
+        { id: number; title_date: string; emotion: string | null }[]
     >([]);
     const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -22,16 +22,14 @@ const CalendarUi: React.FC = () => {
     const loadDates = async () => {
         const data = await calendarDataFetch(activeMonth);
         if (data) {
-            const dates = data.map(
+            const dates = data.diaries.map(
                 (entry: {
                     id: number;
-                    created_date: string;
+                    title_date: string;
                     emotion: string | null;
                 }) => ({
                     id: entry.id,
-                    created_date: moment(entry.created_date).format(
-                        'YYYY-MM-DD'
-                    ),
+                    title_date: moment(entry.title_date).format('YYYY-MM-DD'),
                     emotion: entry.emotion
                 })
             );
@@ -43,7 +41,7 @@ const CalendarUi: React.FC = () => {
     const getTileClassName = (dateparam: Date): string => {
         const dateString = moment(dateparam).format('YYYY-MM-DD');
         const isCheckedDate = fetchedData.some(
-            (entry) => entry.created_date === dateString
+            (entry) => entry.title_date === dateString
         );
 
         return isCheckedDate ? 'diary-date' : 'nodiary-date';
@@ -53,14 +51,14 @@ const CalendarUi: React.FC = () => {
     const getTileContent = ({ date }: { date: Date }) => {
         const dateString = moment(date).format('YYYY-MM-DD');
         const matchedEntry = fetchedData.find(
-            (entry) => entry.created_date === dateString
+            (entry) => entry.title_date === dateString
         );
 
         if (matchedEntry && matchedEntry.emotion) {
             return (
                 <DateInnerContent
                     data-id={matchedEntry.id}
-                    data-date={matchedEntry.created_date}
+                    data-date={matchedEntry.title_date}
                     emotion={getEmoticonPath(matchedEntry.emotion)}
                     className="custom-tile-content"
                 />

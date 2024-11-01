@@ -23,6 +23,7 @@ export const StyledCalendar = styled(Calendar).attrs({
             outline: none;
             font-size: 1.5rem;
             font-family: 'Pretendard', sans-serif;
+            transition: 0.2s;
             &:hover {
                 background-color: rgba(0, 0, 0, 0.05);
                 cursor: pointer;
@@ -48,6 +49,7 @@ export const StyledCalendar = styled(Calendar).attrs({
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        transition: 0.2s;
         &:hover {
             background-color: rgba(0, 0, 0, 0.05);
             cursor: pointer;
