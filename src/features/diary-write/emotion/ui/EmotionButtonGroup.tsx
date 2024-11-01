@@ -11,6 +11,7 @@ import EmotionButtonList from '@/shared/EmotionButtonList/ui/EmotionButtonList';
 import { KeywordButton } from '@/entities/KeywordButton/ui/KeywordButton';
 import { Emotions } from '@/shared/model/EmotionEnum';
 
+// TODO - 초기값이 undefined로 들어오는데 null로 들어오도록 변경
 export const EmotionButtonGroup: React.FC<EmotionButtonGroupProps> = ({
     initialKeywords = [null, null, null, null, null],
     onKeywordsChange

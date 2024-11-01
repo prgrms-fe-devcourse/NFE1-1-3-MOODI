@@ -16,7 +16,7 @@ const meta = {
             options: [...CONDITIONS, null],
             description: '현재 선택되어있는 기분',
         },
-        onChange: {
+        onConditionChange: {
             description: '기분 버튼 클릭시 호출 : 부모 컴포넌트로 선택된 기분 전달'
         }
     }
@@ -29,7 +29,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         selectedCondition: null,
-        onChange: (condition) => {
+        onConditionChange: (condition) => {
            console.log(condition);
         },
     },
@@ -39,7 +39,7 @@ export const Default: Story = {
 export const Selected: Story = {
     args: {
         selectedCondition: '보통',
-        onChange: (condition) => {
+        onConditionChange: (condition) => {
             console.log(condition);
         },
     },
@@ -48,7 +48,7 @@ export const Selected: Story = {
 export const Interactive: Story = {
     args: {
         selectedCondition: null,
-        onChange: (condition) => {
+        onConditionChange: (condition) => {
             alert(`${condition}`);
         },
     },

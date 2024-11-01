@@ -5,12 +5,11 @@ import { EmptyMusicCard, MusicCard } from '../../../../entities/music';
 import useMusicStore from '@/entities/music/model/useMusicStore';
 
 export const MusicCardList = ({
-    responseMusicList
-    // onChange
+    responseMusicList,
+    selectedMusic,
+    onChange
 }: MusicCardListProps) => {
     const [nowPlaying, setNowPaying] = useState<string | null>(null);
-    const { selectedMusic, setSelectedMusic, clearSelectedMusic } =
-        useMusicStore();
 
     /**
      * iframe에 비디오 아이디를 셋팅합니다.
@@ -27,14 +26,15 @@ export const MusicCardList = ({
     };
 
     /**
-     * 사용자가 선택한 음악 정보를 셋팅합니다.
+     * 사용자가 선택한 음악 정보를 리스트로 전달
      * @param item :MusicItem 클릭한 카드 컴포넌트 음악 정보
      */
     const handleClick = (item: MusicItem) => {
-        if (item === selectedMusic) {
-            clearSelectedMusic();
+        const isAlreadySelected = selectedMusic?.youtubeId === item.youtubeId;
+        if (isAlreadySelected) {
+            onChange(null);
         } else {
-            setSelectedMusic(item);
+            onChange(item);
         }
     };
 

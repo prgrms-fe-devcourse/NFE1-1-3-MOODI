@@ -7,6 +7,8 @@ export interface MusicItem {
 
 export interface MusicCardListProps {
     type: string; // 리스트 타입
+
     responseMusicList: MusicItem[];
-    // onChange: (music: MusicItem) => void;
+    selectedMusic: MusicItem | null;
+    onChange: (music: MusicItem | null) => void;
 }
