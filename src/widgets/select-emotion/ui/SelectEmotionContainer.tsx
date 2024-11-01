@@ -7,14 +7,16 @@ import {
 import { ButtonContainer, Container } from './SelectEmotionContainer.styled';
 import { EmotionButtonGroup } from '@/features/diary-write/emotion/ui/EmotionButtonGroup';
 import { useState } from 'react';
-import { EmotionType } from '@/shared/model/moodTypes';
+import { ConditionType } from '@/shared/model/conditionTypes';
 import Button from '@/shared/ui/Button/Button';
 import { Emotions, getEmotionInfo } from '@/shared/model/EmotionEnum';
+import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 
 export const SelectEmotionContainer = ({
     onMoodSelect,
     onNext
 }: SelectEmotionContainerProps) => {
+    const { addToast } = useToastStore();
     const [moodState, setMoodState] = useState<MoodState>(INITIAL_MOOD_STATE);
 
     const isNextButtonActive = (): boolean => {
@@ -25,7 +27,7 @@ export const SelectEmotionContainer = ({
         );
     };
 
-    const handleConditionChange = (condition: EmotionType) => {
+    const handleConditionChange = (condition: ConditionType) => {
         setMoodState((prev) => ({
             ...prev,
             mood: condition
@@ -41,7 +43,7 @@ export const SelectEmotionContainer = ({
                 const info = getEmotionInfo(item);
                 return info.description;
             } catch (error) {
-                console.error('감정 변환 에러:', error);
+                addToast('감정 변환 에러.', 'error');
                 return null;
             }
         });
@@ -56,6 +58,8 @@ export const SelectEmotionContainer = ({
         if (isNextButtonActive()) {
             onMoodSelect(moodState);
             onNext?.(moodState);
+        } else {
+            addToast('데이터를 모두 입력해주세요!', 'warning');
         }
     };
 

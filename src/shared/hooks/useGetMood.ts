@@ -1,4 +1,4 @@
-import { WeeklyDataType, MonthlyDataType } from '../model/moodTypes';
+import { WeeklyDataType, MonthlyDataType } from '../model/conditionTypes';
 import { useQuery } from '@tanstack/react-query';
 import { moodQueryParamType } from '../model/moodQueryParamType';
 import { getMoodApi } from '../api/mood';

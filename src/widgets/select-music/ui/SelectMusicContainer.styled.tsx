@@ -7,3 +7,11 @@ export const Container = styled.div`
     align-items: center;
     gap: 1rem;
 `;
+
+export const SearchInputWrapper = styled.div<{ isVisible: boolean }>`
+    width: 100%;
+    max-height: ${(props) => (props.isVisible ? '100px' : '0')};
+    opacity: ${(props) => (props.isVisible ? '1' : '0')};
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+`;

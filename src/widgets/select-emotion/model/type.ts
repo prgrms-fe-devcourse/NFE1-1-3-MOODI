@@ -1,5 +1,5 @@
 import { MoodDataType } from '@/pages/DiaryWritePage/model/type';
-import { EmotionType } from '@/shared/model/moodTypes';
+import { ConditionType } from '@/shared/model/conditionTypes';
 
 export interface SelectEmotionContainerProps {
     onMoodSelect: (mood: MoodDataType) => void;
@@ -7,7 +7,7 @@ export interface SelectEmotionContainerProps {
 }
 
 export interface MoodState {
-    mood: EmotionType;
+    mood: ConditionType;
     emotion: string | null;
     subEmotion: (string | null)[];
 }

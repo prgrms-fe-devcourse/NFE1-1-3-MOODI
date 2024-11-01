@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Container } from './SelectMusicContainer.styled';
+import { Container, SearchInputWrapper } from './SelectMusicContainer.styled';
 import {
     MusicSearchInput,
     SearchModeButtonGroup,
@@ -66,9 +66,9 @@ export const SelectMusicContainer = ({
                 selectedType={selectedType}
                 onChange={handleTypeChange}
             />
-            {selectedType === SEARCH_TYPE.USER && (
+            <SearchInputWrapper isVisible={selectedType === SEARCH_TYPE.USER}>
                 <MusicSearchInput onSearch={handleSearchChange} />
-            )}
+            </SearchInputWrapper>
             <MusicCardList
                 type={selectedType}
                 selectedMusic={selectedMusic}

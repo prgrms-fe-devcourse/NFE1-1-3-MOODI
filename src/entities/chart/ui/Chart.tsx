@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    DailyEmotionType,
-    WeeklyEmotionSummaryType
-} from '@/shared/model/moodTypes';
+    DailyConditionType,
+    WeeklyConditionSummaryType
+} from '@/shared/model/conditionTypes';
 
 import {
     LineChart,
@@ -18,7 +18,7 @@ import isDailyEmotion from '../lib/isDailyEmotion';
 const emotions = ['매우 나쁨', '나쁨', '보통', '좋음', '매우 좋음'];
 
 interface ChartProps {
-    data: DailyEmotionType[] | WeeklyEmotionSummaryType[];
+    data: DailyConditionType[] | WeeklyConditionSummaryType[];
 }
 
 const Chart = ({ data }: ChartProps) => {

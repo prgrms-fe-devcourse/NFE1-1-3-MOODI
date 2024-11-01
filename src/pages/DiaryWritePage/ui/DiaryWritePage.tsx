@@ -1,32 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { SelectMusicContainer } from '@/widgets/select-music/ui/SelectMusicContainer';
-import Header from '@/widgets/header/ui/Header';
-import { Container, Section } from './DiaryWritePage.styled';
+import React, { useState } from 'react';
+import { fetchMusicRecommendation } from '@/entities/music';
+import { gptAnswerType, MusicItem } from '@/entities/music/model/type';
+import { useToastStore } from '@/features/Toast/hooks/useToastStore';
+import { SelectMusicContainer } from '@/widgets/select-music';
 import { SelectEmotionContainer } from '@/widgets/select-emotion';
-import { WriteDiaryContainer } from '@/widgets/write-diary';
-import { fetchGptRecommend } from '@/entities/music/api/fetchGptRecommend';
-import {
-    gptAnswerType,
-    gptQueryParamsType,
-    MusicItem
-} from '@/entities/music/model/type';
-import { EmotionType } from '@/shared/model/moodTypes';
-import { Emotions } from '@/shared/model/EmotionEnum';
+import { Container, Section } from './DiaryWritePage.styled';
 import { MoodDataType } from '../model/type';
 
 // TODO - 리팩토링 (로직 분리)
 export const DiaryWritePage = () => {
-    // 테스트 다이러리
-    const diary = {
-        title: '우울해',
-        content: '너무 우울해서 빵샀어'
-    };
-
+    const { addToast } = useToastStore();
     // const [diaryData, setDiaryData] = useState();
-    const [emotionData, setEmotionData] = useState<MoodDataType | null>(null);
-    const [musicData, setMusicData] = useState<MusicItem | null>(null);
-
-    const [gptRecommendMusicList, setGptRecommendMusicList] =
+    const [userEmotionState, setUserEmotionState] =
+        useState<MoodDataType | null>(null);
+    const [selectedMusic, setSelectedMusic] = useState<MusicItem | null>(null);
+    const [recommendedMusicList, setRecommendedMusicList] =
         useState<gptAnswerType>([]);
 
     // // 일기 데이터가 넘어오면 셋팅
@@ -34,54 +22,38 @@ export const DiaryWritePage = () => {
     //     setDiaryData(diaryData);
     // };
 
-    const handleMoodSelect = (moodState: MoodDataType) => {
-        console.log('감정 데이터 셋팅 : ', moodState);
-        setEmotionData(moodState);
+    const handleEmotionSubmit = (submittedEmotion: MoodDataType) => {
+        console.log('사용자 감정 데이터 저장:', submittedEmotion);
+        setUserEmotionState(submittedEmotion);
     };
 
-    const handleMusicSelect = (music: MusicItem | null) => {
-        console.log('음악 데이터 셋팅 : ', music);
-        setMusicData(music);
+    const handleMusicSelection = (selectedMusicItem: MusicItem | null) => {
+        console.log('선택된 음악 데이터 저장:', selectedMusicItem);
+        setSelectedMusic(selectedMusicItem);
     };
 
-    // TODO - diary 파라미터 넣어야함
-    const createGptQuery = (mood: MoodDataType) => {
-        const gptQuery: gptQueryParamsType = {
-            title: '우울해',
-            content: '너무 우울해서 빵샀어',
-            ...(mood?.mood && { mood: mood.mood }),
-            ...(mood?.emotion && { emotion: mood.emotion }),
-            ...(mood?.subEmotion && {
-                subemotion: mood.subEmotion.filter(
-                    (item): item is string => item !== null
-                )
-            })
-        };
-        return gptQuery;
-    };
-
-    const testFunction = async (mood: MoodDataType | null) => {
-        console.log('테스트 함수 실행됨');
-        if (mood === null) {
-            console.log('감정 선택을 먼저 완료해주세요');
-        } else {
-            const gptQuery = createGptQuery(mood);
-            const recommendations = await fetchGptRecommend(gptQuery);
-            setGptRecommendMusicList(recommendations);
-        }
+    const handleFetchRecommendations = async (
+        emotionData: MoodDataType | null
+    ) => {
+        await fetchMusicRecommendation(emotionData, {
+            onSuccess: setRecommendedMusicList,
+            onError: () => addToast('음악 추천 요청에 실패했습니다.', 'error'),
+            onValidationError: () =>
+                addToast('먼저 감정을 선택해주세요!', 'warning')
+        });
     };
 
     return (
         <Container>
             <Section>
-                {/* <WriteDiaryContainer onDiarySubmit={handleDiarySubmit} /> */}
+                {/* <WriteDiaryContainer onSubmit={handleDiarySubmit} /> */}
                 <SelectEmotionContainer
-                    onMoodSelect={handleMoodSelect}
-                    onNext={testFunction}
+                    onMoodSelect={handleEmotionSubmit}
+                    onNext={handleFetchRecommendations}
                 />
                 <SelectMusicContainer
-                    onMusicSelect={handleMusicSelect}
-                    gptRecommendMusicList={gptRecommendMusicList}
+                    onMusicSelect={handleMusicSelection}
+                    gptRecommendMusicList={recommendedMusicList}
                 />
             </Section>
         </Container>
