@@ -15,9 +15,13 @@ import DateSlider from '@/entities/dataSldier/DateSlider';
 
 interface EmotionChartProps {
     userName: string;
+    userEmail: string;
 }
 
-const EmotionChart = ({ userName = 'test' }: EmotionChartProps) => {
+const EmotionChart = ({
+    userName = 'test',
+    userEmail = 'perfectTest@naver.com'
+}: EmotionChartProps) => {
     const {
         currentYear,
         currentMonth,
@@ -32,7 +36,8 @@ const EmotionChart = ({ userName = 'test' }: EmotionChartProps) => {
     const moodParams = {
         year: currentYear,
         month: currentMonth,
-        ...(currentWeek !== null && { week: currentWeek })
+        ...(currentWeek !== null && { week: currentWeek }),
+        user_email: userEmail
     };
 
     const { data, isLoading } = useGetMood(moodParams);
