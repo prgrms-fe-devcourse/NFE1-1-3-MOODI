@@ -6,8 +6,9 @@ const api = defaultApi();
 
 /**
  * 감정과 관련된 정보를 불러옵니다.
- * @param page 불러온 데이터의 페이지를 나타냅니다.
- * @param limit 불러올 데이터의 페이지가 불러올 최대 숫자를 정의합니다.
+ * @param year 불러올 감정의 년도
+ * @param month 불러올 감정의 달
+ * @param week 불러올 감정의 주 , 주를 기준으로 감정을 월별로 가져올지 주별로 가져올지를 판별합니다.
  * @param user_email 해당 이메일과 일치하는 사용자 이메일을 가져옵니다.
  */
 
@@ -15,10 +16,11 @@ export const getMoodApi = async (
     params: moodQueryParamType
 ): Promise<WeeklyDataType | MonthlyDataType | null> => {
     try {
-        const queryParams: moodQueryParamType = {
+        const queryParams = {
             year: params.year,
             month: params.month,
-            ...(params.week && { week: params.week })
+            ...(params.week && { week: params.week }),
+            author_email: params.user_email
         };
         const response = await api.get('/mood', {
             params: queryParams,
@@ -28,10 +30,8 @@ export const getMoodApi = async (
         });
         return response.data;
     } catch (error) {
-        if (error instanceof Error) {
-            // 디버깅용 차후에 toast로 교체
-            alert(error.message);
-        }
-        return null;
+        throw new Error(
+            error instanceof Error ? error.message : 'Unknown error'
+        );
     }
 };
