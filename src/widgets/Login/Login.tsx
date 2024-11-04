@@ -14,6 +14,7 @@ const Login = () => {
     const [password, setPassword] = useState<string>('');
     return (
         <LoginStyled>
+            <Margin top={120} />
             <Title isLoading={false}>로그인</Title>
             <Info isLoading={false}>무디와 일기쓰고 노래 추천 받기</Info>
             <Margin bottom={70} />
