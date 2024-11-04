@@ -1,5 +1,5 @@
-import { createGptRequestQuery } from '../lib/createGptRequestQuery';
-import { gptAnswerType, MoodDataType } from '../model/type';
+// import { createGptRequestQuery } from '../lib/createGptRequestQuery';
+import { gptAnswerType, gptQueryParamsType } from '../model/type';
 import { fetchGptRecommend } from './fetchGptRecommend';
 
 /**
@@ -9,7 +9,7 @@ import { fetchGptRecommend } from './fetchGptRecommend';
  * @returns
  */
 export const fetchMusicRecommendation = async (
-    emotionData: MoodDataType | null,
+    combinedData: gptQueryParamsType | null,
     {
         onSuccess,
         onError,
@@ -20,13 +20,12 @@ export const fetchMusicRecommendation = async (
         onValidationError: () => void;
     }
 ) => {
-    if (!emotionData) {
+    if (!combinedData) {
         onValidationError();
         return;
     }
     try {
-        const requestQuery = createGptRequestQuery(emotionData);
-        const recommendedMusic = await fetchGptRecommend(requestQuery);
+        const recommendedMusic = await fetchGptRecommend(combinedData);
         onSuccess(recommendedMusic);
     } catch (error) {
         onError();

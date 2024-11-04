@@ -1,6 +1,12 @@
 import { DiaryQueryParamsType } from '../model/diaryQueryParamType';
 import defaultApi from '@/shared/api/api';
-import { DiaryType } from '../model/diaryType';
+import {
+    DiaryData,
+    DiaryType,
+    EmotionData,
+    MusicData,
+    PostDiaryType
+} from '../model/diaryType';
 
 const api = defaultApi();
 
@@ -44,6 +50,28 @@ export const getDiaryApi = async (
     } catch (error) {
         if (error instanceof Error) {
             throw error;
+        }
+        return null;
+    }
+};
+
+/**
+ * 일기를 저장합니다.
+ * @param diaryData
+ * @returns
+ */
+export const postDiaryApi = async (diary: PostDiaryType) => {
+    try {
+        const response = await api.post('/diary', diary, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        if (error instanceof Error) {
+            alert(error.message);
         }
         return null;
     }

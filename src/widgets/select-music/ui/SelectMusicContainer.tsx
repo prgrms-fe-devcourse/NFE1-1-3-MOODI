@@ -16,7 +16,9 @@ import { MusicItem } from '@/entities/music/model/type';
 // TODO - 로딩스피너 추가
 export const SelectMusicContainer = ({
     onMusicSelect,
-    gptRecommendMusicList
+    gptRecommendMusicList,
+    isActive,
+    disabled
 }: SelectMusicContainerProps) => {
     const [selectedType, setSelectedType] = useState<SearchType>(
         SEARCH_TYPE.GPT
