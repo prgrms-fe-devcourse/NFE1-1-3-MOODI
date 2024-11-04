@@ -5,7 +5,6 @@ import LogoImage from '@/shared/assets/logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    const navigate = useNavigate();
     return (
         <Container>
             <Logo>
@@ -14,11 +13,13 @@ const Header = () => {
             <Nav>
                 <Link to="/">홈</Link>
                 <NavItem>타임라인</NavItem>
-                <Link to="/diary">
+                <Link to="/my-diary">
                     <NavItem>내 일기</NavItem>
                 </Link>
                 <NavItem>마이페이지</NavItem>
-                <Link to="/login">로그인</Link>
+                <LoginButton>
+                    <Link to="/login">로그인</Link>
+                </LoginButton>
             </Nav>
         </Container>
     );
