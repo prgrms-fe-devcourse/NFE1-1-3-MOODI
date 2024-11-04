@@ -7,7 +7,6 @@ const useLogin = (): UseMutationResult<LoginType, Error, LoginParams> => {
     const mutation = useMutation<LoginType, Error, LoginParams>({
         mutationFn: (params: LoginParams) => login(params),
         onSuccess: (res: LoginType) => {
-            alert('로그인에 성공했습니다.');
             return res;
         },
         onError: (err: unknown) => {}
