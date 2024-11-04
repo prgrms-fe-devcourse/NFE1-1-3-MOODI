@@ -19,9 +19,6 @@ const Login = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         mutate({ email, password });
-        if (isSuccess) {
-            addToast('로그인에 성공했습니다.', 'success');
-        }
     };
 
     return (
@@ -49,6 +46,7 @@ const Login = () => {
                     onChange={setPassword}
                     placeholder="비밀번호 입력 (문자, 숫자, 특수문자 8~20자"
                 />
+
                 <Margin bottom={63} />
                 <ButtonStyled>
                     <Button
@@ -56,6 +54,7 @@ const Login = () => {
                         hasBorder
                         width="240px"
                         fontSize="16px"
+                        type="button"
                         onClick={() => {
                             addToast('회원가입', 'success');
                         }}
