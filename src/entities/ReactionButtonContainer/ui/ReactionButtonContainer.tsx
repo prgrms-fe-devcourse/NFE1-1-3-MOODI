@@ -16,18 +16,19 @@ interface ReactionListProps {
         count: number,
         isAlreadyClicked: boolean
     ) => void;
+    onSelectedEmotionsChange: (selectedEmotions: Emotions[]) => void; // 부모로부터 전달된 함수
 }
 
-const ReactionButtonContainer = ({
+const ReactionButtonContainer: React.FC<ReactionListProps> = ({
     reactions = [],
     isHorizontal,
     isAddBtnVisible = false,
-    onReactionUpdate
-}: ReactionListProps) => {
+    onReactionUpdate,
+    onSelectedEmotionsChange // 부모로부터 전달된 함수
+}) => {
     const [clickedEmotions, setClickedEmotions] = useState<Emotions[]>([]);
     const [updatedReactions, setUpdatedReactions] =
         useState<Reaction[]>(reactions);
-
     const { openModal, ModalComponent } = useModal();
 
     useEffect(() => {
@@ -64,18 +65,16 @@ const ReactionButtonContainer = ({
         });
     };
 
-    // 이모티콘 추가버튼 클릭
     const handleOnClickAddButton = () => {
         openModal();
     };
 
-    // 모달 안에서 선택한 옵션을 확인할 수 있는 부분
     const onClickTest = (selectedEmotions: Emotions[]) => {
-        console.log('기존 데이터 :', reactions);
-        console.log('선택된 감정:', selectedEmotions);
+        // console.log('기존 데이터 :', reactions);
+        // console.log('선택된 감정:', selectedEmotions);
+        onSelectedEmotionsChange(selectedEmotions); // 부모에게 전달
     };
 
-    // 모달에는 내가 선택한 값을 전달
     const initialSelectedEmotions = reactions
         .filter((reaction) => reaction.isClicked)
         .map((reaction) => reaction.emotion);

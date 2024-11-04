@@ -1,7 +1,7 @@
 export const getEmoticonPath = (emotion: string) => {
     const emotionMap: Record<string, string> = {
         기뻐요: 'emoji_happy',
-        '자신 있어요': 'emoji_confident',
+        자신있어요: 'emoji_confident',
         감사해요: 'emoji_grateful',
         편안해요: 'emoji_comfortable',
         신이나요: 'emoji_excited',

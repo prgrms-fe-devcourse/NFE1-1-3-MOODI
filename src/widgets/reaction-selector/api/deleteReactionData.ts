@@ -3,31 +3,27 @@ import axios, { AxiosError } from 'axios';
 const API_URL =
     'https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/reaction';
 
-export interface ReactionData {
-    diary_id: number;
-    reaction_type: string;
-    user_email: string;
+interface DeleteReactionProps {
+    id: number;
+    token: string;
 }
 
-// POST 요청 함수
-export const postReaction = async (
-    reactionData: ReactionData,
-    token: string
-) => {
+const deleteReaction = async ({ id, token }: DeleteReactionProps) => {
     try {
-        const response = await axios.post(API_URL, reactionData, {
+        const response = await axios.delete(`${API_URL}?id=${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'
             }
         });
-        return response.data;
+        console.log('Reaction deleted successfully:', response.data);
     } catch (error) {
         const axiosError = error as AxiosError;
         console.error(
-            'Error posting reaction:',
+            'Failed to delete reaction:',
             axiosError.response?.data || axiosError.message
         );
-        throw error;
     }
 };
+
+export default deleteReaction;
