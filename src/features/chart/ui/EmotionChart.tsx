@@ -15,9 +15,13 @@ import DateSlider from '@/entities/dataSldier/DateSlider';
 
 interface EmotionChartProps {
     userName: string;
+    userEmail: string;
 }
 
-const EmotionChart = ({ userName = 'test' }: EmotionChartProps) => {
+const EmotionChart = ({
+    userName = 'test',
+    userEmail = 'perfectTest@naver.com'
+}: EmotionChartProps) => {
     const {
         currentYear,
         currentMonth,
@@ -32,14 +36,15 @@ const EmotionChart = ({ userName = 'test' }: EmotionChartProps) => {
     const moodParams = {
         year: currentYear,
         month: currentMonth,
-        ...(currentWeek !== null && { week: currentWeek })
+        ...(currentWeek !== null && { week: currentWeek }),
+        user_email: userEmail
     };
 
     const { data, isLoading } = useGetMood(moodParams);
 
     return (
         <EmotionChartStlyed>
-            <Title isLoading={isLoading}>{userName}</Title>
+            <Title isLoading={isLoading}>{userName}님의 감정그래프</Title>
             <InfoStyled isLoading={isLoading}>
                 {data
                     ? `${data.period} ${userName}님의 평균 감정은 ${data.mostFrequentEmotion === null ? '정보가 없습니다.' : `${data.mostFrequentEmotion} 입니다.`}`
