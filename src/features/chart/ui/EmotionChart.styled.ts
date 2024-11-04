@@ -33,6 +33,7 @@ export const ChartWrapper = styled.div<SkeletonProps>`
 `;
 
 export const EmotionChartStlyed = styled.div`
-    max-width: 952px;
+    max-width: 960px;
     margin: auto;
+    padding: 150px 0;
 `;

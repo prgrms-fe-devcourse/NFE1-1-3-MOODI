@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     padding-bottom: 150px;
-    max-width: 960px;
-    width: 90%;
-    margin: 0 auto;
 `;
 
 export const DiaryList = styled.ul`

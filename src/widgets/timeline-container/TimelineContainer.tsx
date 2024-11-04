@@ -6,14 +6,24 @@ import {
     FinalItem,
     Loading
 } from './TimelineContainerCss';
-import { useInfiniteFetch } from '@/pages/MainPage/hooks/useInfiniteFetch ';
+import { useInfiniteFetch } from '@/shared/hooks/useInfiniteFetch ';
 import { useEffect } from 'react';
 import { DiaryListItemType } from '@/features/diary-list-item/diary-list-item-type/DiaryListItemType';
 import { useInView } from 'react-intersection-observer';
 
-const TimelineContainer = () => {
+interface TimelineContainerProps {
+    titleTarget: string;
+    sort: string;
+    email: string;
+}
+
+const TimelineContainer: React.FC<TimelineContainerProps> = ({
+    titleTarget,
+    sort,
+    email
+}) => {
     const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
-        useInfiniteFetch();
+        useInfiniteFetch(sort, email);
 
     const { ref, inView } = useInView();
     useEffect(() => {
@@ -35,7 +45,7 @@ const TimelineContainer = () => {
 
     return (
         <Container>
-            <Title isLoading>다른 사용자들의 일기를 확인해보세요!</Title>
+            <Title isLoading>{titleTarget}의 일기를 확인해보세요!</Title>
             <DiaryList>
                 {fetchedData &&
                     fetchedData.map((item: DiaryListItemType) => (
