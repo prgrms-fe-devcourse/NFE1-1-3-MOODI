@@ -41,19 +41,9 @@ const ReactionSelector = ({
     const updateReactions = async (selectedEmotions: Emotions[]) => {
         const updatedReactions = [...reactions];
 
-        for (const emotion of updatedReactions) {
-            console.log(
-                `==>${emotion.emotion}, ${emotion.reactionCnt}, ${emotion.isClicked}`
-            );
-        }
-
         for (const emotion of selectedEmotions) {
             const existingReaction = updatedReactions.find(
                 (reaction) => reaction.emotion === emotion
-            );
-
-            console.log(
-                `emotion : ${emotion},있을때? isClicked : ${existingReaction?.isClicked}`
             );
 
             if (existingReaction) {
@@ -65,7 +55,9 @@ const ReactionSelector = ({
                     });
                 }
             } else {
-                console.log(`없음 isClicked : ${existingReaction}`);
+                console.log(
+                    `없음 isClicked : ${emotion}, ${emotionDescriptions[emotion]}`
+                );
                 await handlePostReaction({
                     diary_id: diaryId,
                     reaction_type: emotionDescriptions[emotion],
@@ -79,13 +71,24 @@ const ReactionSelector = ({
                 reaction.isClicked &&
                 !selectedEmotions.includes(reaction.emotion as Emotions)
             ) {
-                console.log('test1');
+                // 해당하는 반응의 id찾기
+                console.log(`test1. ${reaction.emotion}, ${reaction.isClicked} \n 
+                   `);
+                diary?.reactions.forEach((x) => {
+                    console.log(
+                        `${x.reaction_id}, ${x.user_email}, ${x.reaction_type}`
+                    );
+                });
+
                 const selectedReactions: ReactionType[] =
                     diary?.reactions.filter(
                         (e) =>
-                            e.reaction_type === reaction.emotion &&
+                            e.reaction_type ===
+                                emotionDescriptions[reaction.emotion] &&
                             e.user_email === userEmail
                     ) || [];
+
+                console.log(`test1: ${selectedReactions}`);
 
                 if (selectedReactions.length > 0) {
                     console.log('test2');
@@ -172,6 +175,8 @@ const ReactionSelector = ({
             reaction_type,
             user_email
         };
+
+        console.log(`추가 : ${diary_id}, ${reaction_type}, ${user_email}`);
 
         try {
             await postReaction(reaction, token); // token 전달
