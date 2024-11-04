@@ -25,7 +25,7 @@ const ReactionAddButton = ({
             onClick={handleClick}
         >
             <StyledEmotionIcon width="80%" height="80%">
-                <img src="./emoji/emoji_happy.svg" alt="이미지 추가" />
+                <img src="./reaction_plus.svg" alt="이미지 추가" />
             </StyledEmotionIcon>
         </StyledReactionButton>
     );
