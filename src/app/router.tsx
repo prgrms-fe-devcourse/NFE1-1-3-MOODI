@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
 import MyDiaryListPage from '@/pages/MyDiaryListPage';
 import LoginPage from '@/pages/LoginPage/LoginPage';
+import SignPage from '@/pages/SignPage/SignPage';
 
 const router = createBrowserRouter([
     {
@@ -18,8 +19,12 @@ const router = createBrowserRouter([
                 element: <LoginPage />
             },
             {
-                path: 'diary',
+                path: '/my-diary',
                 element: <MyDiaryListPage />
+            },
+            {
+                path: '/join',
+                element: <SignPage />
             }
         ]
     }
