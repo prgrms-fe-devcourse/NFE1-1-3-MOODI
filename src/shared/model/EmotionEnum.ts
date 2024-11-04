@@ -24,7 +24,7 @@ export enum Emotions {
 
 export const emotionDescriptions: Record<Emotions, string> = {
     [Emotions.Happy]: '기뻐요',
-    [Emotions.Confident]: '자신있어요',
+    [Emotions.Confident]: '자신 있어요',
     [Emotions.Grateful]: '감사해요',
     [Emotions.Comfortable]: '편안해요',
     [Emotions.Fun]: '신이나요',
@@ -57,7 +57,7 @@ export const getEmotionInfo = (emotion: Emotions) => {
 
 export const emotionMapping: Record<string, Emotions> = {
     기뻐요: Emotions.Happy,
-    자신있어요: Emotions.Confident,
+    '자신 있어요': Emotions.Confident,
     감사해요: Emotions.Grateful,
     편안해요: Emotions.Comfortable,
     신이나요: Emotions.Fun,
@@ -67,7 +67,7 @@ export const emotionMapping: Record<string, Emotions> = {
     모르겠어요: Emotions.Not_sure,
     부끄러워요: Emotions.Embarrassed,
     놀라워요: Emotions.Surprised,
-    아무생각이없어요: Emotions.Blank,
+    '아무생각이 없어요': Emotions.Blank,
     슬퍼요: Emotions.Sad,
     우울해요: Emotions.Depressed,
     실망스러워요: Emotions.Disappointed,

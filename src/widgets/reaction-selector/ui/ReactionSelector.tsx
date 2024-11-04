@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-use-before-define */
 /* eslint-disable camelcase */
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { StyledReactionSelector } from './ReactionSelector.styled';
 import { fetchReactionData } from '../api/fetchReactionData';
@@ -128,6 +129,7 @@ const ReactionSelector = ({
             const indexB = Object.values(Emotions).indexOf(b.emotion);
             return indexA - indexB;
         });
+
         setReactions(sortedReactions);
     };
 
@@ -135,6 +137,7 @@ const ReactionSelector = ({
         setLoading(true);
         try {
             const data = await fetchReactionData(diaryId);
+
             if (data) {
                 setDiary(data);
                 processReactions(data.reactions);
