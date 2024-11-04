@@ -53,7 +53,7 @@ export type gptAnswerType = string[];
 export interface MoodDataType {
     mood: ConditionType;
     emotion: string | null;
-    subEmotion: (string | null)[];
+    subEmotions: (string | null)[];
 }
 
 export interface DiaryDescDataType {
