@@ -76,8 +76,6 @@ const ReactionSelector = ({
                             e.user_email === userEmail
                     ) || [];
 
-                console.log(`test1: ${selectedReactions}`);
-
                 if (selectedReactions.length > 0) {
                     const selectedReaction = selectedReactions[0];
                     await deleteReaction({
@@ -160,8 +158,6 @@ const ReactionSelector = ({
             reaction_type,
             user_email
         };
-
-        console.log(`추가 : ${diary_id}, ${reaction_type}, ${user_email}`);
 
         try {
             await postReaction(reaction, token);
