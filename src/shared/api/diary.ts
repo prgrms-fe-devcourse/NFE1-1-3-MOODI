@@ -43,8 +43,7 @@ export const getDiaryApi = async (
         return response.data;
     } catch (error) {
         if (error instanceof Error) {
-            // 디버깅용 차후에 toast로 교체
-            alert(error.message);
+            throw error;
         }
         return null;
     }

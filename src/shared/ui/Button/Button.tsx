@@ -10,7 +10,8 @@ const Button = ({
     height,
     width,
     fontSize,
-    onClick
+    onClick,
+    type
 }: ButtonProps) => {
     return (
         <StyledButton
@@ -21,6 +22,7 @@ const Button = ({
             width={width}
             fontSize={fontSize}
             onClick={onClick}
+            type={type}
         >
             {children}
         </StyledButton>

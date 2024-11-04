@@ -6,5 +6,6 @@ export interface ButtonProps {
     borderradius?: string;
     height: string;
     width: string;
-    onClick: () => void;
+    onClick?: () => void;
+    type?: string;
 }
