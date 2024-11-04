@@ -4,7 +4,7 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
 import { StyledReactionSelector } from './ReactionSelector.styled';
-import { fetchReactionData } from '../api/addReactionData';
+import { fetchReactionData } from '../api/fetchReactionData';
 import { DiaryType } from '@/shared/model/diaryType';
 import { ReactionList } from '../model/reactionListType';
 import {
@@ -222,11 +222,6 @@ const ReactionSelector = ({
             }
         }
     };
-    const hasSelectedEmotion = (selectedEmotion: Emotions) =>
-        reactions.some((reaction) => reaction.emotion === selectedEmotion);
-
-    //
-    console.log('ReactionSelector-Reactions:', reactions);
 
     return (
         <StyledReactionSelector>
