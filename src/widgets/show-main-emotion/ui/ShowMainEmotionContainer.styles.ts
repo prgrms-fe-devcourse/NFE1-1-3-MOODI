@@ -9,10 +9,6 @@ export const Container = styled.div`
     padding: 30px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.13);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     font-size: 16px;
     font-weight: bold;
     font-family: 'Pretendard', sans-serif;
@@ -32,7 +28,7 @@ export const EmotionContainer = styled.div`
     padding: 20px;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 70px;
+    margin-top: 60px;
     gap: 10px;
 
     font-weight: normal;

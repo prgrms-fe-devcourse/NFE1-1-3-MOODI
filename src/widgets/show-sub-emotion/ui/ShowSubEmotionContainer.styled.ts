@@ -14,7 +14,7 @@ export const Container = styled.div`
     font-family: 'Pretendard', sans-serif;
 `;
 export const EmotionsContainer = styled.div`
-    margin-top: 70px;
+    margin-top: 60px;
 
     display: flex;
     flex-wrap: wrap;
