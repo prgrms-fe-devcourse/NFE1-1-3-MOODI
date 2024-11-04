@@ -1,6 +1,7 @@
 import MainPage from '@/pages/MainPage';
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
+import MyDiaryListPage from '@/pages/MyDiaryListPage';
 
 const router = createBrowserRouter([
     {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <MainPage />
+            },
+            {
+                path: '/my-diary',
+                element: <MyDiaryListPage />
             }
         ]
     }

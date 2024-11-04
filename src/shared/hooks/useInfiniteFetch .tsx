@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-const fetchTimeline = async (page: number) => {
+const fetchTimeline = async (page: number, sort: string, email: string) => {
     const response = await fetch(
-        `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?limit=10&sort_by=lastest&page=${page}`
+        `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?limit=10&sort_by=${sort}&page=${page}&user_email=${email}`
     );
     if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -11,11 +11,11 @@ const fetchTimeline = async (page: number) => {
     return data;
 };
 
-export const useInfiniteFetch = () => {
+export const useInfiniteFetch = (sort: string, email: string) => {
     return useInfiniteQuery({
-        queryKey: ['timeline'],
+        queryKey: ['timeline', sort, email],
         queryFn: ({ pageParam = 1 }) => {
-            return fetchTimeline(Number(pageParam));
+            return fetchTimeline(Number(pageParam), sort, email);
         },
         getNextPageParam: (last) => {
             if (last.page < last.totalPages) {

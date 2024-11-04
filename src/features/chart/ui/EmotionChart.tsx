@@ -44,7 +44,7 @@ const EmotionChart = ({
 
     return (
         <EmotionChartStlyed>
-            <Title isLoading={isLoading}>{userName}</Title>
+            <Title isLoading={isLoading}>{userName}님의 감정그래프</Title>
             <InfoStyled isLoading={isLoading}>
                 {data
                     ? `${data.period} ${userName}님의 평균 감정은 ${data.mostFrequentEmotion === null ? '정보가 없습니다.' : `${data.mostFrequentEmotion} 입니다.`}`
