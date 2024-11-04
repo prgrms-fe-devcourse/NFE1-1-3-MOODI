@@ -8,13 +8,14 @@ import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 import { ButtonStyled, LoginStyled } from './Login.styled';
 import Span from '@/shared/ui/Span/Span';
 import useLogin from '@/features/login/hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { addToast } = useToastStore();
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const { mutate, isError, isSuccess, data, error } = useLogin();
-
+    const navigate = useNavigate();
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         mutate({ email, password });
@@ -28,12 +29,12 @@ const Login = () => {
             <Margin bottom={70} />
             <form onSubmit={handleSubmit}>
                 <InputForm
-                    label="아이디 입력 (영문, 숫자 6~20자)"
+                    label="이메일 입력"
                     value={email}
                     width="500px"
                     height="52px"
                     onChange={setEmail}
-                    placeholder="아이디 입력 (영문, 숫자 6~20자)"
+                    placeholder="이메일 입력"
                 />
                 <Margin bottom={25} />
                 <InputForm
@@ -55,7 +56,7 @@ const Login = () => {
                         fontSize="16px"
                         type="button"
                         onClick={() => {
-                            addToast('회원가입', 'success');
+                            navigate('/join');
                         }}
                     >
                         회원가입
