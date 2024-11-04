@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-use-before-define */
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useEffect, useState } from 'react';
 import { StyledReactionSelector } from './ReactionSelector.styled';
 import { fetchReactionData } from '../api/fetchReactionData';
@@ -174,6 +174,13 @@ const ReactionSelector = ({
         getDiaryData();
     }, [diaryId]);
 
+    const memoizedReactions = useMemo(() => {
+        return reactions.map((reaction) => ({
+            ...reaction
+            // 필요한 추가 데이터 처리
+        }));
+    }, [reactions]);
+
     if (loading) {
         return null;
     }
@@ -185,7 +192,7 @@ const ReactionSelector = ({
     const args = {
         isHorizontal,
         isAddBtnVisible,
-        reactions,
+        reactions: memoizedReactions,
         onReactionUpdate: async (
             emotion: Emotions,
             count: number,

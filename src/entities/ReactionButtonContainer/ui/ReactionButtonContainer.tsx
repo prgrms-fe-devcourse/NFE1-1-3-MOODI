@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { StyledReactionContainer } from './ReactionButtonContainer.styled';
+import {
+    StyledEmotionContainer,
+    StyledReactionContainer,
+    StyledCloseButton,
+    StyledReactionBtnContainer
+} from './ReactionButtonContainer.styled';
 import { Emotions } from '../../../shared/model/EmotionEnum';
 import ReactionButton from '../../../shared/ReactionButton/ui/ReactionButton';
 import ReactionAddButton from '../../../shared/ReactionAddButton/ui/ReactionAddButton';
@@ -29,6 +34,8 @@ const ReactionButtonContainer: React.FC<ReactionListProps> = ({
     const [clickedEmotions, setClickedEmotions] = useState<Emotions[]>([]);
     const [updatedReactions, setUpdatedReactions] =
         useState<Reaction[]>(reactions);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const { openModal, ModalComponent } = useModal();
 
     useEffect(() => {
@@ -65,8 +72,12 @@ const ReactionButtonContainer: React.FC<ReactionListProps> = ({
         });
     };
 
+    const toggleModal = () => {
+        setIsModalOpen((prev) => !prev);
+    };
+
     const handleOnClickAddButton = () => {
-        openModal();
+        toggleModal();
     };
 
     const onClickTest = (selectedEmotions: Emotions[]) => {
@@ -79,35 +90,40 @@ const ReactionButtonContainer: React.FC<ReactionListProps> = ({
 
     return (
         <StyledReactionContainer>
-            {updatedReactions.map(({ emotion, reactionCnt }) => (
-                <ReactionButton
-                    key={emotion}
-                    emotion={emotion}
-                    reactionCnt={reactionCnt}
-                    isHorizontal={isHorizontal}
-                    isClicked={clickedEmotions.includes(emotion)}
-                    onClick={handleClick}
-                />
-            ))}
+            <StyledReactionBtnContainer>
+                {updatedReactions.map(({ emotion, reactionCnt }) => (
+                    <ReactionButton
+                        key={emotion}
+                        emotion={emotion}
+                        reactionCnt={reactionCnt}
+                        isHorizontal={isHorizontal}
+                        isClicked={clickedEmotions.includes(emotion)}
+                        onClick={handleClick}
+                    />
+                ))}
 
-            {isAddBtnVisible && (
-                <ReactionAddButton
-                    isHorizontal={isHorizontal}
-                    isClicked={false}
-                    onClick={handleOnClickAddButton}
-                />
-            )}
+                {isAddBtnVisible && (
+                    <ReactionAddButton
+                        isHorizontal={isHorizontal}
+                        isClicked={false}
+                        onClick={handleOnClickAddButton}
+                    />
+                )}
+            </StyledReactionBtnContainer>
 
-            <ModalComponent>
-                <div>
+            {isModalOpen && (
+                <StyledEmotionContainer>
+                    <StyledCloseButton onClick={toggleModal}>
+                        x
+                    </StyledCloseButton>
                     <EmotionList
                         isPrimary={false}
                         maxSelections={22}
                         initialSelectedEmotions={initialSelectedEmotions}
                         onSelectionChange={onClickTest}
                     />
-                </div>
-            </ModalComponent>
+                </StyledEmotionContainer>
+            )}
         </StyledReactionContainer>
     );
 };

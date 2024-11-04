@@ -7,6 +7,7 @@ interface IsClicked {
 
 export const StyledEmotionButton = styled.button<IsClicked>`
     width: auto;
+    min-width: 75px;
     height: 40px;
     display: flex;
     justify-content: center;
