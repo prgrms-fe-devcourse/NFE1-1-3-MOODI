@@ -19,7 +19,7 @@ const router = createBrowserRouter([
                 element: <LoginPage />
             },
             {
-                path: '/my-diary',
+                path: '/diary',
                 element: <MyDiaryListPage />
             },
             {
