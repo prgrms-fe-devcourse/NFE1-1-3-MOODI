@@ -16,7 +16,7 @@ interface ReactionListProps {
         count: number,
         isAlreadyClicked: boolean
     ) => void;
-    onSelectedEmotionsChange: (selectedEmotions: Emotions[]) => void; // 부모로부터 전달된 함수
+    onSelectedEmotionsChange: (selectedEmotions: Emotions[]) => void;
 }
 
 const ReactionButtonContainer: React.FC<ReactionListProps> = ({
@@ -24,7 +24,7 @@ const ReactionButtonContainer: React.FC<ReactionListProps> = ({
     isHorizontal,
     isAddBtnVisible = false,
     onReactionUpdate,
-    onSelectedEmotionsChange // 부모로부터 전달된 함수
+    onSelectedEmotionsChange
 }) => {
     const [clickedEmotions, setClickedEmotions] = useState<Emotions[]>([]);
     const [updatedReactions, setUpdatedReactions] =
@@ -70,9 +70,7 @@ const ReactionButtonContainer: React.FC<ReactionListProps> = ({
     };
 
     const onClickTest = (selectedEmotions: Emotions[]) => {
-        // console.log('기존 데이터 :', reactions);
-        // console.log('선택된 감정:', selectedEmotions);
-        onSelectedEmotionsChange(selectedEmotions); // 부모에게 전달
+        onSelectedEmotionsChange(selectedEmotions);
     };
 
     const initialSelectedEmotions = reactions

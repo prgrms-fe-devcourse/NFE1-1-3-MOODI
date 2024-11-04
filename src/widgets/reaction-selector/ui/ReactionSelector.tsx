@@ -55,9 +55,6 @@ const ReactionSelector = ({
                     });
                 }
             } else {
-                console.log(
-                    `없음 isClicked : ${emotion}, ${emotionDescriptions[emotion]}`
-                );
                 await handlePostReaction({
                     diary_id: diaryId,
                     reaction_type: emotionDescriptions[emotion],
@@ -71,15 +68,6 @@ const ReactionSelector = ({
                 reaction.isClicked &&
                 !selectedEmotions.includes(reaction.emotion as Emotions)
             ) {
-                // 해당하는 반응의 id찾기
-                console.log(`test1. ${reaction.emotion}, ${reaction.isClicked} \n 
-                   `);
-                diary?.reactions.forEach((x) => {
-                    console.log(
-                        `${x.reaction_id}, ${x.user_email}, ${x.reaction_type}`
-                    );
-                });
-
                 const selectedReactions: ReactionType[] =
                     diary?.reactions.filter(
                         (e) =>
@@ -88,16 +76,12 @@ const ReactionSelector = ({
                             e.user_email === userEmail
                     ) || [];
 
-                console.log(`test1: ${selectedReactions}`);
-
                 if (selectedReactions.length > 0) {
-                    console.log('test2');
                     const selectedReaction = selectedReactions[0];
                     await deleteReaction({
                         id: selectedReaction.reaction_id,
                         token
                     });
-                    console.log('Reaction deleted successfully');
                 }
             }
         }
@@ -110,7 +94,6 @@ const ReactionSelector = ({
             JSON.stringify(selectedEmotions) !==
             JSON.stringify(previousEmotions)
         ) {
-            console.log('선택된 -===>:', selectedEmotions);
             setPreviousEmotions(selectedEmotions);
             updateReactions(selectedEmotions);
         }
@@ -176,11 +159,8 @@ const ReactionSelector = ({
             user_email
         };
 
-        console.log(`추가 : ${diary_id}, ${reaction_type}, ${user_email}`);
-
         try {
-            await postReaction(reaction, token); // token 전달
-            console.log('Reaction posted successfully');
+            await postReaction(reaction, token);
             await getDiaryData();
         } catch (e) {
             console.error('Failed to post reaction:', e);
@@ -192,12 +172,10 @@ const ReactionSelector = ({
     }, [diaryId]);
 
     if (loading) {
-        console.log('Loading...');
         return null;
     }
 
     if (error) {
-        console.error(error);
         return <div>{error}</div>;
     }
 
@@ -224,7 +202,7 @@ const ReactionSelector = ({
                         const selectedReaction = selectedReactions[0];
                         await deleteReaction({
                             id: selectedReaction.reaction_id,
-                            token // token 전달
+                            token
                         });
                         console.log('Reaction deleted successfully');
                         await getDiaryData();

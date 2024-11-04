@@ -9,7 +9,6 @@ export interface ReactionData {
     user_email: string;
 }
 
-// POST 요청 함수
 export const postReaction = async (
     reactionData: ReactionData,
     token: string
@@ -21,6 +20,7 @@ export const postReaction = async (
                 'Content-Type': 'application/json'
             }
         });
+        console.log('Reaction update successfully:', response.data);
         return response.data;
     } catch (error) {
         const axiosError = error as AxiosError;
