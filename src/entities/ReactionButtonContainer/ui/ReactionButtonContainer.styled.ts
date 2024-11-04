@@ -12,7 +12,6 @@ export const StyledReactionBtnContainer = styled.div`
     width: 100%;
 
     & > button {
-        width: calc(20% - 10px); /* 수정: '20%-10px'을 '20% - 10px'으로 */
         margin: 5px;
     }
 `;
