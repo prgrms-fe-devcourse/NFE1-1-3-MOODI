@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    padding-bottom: 150px;
+    padding: 150px 0;
 `;
 
 export const DiaryList = styled.ul`

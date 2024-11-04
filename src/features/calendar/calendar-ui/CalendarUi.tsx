@@ -7,6 +7,7 @@ import {
 } from '../calendar-logic/calendarLogic';
 import { getEmoticonPath } from '@/shared/model/getEmotionPath';
 import moment from 'moment';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 const CalendarUi: React.FC = () => {
     const curDate = new Date();
@@ -17,10 +18,11 @@ const CalendarUi: React.FC = () => {
         { id: number; title_date: string; emotion: string | null }[]
     >([]);
     const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
 
     // fetchedData에 데이터를 저장
     const loadDates = async () => {
-        const data = await calendarDataFetch(activeMonth);
+        const data = await calendarDataFetch(activeMonth, email);
         if (data) {
             const dates = data.diaries.map(
                 (entry: {
