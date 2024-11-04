@@ -24,11 +24,13 @@ const useLogin = (): UseMutationResult<LoginType, Error, LoginParams> => {
             addToast('로그인 성공했습니다.', 'success');
             setToken(res.token);
             const payload = decodeJwtPayload<userType>(res.token);
-            setUserInfo(email, userName, true);
+            if (payload) {
+                setUserInfo(payload.username, payload.email, true);
+            }
             navigate('/');
         },
         onError: (err: Error) => {
-            addToast(err.message, 'warning');
+            addToast(err.message, 'error');
         }
     });
 

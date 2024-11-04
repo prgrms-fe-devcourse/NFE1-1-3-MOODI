@@ -5,19 +5,28 @@ import Margin from '@/shared/ui/Margin/Margin';
 import InputForm from '@/shared/ui/InputForm/InputForm';
 import Button from '@/shared/ui/Button/Button';
 import { useToastStore } from '@/features/Toast/hooks/useToastStore';
-import Span from '@/shared/ui/Span/Span';
 import { IdContainerStyled, SignStyled } from './Sign.styled';
+import useCheckEmail from '@/features/join/hook/usecheckEmail';
+import {
+    EMAIL_REG_EXP,
+    PHONE_NUMBER_REG_EXP,
+    PASSWORD_REG_EXP
+} from './util/RegExp';
+import useJoin from '@/features/join/hook/useJoin';
 
 const Sign = () => {
-    const [id, setId] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [checkPassword, setCheckPassword] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [phoneNumber, setPhoneNumber] = useState<string>('');
     const [gender, setGender] = useState<string>('');
     const { addToast } = useToastStore();
-
+    const { checkEmail, isEmailAvailable } = useCheckEmail();
+    const { mutate } = useJoin();
     return (
         <SignStyled>
+            <Margin top={120} />
             <Title isLoading={false}>아이디 / 비밀번호 찾기</Title>
             <Info isLoading={false}>무디와 일기쓰고 노래 추천 받기</Info>
             <Margin bottom={93} />
@@ -51,12 +60,12 @@ const Sign = () => {
             <Margin bottom={25} />
             <IdContainerStyled>
                 <InputForm
-                    label="아이디"
-                    value={id}
+                    label="이메일"
+                    value={email}
                     width="383px"
                     height="52px"
-                    onChange={setId}
-                    placeholder="아이디 입력 (영문, 숫자 6~20자)"
+                    onChange={setEmail}
+                    placeholder="이메일 입력"
                 />
                 <Button
                     height="52px"
@@ -64,7 +73,15 @@ const Sign = () => {
                     fontSize="16px"
                     hasBorder
                     onClick={() => {
-                        addToast('조회하기', 'success');
+                        if (email === '') {
+                            addToast('이메일을 입력해주세요', 'warning');
+                            return;
+                        }
+                        if (EMAIL_REG_EXP.test(email)) {
+                            checkEmail(email);
+                        } else {
+                            addToast('잘못된 이메일 형식입니다.', 'warning');
+                        }
                     }}
                 >
                     중복확인
@@ -83,12 +100,10 @@ const Sign = () => {
             <Margin bottom={25} />
             <InputForm
                 label="비밀번호 확인"
-                value={phoneNumber}
+                value={checkPassword}
                 width="500px"
                 height="52px"
-                onChange={() => {
-                    addToast('조회하기', 'success');
-                }}
+                onChange={setCheckPassword}
                 placeholder="비밀번호 확인"
                 errorMessage="잘못된 비밀번호 입니다."
             />
@@ -98,7 +113,36 @@ const Sign = () => {
                 width="500px"
                 fontSize="16px"
                 onClick={() => {
-                    addToast('조회하기', 'success');
+                    if (!isEmailAvailable) {
+                        addToast('이메일 중복확인을 해주세요.', 'warning');
+                        return;
+                    }
+                    if (!gender) {
+                        addToast('성별을 골라주세요.', 'warning');
+                        return;
+                    }
+                    if (!EMAIL_REG_EXP.test(email)) {
+                        addToast('잘못된 이메일 형식입니다.', 'warning');
+                        return;
+                    }
+                    if (!PASSWORD_REG_EXP.test(password)) {
+                        addToast('잘못된 비밀번호 형식입니다.', 'warning');
+                        return;
+                    }
+                    if (!PHONE_NUMBER_REG_EXP.test(phoneNumber)) {
+                        addToast('잘못된 전화번호 형식입니다.', 'warning');
+                        return;
+                    }
+                    if (password !== checkPassword) {
+                        addToast('비밀번호가 일치하지 않습니다.', 'warning');
+                    }
+                    mutate({
+                        email,
+                        username: name,
+                        password,
+                        gender: gender as '남성' | '여성',
+                        phoneNumber
+                    });
                 }}
             >
                 회원가입
