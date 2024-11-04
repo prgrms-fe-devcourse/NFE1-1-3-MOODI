@@ -2,11 +2,13 @@ import CalendarContainer from '../../widgets/calendar-container/CalendarContaine
 import TimelineContainer from '../../widgets/timeline-container/TimelineContainer';
 import MoveTopButton from '@/shared/ui/MoveTopButton/MoveTopButton';
 import { TimeLineListWrapper } from './indexCss';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 const MainPage = () => {
+    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
     return (
         <>
-            <CalendarContainer />
+            {isLoggedin && <CalendarContainer />}
             <TimeLineListWrapper>
                 <TimelineContainer
                     titleTarget="다른 사용자들"

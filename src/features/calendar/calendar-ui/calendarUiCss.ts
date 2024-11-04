@@ -111,7 +111,7 @@ export const StyledCalendar = styled(Calendar).attrs({
                 height: 20px;
                 background-size: contain;
                 background-repeat: no-repeat;
-                background-image: url('calendar_plus.svg');
+                background-image: url('@/shared/assets/calendar_plus.svg');
             }
         }
 

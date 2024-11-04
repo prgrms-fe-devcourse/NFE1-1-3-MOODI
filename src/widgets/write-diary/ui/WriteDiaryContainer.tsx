@@ -20,7 +20,7 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     onDiarySubmit,
     initialDate = new Date(), // 초기 날짜가 없으면 오늘 날짜 사용
     isActive,
-    disabled
+    disabled,
     initialTitle = '',
     initialContent = '',
     initialIsPublic = true,
