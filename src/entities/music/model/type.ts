@@ -55,3 +55,10 @@ export interface MoodDataType {
     emotion: string | null;
     subEmotion: (string | null)[];
 }
+
+export interface DiaryDescDataType {
+    selectedDate: Date;
+    title: string;
+    content: string;
+    isPublic: boolean;
+}

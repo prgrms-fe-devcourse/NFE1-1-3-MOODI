@@ -6,7 +6,7 @@ import {
 } from '../model/type';
 import { ButtonContainer, Container } from './SelectEmotionContainer.styled';
 import { EmotionButtonGroup } from '@/features/diary-write/emotion/ui/EmotionButtonGroup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ConditionType } from '@/shared/model/conditionTypes';
 import Button from '@/shared/ui/Button/Button';
 import { Emotions, getEmotionInfo } from '@/shared/model/EmotionEnum';
@@ -14,18 +14,12 @@ import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 
 export const SelectEmotionContainer = ({
     onMoodSelect,
-    onNext
+    onNext,
+    isActive,
+    disabled
 }: SelectEmotionContainerProps) => {
     const { addToast } = useToastStore();
     const [moodState, setMoodState] = useState<MoodState>(INITIAL_MOOD_STATE);
-
-    const isNextButtonActive = (): boolean => {
-        return !!(
-            moodState.mood &&
-            (moodState.emotion ||
-                moodState.subEmotion.some((emotion) => emotion !== null))
-        );
-    };
 
     const handleConditionChange = (condition: ConditionType) => {
         setMoodState((prev) => ({
@@ -54,14 +48,12 @@ export const SelectEmotionContainer = ({
         }));
     };
 
-    const handleButtonClick = () => {
-        if (isNextButtonActive()) {
+    useEffect(() => {
+        // moodState의 필수값들이 있을 때만 전달
+        if (moodState.mood && moodState.emotion) {
             onMoodSelect(moodState);
-            onNext?.(moodState);
-        } else {
-            addToast('데이터를 모두 입력해주세요!', 'warning');
         }
-    };
+    }, [moodState]);
 
     return (
         <Container>
@@ -73,31 +65,6 @@ export const SelectEmotionContainer = ({
                 initialKeywords={[null, null, null, null, null]}
                 onKeywordsChange={handleEmotionChange}
             />
-            <ButtonContainer>
-                <Button
-                    borderradius="10px"
-                    fontSize="16px"
-                    height="60px"
-                    isActive
-                    hasBorder
-                    onClick={() => {}}
-                    width="200px"
-                >
-                    이전
-                </Button>
-                <Button
-                    borderradius="10px"
-                    fontSize="16px"
-                    height="60px"
-                    isActive={isNextButtonActive()}
-                    onClick={() => {
-                        handleButtonClick();
-                    }}
-                    width="200px"
-                >
-                    다음
-                </Button>
-            </ButtonContainer>
         </Container>
     );
 };
