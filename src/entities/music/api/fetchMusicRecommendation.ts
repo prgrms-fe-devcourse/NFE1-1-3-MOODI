@@ -13,11 +13,13 @@ export const fetchMusicRecommendation = async (
     {
         onSuccess,
         onError,
-        onValidationError
+        onValidationError,
+        onLoadingChange
     }: {
         onSuccess: (data: gptAnswerType) => void;
         onError: () => void;
         onValidationError: () => void;
+        onLoadingChange?: (isLoading: boolean) => void;
     }
 ) => {
     if (!combinedData) {
@@ -25,10 +27,13 @@ export const fetchMusicRecommendation = async (
         return;
     }
     try {
+        onLoadingChange?.(true);
         const recommendedMusic = await fetchGptRecommend(combinedData);
         onSuccess(recommendedMusic);
     } catch (error) {
         onError();
         throw error;
+    } finally {
+        onLoadingChange?.(false); // 로딩 종료
     }
 };

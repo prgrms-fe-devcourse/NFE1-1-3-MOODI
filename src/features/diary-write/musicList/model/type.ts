@@ -11,4 +11,5 @@ export interface MusicCardListProps {
     responseMusicList: MusicItem[];
     selectedMusic: MusicItem | null;
     onChange: (music: MusicItem | null) => void;
+    isLoading: boolean;
 }

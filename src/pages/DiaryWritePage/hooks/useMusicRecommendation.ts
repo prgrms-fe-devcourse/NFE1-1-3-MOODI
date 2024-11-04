@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { MoodDataType } from '../model/type';
 import { fetchMusicRecommendation } from '@/entities/music';
-import { DiaryDescDataType, gptAnswerType } from '@/entities/music/model/type';
+import {
+    DiaryDescDataType,
+    gptAnswerType,
+    MoodDataType
+} from '@/entities/music/model/type';
 
 export const useMusicRecommendation = () => {
     const [recommendedMusicList, setRecommendedMusicList] =
         useState<gptAnswerType>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchRecommendations = async (
         diaryData: DiaryDescDataType | null,
@@ -32,12 +36,14 @@ export const useMusicRecommendation = () => {
         await fetchMusicRecommendation(combinedData, {
             onSuccess: setRecommendedMusicList,
             onError: () => onError('음악 추천 요청에 실패했습니다.'),
-            onValidationError: () => onError('먼저 감정을 선택해주세요!')
+            onValidationError: () => onError('먼저 감정을 선택해주세요!'),
+            onLoadingChange: setIsLoading
         });
     };
 
     return {
         recommendedMusicList,
-        fetchRecommendations
+        fetchRecommendations,
+        isLoading
     };
 };

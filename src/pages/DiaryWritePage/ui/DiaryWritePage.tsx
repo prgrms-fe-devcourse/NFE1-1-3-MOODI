@@ -15,7 +15,7 @@ import {
     Section,
     WidgetWrapper
 } from './DiaryWritePage.styled';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const DiaryWritePage = () => {
     const testUserEmail = 'wookgod01@naver.com.com';
@@ -34,8 +34,36 @@ export const DiaryWritePage = () => {
 
     const { currentStep, handlePrevStep, handleNextStep } =
         useStepNavigation(3);
-    const { recommendedMusicList, fetchRecommendations } =
+    const { recommendedMusicList, fetchRecommendations, isLoading } =
         useMusicRecommendation();
+
+    const diaryRef = useRef<HTMLDivElement>(null);
+    const emotionRef = useRef<HTMLDivElement>(null);
+    const musicRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
+            ref.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        };
+
+        switch (currentStep) {
+            case 1:
+                scrollToRef(diaryRef);
+                break;
+            case 2:
+                scrollToRef(emotionRef);
+                break;
+            case 3:
+                scrollToRef(musicRef);
+                break;
+            default:
+                scrollToRef(diaryRef);
+                break;
+        }
+    }, [currentStep]);
 
     useEffect(() => {
         console.log(currentStep);
@@ -81,7 +109,7 @@ export const DiaryWritePage = () => {
     return (
         <Container>
             <Section>
-                <WidgetWrapper>
+                <WidgetWrapper ref={diaryRef}>
                     <WriteDiaryContainer
                         onDiarySubmit={setUserDiaryState}
                         isActive={currentStep === 1}
@@ -106,7 +134,7 @@ export const DiaryWritePage = () => {
                     </ButtonContainer>
                 </WidgetWrapper>
 
-                <WidgetWrapper>
+                <WidgetWrapper ref={emotionRef}>
                     <SelectEmotionContainer
                         onMoodSelect={setUserEmotionState}
                         isActive={currentStep === 2}
@@ -146,12 +174,13 @@ export const DiaryWritePage = () => {
                     </ButtonContainer>
                 </WidgetWrapper>
 
-                <WidgetWrapper>
+                <WidgetWrapper ref={musicRef}>
                     <SelectMusicContainer
                         onMusicSelect={setSelectedMusic}
                         gptRecommendMusicList={recommendedMusicList}
                         isActive={currentStep === 3}
                         disabled={currentStep !== 3}
+                        isLoading={isLoading}
                     />
                     <DisabledOverlay disabled={currentStep !== 3} />
                     <ButtonContainer>

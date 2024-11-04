@@ -5,4 +5,5 @@ export interface SelectMusicContainerProps {
     gptRecommendMusicList: string[];
     isActive: boolean;
     disabled: boolean;
+    isLoading: boolean;
 }
