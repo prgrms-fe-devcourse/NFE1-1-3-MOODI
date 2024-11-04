@@ -8,9 +8,11 @@ import {
 } from './DatePicker.styled'; // 스타일드 컴포넌트 불러오기
 import moment from 'moment';
 import { DatePickerProps } from '../model/type';
+import { setDateFormat } from './setDateFormat';
 
 export const DatePicker: React.FC<DatePickerProps> = ({
     initialDate,
+    disabledDates = [],
     onSelectDate
 }) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(
@@ -42,6 +44,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         setIsModalOpen((prev) => !prev);
     };
 
+    const isDateDisabled = (date: Date) => {
+        const formattedDate = setDateFormat(date); // 문자열 형식으로 변환
+        return (
+            date > today || // 오늘 이후 날짜 비활성화
+            disabledDates.includes(formattedDate) // 비활성화할 날짜 배열에 포함된 경우
+        );
+    };
+
     return (
         <StyledCalendarWrapper>
             <StyledButton onClick={toggleModal}>
@@ -54,6 +64,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     locale="ko-KR"
                     calendarType="gregory"
                     maxDate={today} // 오늘 이후 날짜 선택 불가
+                    tileDisabled={({ date }) => isDateDisabled(date)} // 비활성화 날짜
                     formatDay={(locale, date) => moment(date).format('D')} // 일 제거 숫자만 보이게
                     formatYear={(locale, date) => moment(date).format('YYYY')} // 네비게이션 눌렀을때 숫자 년도만 보이게
                     formatMonthYear={(locale, date) =>
@@ -77,6 +88,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                     selectedDate.toDateString()
                             ) {
                                 classNames = 'selected'; // 선택된 날짜
+                            }
+                            if (
+                                disabledDates.some(
+                                    (disabledDate) =>
+                                        disabledDate === setDateFormat(date)
+                                )
+                            ) {
+                                classNames = 'disabled'; // @ 비활성화 날짜 스타일 적용
                             }
                         }
                         return classNames;

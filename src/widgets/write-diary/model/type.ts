@@ -1,9 +1,12 @@
 export interface WriteDiaryContainerProps {
-    onDiarySubmit: (data: {
+    initialDate?: Date;
+    initialTitle?: string;
+    initialContent?: string;
+    initialIsPublic?: boolean;
+    onDiarySubmit: (diaryData: {
         selectedDate: Date;
         title: string;
         content: string;
         isPublic: boolean;
     }) => void;
-    initialDate?: Date;
 }
