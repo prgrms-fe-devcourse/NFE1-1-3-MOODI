@@ -3,7 +3,8 @@ import { ShowMoodContainerProps } from '../model/type';
 import {
     Container,
     MoodContainer,
-    DotContainer
+    DotContainer,
+    SubContainer
 } from './ShowMoodContainer.styled';
 import MoodDot from '@/shared/ui/MoodDot/MoodDot';
 
@@ -23,16 +24,18 @@ export const ShowMoodContainer = ({ mood }: ShowMoodContainerProps) => {
     return (
         <Container>
             기분상태
-            <MoodContainer>
-                <DotContainer>
-                    <MoodDot isActive={activeDots[0]} mood={mood} />
-                    <MoodDot isActive={activeDots[1]} mood={mood} />
-                    <MoodDot isActive={activeDots[2]} mood={mood} />
-                    <MoodDot isActive={activeDots[3]} mood={mood} />
-                    <MoodDot isActive={activeDots[4]} mood={mood} />
-                </DotContainer>
-                {mood}
-            </MoodContainer>
+            <SubContainer>
+                <MoodContainer>
+                    <DotContainer>
+                        <MoodDot isActive={activeDots[0]} mood={mood} />
+                        <MoodDot isActive={activeDots[1]} mood={mood} />
+                        <MoodDot isActive={activeDots[2]} mood={mood} />
+                        <MoodDot isActive={activeDots[3]} mood={mood} />
+                        <MoodDot isActive={activeDots[4]} mood={mood} />
+                    </DotContainer>
+                    {mood}
+                </MoodContainer>
+            </SubContainer>
         </Container>
     );
 };

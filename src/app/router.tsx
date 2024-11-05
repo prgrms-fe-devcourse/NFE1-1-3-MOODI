@@ -6,6 +6,7 @@ import LoginPage from '@/pages/LoginPage/LoginPage';
 import { DiaryWritePage } from '@/pages/DiaryWritePage';
 import SignPage from '@/pages/SignPage/SignPage';
 import MyPage from '@/pages/MyPage/MyPage';
+import { DetailPage } from '@/pages/DetailPage';
 import AccountPage from '@/pages/AccountPage/AccountPage';
 
 const router = createBrowserRouter([
@@ -38,9 +39,13 @@ const router = createBrowserRouter([
                 element: <MyPage />
             },
             {
+                path: '/detail/:id',
+                element: <DetailPage />
+            },
+            {
                 path: '/account',
                 element: <AccountPage />
-            }
+            },
         ]
     }
 ]);
