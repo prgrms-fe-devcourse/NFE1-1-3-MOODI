@@ -64,7 +64,6 @@ export const SelectMusicContainer = ({
      * @param value
      */
     const handleSearchChange = (value: string) => {
-        console.log('검색어 : ', value);
         setSearchKeyword(value);
     };
 
