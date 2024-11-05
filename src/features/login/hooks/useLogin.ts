@@ -25,7 +25,7 @@ const useLogin = (): UseMutationResult<LoginType, Error, LoginParams> => {
             setToken(res.token);
             const payload = decodeJwtPayload<userType>(res.token);
             if (payload) {
-                setUserInfo(payload.username, payload.email, true);
+                setUserInfo(payload.email, payload.username, true);
             }
             navigate('/');
         },
