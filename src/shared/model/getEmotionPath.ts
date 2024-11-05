@@ -22,7 +22,7 @@ import emojiShocked from '@/shared/assets/emoji/emoji_shocked.svg';
 import emojiAwkward from '@/shared/assets/emoji/emoji_awkward.svg';
 
 // 감정에 따른 SVG 매핑 객체
-const emotionMap: Record<string, string> = {
+export const emotionMap: Record<string, string> = {
     기뻐요: emojiHappy,
     '자신 있어요': emojiConfident,
     감사해요: emojiGrateful,

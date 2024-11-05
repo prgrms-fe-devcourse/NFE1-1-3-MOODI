@@ -24,7 +24,7 @@ export enum Emotions {
 
 export const emotionDescriptions: Record<Emotions, string> = {
     [Emotions.Happy]: '기뻐요',
-    [Emotions.Confident]: '자신있어요',
+    [Emotions.Confident]: '자신 있어요',
     [Emotions.Grateful]: '감사해요',
     [Emotions.Comfortable]: '편안해요',
     [Emotions.Fun]: '신이나요',

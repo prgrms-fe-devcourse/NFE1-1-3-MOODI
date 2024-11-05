@@ -1,7 +1,7 @@
-/* eslint-disable react/require-default-props */
 import React from 'react';
 import { Emotions, getEmotionInfo } from '../../model/EmotionEnum';
 import { StyledEmotionIcon } from './EmotionIcon.styled';
+import { emotionMap } from '@/shared/model/getEmotionPath';
 
 interface EmotionProps {
     emotion: Emotions;
@@ -16,11 +16,11 @@ export const EmotionIcon = ({
     width = '100px',
     height = '100px'
 }: EmotionProps) => {
-    const { description, imagePath } = getEmotionInfo(emotion);
+    const { description } = getEmotionInfo(emotion);
 
     return (
         <StyledEmotionIcon width={width} height={height}>
-            <img src={imagePath} alt={description} />
+            <img src={emotionMap[description]} alt={description} />
         </StyledEmotionIcon>
     );
 };
