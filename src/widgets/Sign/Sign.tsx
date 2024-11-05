@@ -147,6 +147,7 @@ const Sign = () => {
             >
                 회원가입
             </Button>
+            <Margin bottom={40} />{' '}
         </SignStyled>
     );
 };
