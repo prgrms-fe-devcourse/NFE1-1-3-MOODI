@@ -23,6 +23,10 @@ export const useInfiniteFetch = (sort: string, email: string) => {
             }
             return undefined;
         },
-        initialPageParam: 1
+        initialPageParam: 1,
+        refetchOnMount: true,
+        // sort가 변경될 때마다 새로운 쿼리로 인식하도록 설정
+        gcTime: 0,
+        staleTime: 0
     });
 };

@@ -6,10 +6,11 @@ import {
     FinalItem,
     Loading
 } from './TimelineContainerCss';
-import { useInfiniteFetch } from '@/shared/hooks/useInfiniteFetch ';
+import { useInfiniteFetch } from '@/shared/hooks/useInfiniteFetch';
 import { useEffect } from 'react';
 import { DiaryListItemType } from '@/features/diary-list-item/diary-list-item-type/DiaryListItemType';
 import { useInView } from 'react-intersection-observer';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface TimelineContainerProps {
     titleTarget: string;
@@ -22,35 +23,38 @@ const TimelineContainer: React.FC<TimelineContainerProps> = ({
     sort,
     email
 }) => {
+    const queryClient = useQueryClient();
     const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
         useInfiniteFetch(sort, email);
 
     const { ref, inView } = useInView();
+
+    // sort가 변경될 때 쿼리 캐시를 명시적으로 초기화
     useEffect(() => {
-        if (inView && hasNextPage) {
-            console.log('Fetching next page');
+        queryClient.resetQueries({ queryKey: ['timeline', sort, email] });
+    }, [sort, email, queryClient]);
+
+    useEffect(() => {
+        if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
         }
-    }, [inView, hasNextPage, fetchNextPage]);
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+    }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
 
     if (error) return <p>Error: {error.message}</p>;
 
     const fetchedData =
-        data?.pages[0].totalItems !== 0
-            ? data?.pages.flatMap((page) => page.diaries) || []
-            : [];
+        data?.pages.reduce((acc, page) => {
+            if (!page || page.totalItems === 0) return acc;
+            return [...acc, ...page.diaries];
+        }, [] as DiaryListItemType[]) || [];
 
     return (
         <Container>
             <Title isLoading>{titleTarget}의 일기를 확인해보세요!</Title>
             <DiaryList>
-                {fetchedData &&
-                    fetchedData.map((item: DiaryListItemType) => (
-                        <DiaryListItem key={item.id} data={item} />
-                    ))}
+                {fetchedData.map((item: DiaryListItemType) => (
+                    <DiaryListItem key={item.id} data={item} />
+                ))}
                 <FinalItem ref={ref}>
                     {isFetchingNextPage && <Loading>...</Loading>}
                 </FinalItem>

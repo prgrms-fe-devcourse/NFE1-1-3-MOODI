@@ -36,7 +36,7 @@ const MyDiaryListPage = () => {
                 <TimelineContainer
                     titleTarget="나"
                     sort={sortState}
-                    email={email}
+                    email="annawa6@naver.com.com"
                 />
             </MyDiaryListWrapper>
         </div>
