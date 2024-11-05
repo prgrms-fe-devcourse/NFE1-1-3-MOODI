@@ -13,9 +13,15 @@ export const Container = styled.div`
     font-weight: bold;
     font-family: 'Pretendard', sans-serif;
 `;
-export const EmotionsContainer = styled.div`
-    margin-top: 60px;
 
+export const SubContainer = styled.div`
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const EmotionsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;

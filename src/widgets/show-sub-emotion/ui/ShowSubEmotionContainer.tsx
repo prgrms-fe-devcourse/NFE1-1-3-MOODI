@@ -2,7 +2,8 @@ import React from 'react';
 import {
     Container,
     EmotionContainer,
-    EmotionsContainer
+    EmotionsContainer,
+    SubContainer
 } from './ShowSubEmotionContainer.styled';
 import { ShowSubEmotionContainerProps } from '../model/type';
 import { EmotionIcon } from '@/shared/EmotionIcon/ui/EmotionIcon';
@@ -14,20 +15,22 @@ export const ShowSubEmotionContainer = ({
     return (
         <Container>
             서브 감정 키워드
-            <EmotionsContainer>
-                {subEmotions.map((emotion) => {
-                    return (
-                        <EmotionContainer>
-                            <EmotionIcon
-                                emotion={emotion}
-                                width="25px"
-                                height="25px"
-                            />
-                            {getEmotionInfo(emotion).description}
-                        </EmotionContainer>
-                    );
-                })}
-            </EmotionsContainer>
+            <SubContainer>
+                <EmotionsContainer>
+                    {subEmotions.map((emotion) => {
+                        return (
+                            <EmotionContainer>
+                                <EmotionIcon
+                                    emotion={emotion}
+                                    width="25px"
+                                    height="25px"
+                                />
+                                {getEmotionInfo(emotion).description}
+                            </EmotionContainer>
+                        );
+                    })}
+                </EmotionsContainer>
+            </SubContainer>
         </Container>
     );
 };
