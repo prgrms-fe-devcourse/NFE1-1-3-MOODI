@@ -14,22 +14,24 @@ import { Reaction } from '../model/reaction';
 
 interface ReactionListProps {
     reactions: Reaction[];
-    isHorizontal: boolean;
-    isAddBtnVisible: boolean;
+    isHorizontal?: boolean;
+    isAddBtnVisible?: boolean;
     onReactionUpdate: (
         emotion: Emotions,
         count: number,
         isAlreadyClicked: boolean
     ) => void;
     onSelectedEmotionsChange: (selectedEmotions: Emotions[]) => void;
+    align?: string;
 }
 
 const ReactionButtonContainer: React.FC<ReactionListProps> = ({
     reactions = [],
-    isHorizontal,
+    isHorizontal = true,
     isAddBtnVisible = false,
     onReactionUpdate,
-    onSelectedEmotionsChange
+    onSelectedEmotionsChange,
+    align = 'left' // left, center, right
 }) => {
     const [clickedEmotions, setClickedEmotions] = useState<Emotions[]>([]);
     const [updatedReactions, setUpdatedReactions] =
@@ -90,7 +92,7 @@ const ReactionButtonContainer: React.FC<ReactionListProps> = ({
 
     return (
         <StyledReactionContainer>
-            <StyledReactionBtnContainer>
+            <StyledReactionBtnContainer align={align}>
                 {updatedReactions.map(({ emotion, reactionCnt }) => (
                     <ReactionButton
                         key={emotion}

@@ -1,14 +1,18 @@
 import theme from '@/app/styles/theme';
 import styled from 'styled-components';
 
+interface StyledReactionBtnContainerProps {
+    align?: string;
+}
+
 export const StyledReactionContainer = styled.div`
-    width: 40%;
+    width: 100%;
 `;
 
-export const StyledReactionBtnContainer = styled.div`
+export const StyledReactionBtnContainer = styled.div<StyledReactionBtnContainerProps>`
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: ${(props) => props.align || 'center'}; // align prop을 적용
     width: 100%;
 
     & > button {

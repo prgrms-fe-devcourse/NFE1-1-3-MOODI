@@ -24,6 +24,7 @@ interface ReactBtnProps {
     isHorizontal: boolean;
     isAddBtnVisible: boolean;
     token: string;
+    align?: string;
 }
 
 const ReactionSelector = ({
@@ -31,11 +32,11 @@ const ReactionSelector = ({
     userEmail,
     isHorizontal,
     isAddBtnVisible,
-    token
+    token,
+    align = 'left' // (ex) left, center, right
 }: ReactBtnProps) => {
     const [diary, setDiary] = useState<DiaryType | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
     const [reactions, setReactions] = useState<ReactionList[]>([]);
     const [previousEmotions, setPreviousEmotions] = useState<Emotions[]>([]);
 
@@ -141,11 +142,11 @@ const ReactionSelector = ({
             if (data) {
                 setDiary(data);
                 processReactions(data.reactions);
-            } else {
-                setError('일기를 불러오는 데 실패했습니다.');
             }
         } catch (e) {
-            setError('일기를 불러오는 데 실패했습니다.');
+            console.log(
+                `ReactionSelectorError : 일기를 불러오는데 실패했습니다. ${e}`
+            );
         } finally {
             setLoading(false);
         }
@@ -177,7 +178,6 @@ const ReactionSelector = ({
     const memoizedReactions = useMemo(() => {
         return reactions.map((reaction) => ({
             ...reaction
-            // 필요한 추가 데이터 처리
         }));
     }, [reactions]);
 
@@ -185,14 +185,11 @@ const ReactionSelector = ({
         return null;
     }
 
-    if (error) {
-        return <div>{error}</div>;
-    }
-
     const args = {
         isHorizontal,
         isAddBtnVisible,
         reactions: memoizedReactions,
+        align,
         onReactionUpdate: async (
             emotion: Emotions,
             count: number,
@@ -214,13 +211,8 @@ const ReactionSelector = ({
                             id: selectedReaction.reaction_id,
                             token
                         });
-                        console.log('Reaction deleted successfully');
                         await getDiaryData();
-                    } else {
-                        console.log('No selected reaction found.');
                     }
-                } else {
-                    console.log('Diary data is not available.');
                 }
             } else {
                 await handlePostReaction({
@@ -241,6 +233,7 @@ const ReactionSelector = ({
                 isAddBtnVisible={isAddBtnVisible}
                 onReactionUpdate={args.onReactionUpdate}
                 onSelectedEmotionsChange={handleSelectedEmotions}
+                align={args.align}
             />
         </StyledReactionSelector>
     );
