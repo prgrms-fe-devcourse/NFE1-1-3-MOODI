@@ -1,3 +1,4 @@
+// Sign.tsx
 import React, { useState } from 'react';
 import Title from '@/shared/ui/Title/Title';
 import Info from '@/shared/ui/Info/Info';
@@ -7,12 +8,9 @@ import Button from '@/shared/ui/Button/Button';
 import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 import { IdContainerStyled, SignStyled } from './Sign.styled';
 import useCheckEmail from '@/features/join/hook/usecheckEmail';
-import {
-    EMAIL_REG_EXP,
-    PHONE_NUMBER_REG_EXP,
-    PASSWORD_REG_EXP
-} from './util/RegExp';
 import useJoin from '@/features/join/hook/useJoin';
+import { validateForm } from './util/validator';
+import { EMAIL_REG_EXP } from './util/RegExp';
 
 const Sign = () => {
     const [email, setEmail] = useState<string>('');
@@ -24,6 +22,29 @@ const Sign = () => {
     const { addToast } = useToastStore();
     const { checkEmail, isEmailAvailable } = useCheckEmail();
     const { mutate } = useJoin();
+
+    const handleSignUp = () => {
+        const isValid = validateForm(
+            email,
+            password,
+            checkPassword,
+            name,
+            phoneNumber,
+            gender,
+            isEmailAvailable,
+            addToast
+        );
+        if (isValid) {
+            mutate({
+                email,
+                username: name,
+                password,
+                gender: gender as '남성' | '여성',
+                phoneNumber
+            });
+        }
+    };
+
     return (
         <SignStyled>
             <Margin top={120} />
@@ -55,7 +76,7 @@ const Sign = () => {
                 width="500px"
                 height="52px"
                 onChange={setPhoneNumber}
-                placeholder="휴대폰 번호를 입력해주세요"
+                placeholder="010-1111-1111 형식으로 입력해주세요"
             />
             <Margin bottom={25} />
             <IdContainerStyled>
@@ -113,36 +134,7 @@ const Sign = () => {
                 width="500px"
                 fontSize="16px"
                 onClick={() => {
-                    if (!isEmailAvailable) {
-                        addToast('이메일 중복확인을 해주세요.', 'warning');
-                        return;
-                    }
-                    if (!gender) {
-                        addToast('성별을 골라주세요.', 'warning');
-                        return;
-                    }
-                    if (!EMAIL_REG_EXP.test(email)) {
-                        addToast('잘못된 이메일 형식입니다.', 'warning');
-                        return;
-                    }
-                    if (!PASSWORD_REG_EXP.test(password)) {
-                        addToast('잘못된 비밀번호 형식입니다.', 'warning');
-                        return;
-                    }
-                    if (!PHONE_NUMBER_REG_EXP.test(phoneNumber)) {
-                        addToast('잘못된 전화번호 형식입니다.', 'warning');
-                        return;
-                    }
-                    if (password !== checkPassword) {
-                        addToast('비밀번호가 일치하지 않습니다.', 'warning');
-                    }
-                    mutate({
-                        email,
-                        username: name,
-                        password,
-                        gender: gender as '남성' | '여성',
-                        phoneNumber
-                    });
+                    handleSignUp();
                 }}
             >
                 회원가입
