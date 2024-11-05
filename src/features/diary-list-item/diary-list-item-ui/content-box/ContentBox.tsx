@@ -46,7 +46,7 @@ const ContentBox: React.FC<ContentBoxProps> = ({
         timeAgo = `${diffInMinutes}분전`;
     }
     const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pbmpvb24iLCJlbWFpbCI6ImFubmF3YTZAbmF2ZXIuY29tLmNvbSIsImlhdCI6MTczMDc5MzYwMywiZXhwIjoxNzMwODA0NDAzfQ.Rr6DsZb7MPkOeDVelLpkZxGDB0FRDfFVBryrQliuN8g';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IuyCrOyaqeyekDIiLCJlbWFpbCI6InVzZXIyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzMwODI0NDI0LCJleHAiOjE3MzA4MzUyMjR9.iGY1f5Uh0bsKa_nJuVy72YeH-bYF_MK3l6VQQwAP3XE';
 
     return (
         <Wrapper>
@@ -60,8 +60,8 @@ const ContentBox: React.FC<ContentBoxProps> = ({
                 <Reaction>
                     <ReactionSelector
                         diaryId={id}
-                        userEmail="annawa6@naver.com.com"
-                        isHorizontal={false}
+                        userEmail="user2@example.com"
+                        isHorizontal
                         isAddBtnVisible={false}
                         token={token}
                     />
