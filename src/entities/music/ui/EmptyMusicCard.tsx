@@ -4,7 +4,7 @@ import { Container, TextWrap } from './EmptyMusicCard.styled';
 export const EmptyMusicCard = () => {
     return (
         <Container>
-            <TextWrap>제목으로 노래를 검색해주세요!</TextWrap>
+            <TextWrap>오늘의 노래는?</TextWrap>
         </Container>
     );
 };

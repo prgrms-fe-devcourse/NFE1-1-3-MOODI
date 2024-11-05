@@ -3,8 +3,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
 import MyDiaryListPage from '@/pages/MyDiaryListPage';
 import LoginPage from '@/pages/LoginPage/LoginPage';
+import { DiaryWritePage } from '@/pages/DiaryWritePage';
 import SignPage from '@/pages/SignPage/SignPage';
 import MyPage from '@/pages/MyPage/MyPage';
+
 
 const router = createBrowserRouter([
     {
@@ -24,12 +26,17 @@ const router = createBrowserRouter([
                 element: <MyDiaryListPage />
             },
             {
+                path: '/diaryWrite/:date',
+                element: <DiaryWritePage />
+            },
+            {
                 path: '/join',
                 element: <SignPage />
             },
             {
                 path: '/my-page',
                 element: <MyPage />
+
             }
         ]
     }

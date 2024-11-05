@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Container, HiddenYoutubeContainer } from './MusicCardList.styled';
+import {
+    Container,
+    HiddenYoutubeContainer,
+    Loading
+} from './MusicCardList.styled';
 import { MusicItem, MusicCardListProps } from '../model/type';
 import { EmptyMusicCard, MusicCard } from '../../../../entities/music';
+import { ScaleLoader } from 'react-spinners';
 
 export const MusicCardList = ({
     responseMusicList,
     selectedMusic,
-    onChange
+    onChange,
+    isLoading
 }: MusicCardListProps) => {
     const [nowPlaying, setNowPaying] = useState<string | null>(null);
 
@@ -37,6 +43,34 @@ export const MusicCardList = ({
         }
     };
 
+    const renderMusicList = () => {
+        if (isLoading) {
+            return (
+                <Loading>
+                    <ScaleLoader color="#dbdbdb" />
+                </Loading>
+            );
+        }
+
+        // if (responseMusicList.length === 0) {
+        //     return <EmptyMusicCard />;
+        // }
+
+        return responseMusicList.map((music) => (
+            <MusicCard
+                key={`${music.youtubeId}-${music.title}`}
+                youtubeId={music.youtubeId}
+                thumbnailUrl={music.thumbnailUrl}
+                title={music.title}
+                artist={music.artist}
+                $isPlaying={nowPlaying === music.youtubeId}
+                onPlay={handlePlay}
+                onClick={() => handleClick(music)}
+                $isSelected={selectedMusic?.youtubeId === music.youtubeId}
+            />
+        ));
+    };
+
     return (
         <Container>
             <HiddenYoutubeContainer>
@@ -51,26 +85,7 @@ export const MusicCardList = ({
                     />
                 )}
             </HiddenYoutubeContainer>
-            {responseMusicList.length === 0 &&
-            responseMusicList !== undefined ? (
-                <EmptyMusicCard />
-            ) : (
-                responseMusicList.map((music) => (
-                    <MusicCard
-                        key={`${music.youtubeId}-${music.title}`}
-                        youtubeId={music.youtubeId}
-                        thumbnailUrl={music.thumbnailUrl}
-                        title={music.title}
-                        artist={music.artist}
-                        $isPlaying={nowPlaying === music.youtubeId}
-                        onPlay={handlePlay}
-                        onClick={() => handleClick(music)}
-                        $isSelected={
-                            selectedMusic?.youtubeId === music.youtubeId
-                        }
-                    />
-                ))
-            )}
+            {renderMusicList()}
         </Container>
     );
 };

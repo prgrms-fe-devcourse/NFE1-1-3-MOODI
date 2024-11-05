@@ -32,8 +32,9 @@ export const GptSearchMode: Story = {
     args: {
         type: 'gptSearch',
         responseMusicList: sampleMusicList,
-        selectedMusic: null,  // 추가
-        onChange: (music) => console.log('Selected music:', music)  // 추가
+        selectedMusic: null,  
+        onChange: (music) => console.log('Selected music:', music) , 
+        isLoading:false,
     }
 };
 
@@ -41,8 +42,9 @@ export const UserSearchMode: Story = {
     args: {
         type: 'userSearch',
         responseMusicList: sampleMusicList,
-        selectedMusic: null,  // 추가
-        onChange: (music) => console.log('Selected music:', music)  // 추가
+        selectedMusic: null, 
+        onChange: (music) => console.log('Selected music:', music) ,
+        isLoading:false,
     }
 };
 
@@ -50,7 +52,8 @@ export const EmptyList: Story = {
     args: {
         type: 'userSearch',
         responseMusicList: [],
-        selectedMusic: null,  // 추가
-        onChange: (music) => console.log('Selected music:', music)  // 추가
+        selectedMusic: null, 
+        onChange: (music) => console.log('Selected music:', music),
+        isLoading:false,
     }
 };

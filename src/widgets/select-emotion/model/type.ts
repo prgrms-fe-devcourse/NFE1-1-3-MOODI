@@ -1,4 +1,4 @@
-import { MoodDataType } from '@/pages/DiaryWritePage/model/type';
+import { MoodDataType } from '@/entities/music/model/type';
 import { ConditionType } from '@/shared/model/conditionTypes';
 
 export interface SelectEmotionContainerProps {

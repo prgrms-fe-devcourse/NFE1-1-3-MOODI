@@ -7,9 +7,12 @@ import {
 } from '../calendar-logic/calendarLogic';
 import { getEmoticonPath } from '@/shared/model/getEmotionPath';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
+
 const CalendarUi: React.FC = () => {
+    const navigate = useNavigate();
     const curDate = new Date();
     const [vlu, onChange] = useState(curDate);
     const monthOfActiveDate = moment(vlu).format('YYYY-MM');
@@ -81,7 +84,9 @@ const CalendarUi: React.FC = () => {
             formatDay={(locale, d) => d.getDate().toString()}
             formatShortWeekday={(locale, d) => weekDays[d.getDay()]}
             tileClassName={({ date }) => getTileClassName(date)}
-            onClickDay={(date, event) => handleTileClick(date, event)}
+            onClickDay={(date, event) =>
+                handleTileClick(date, event, (path) => navigate(path))
+            }
             tileContent={getTileContent}
         />
     );

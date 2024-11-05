@@ -49,10 +49,7 @@ export const SelectEmotionContainer = ({
     };
 
     useEffect(() => {
-        // moodState의 필수값들이 있을 때만 전달
-        if (moodState.mood && moodState.emotion) {
-            onMoodSelect(moodState);
-        }
+        onMoodSelect(moodState);
     }, [moodState]);
 
     return (

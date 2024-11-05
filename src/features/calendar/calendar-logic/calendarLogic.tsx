@@ -2,7 +2,8 @@ import moment from 'moment';
 
 export const handleTileClick = (
     date: Date,
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
+    onNavigate: (path: string) => void
 ) => {
     const target = event.currentTarget.querySelector(
         '.custom-tile-content'
@@ -11,9 +12,9 @@ export const handleTileClick = (
     const dateString = moment(date).format('YYYY-MM-DD');
 
     if (id) {
-        alert(`${id}로 이동`);
+        onNavigate(`/diary/${id}`);
     } else {
-        alert(`${dateString}의 작성 페이지로 이동.`);
+        onNavigate(`/diaryWrite/${dateString}`);
     }
 };
 

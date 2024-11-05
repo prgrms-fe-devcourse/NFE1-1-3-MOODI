@@ -17,6 +17,7 @@ import { MusicItem } from '@/entities/music/model/type';
 export const SelectMusicContainer = ({
     onMusicSelect,
     gptRecommendMusicList,
+    isLoading,
     isActive,
     disabled
 }: SelectMusicContainerProps) => {
@@ -80,6 +81,7 @@ export const SelectMusicContainer = ({
                         : gptMusicList
                 }
                 onChange={handleMusicSelect}
+                isLoading={isLoading}
             />
         </Container>
     );

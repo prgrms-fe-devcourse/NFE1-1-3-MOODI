@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 50px 0 50px 0;
 `;
 
 export const Section = styled.div`
@@ -20,7 +21,7 @@ export const DisabledOverlay = styled.div<{ disabled: boolean }>`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.7); // 흰색 반투명
+    background-color: rgba(255, 255, 255, 0.7);
     pointer-events: ${({ disabled }) => (disabled ? 'auto' : 'none')};
     opacity: ${({ disabled }) => (disabled ? 1 : 0)};
     transition: opacity 0.3s ease;

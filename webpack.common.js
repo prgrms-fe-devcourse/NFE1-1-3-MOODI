@@ -10,7 +10,8 @@ module.exports = {
     entry: './src/app/Index.tsx',
     output: {
         path: path.join(__dirname, './dist'),
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: '/'
     },
     resolve: {
         alias: {
@@ -50,5 +51,15 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(process.env)
         })
-    ]
+    ],
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        port: 3000,
+        static: {
+            directory: path.join(__dirname, 'public')
+        },
+        compress: true,
+        open: true
+    }
 };

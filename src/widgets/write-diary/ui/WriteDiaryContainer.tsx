@@ -22,8 +22,7 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     disabled,
     initialTitle = '',
     initialContent = '',
-    initialIsPublic = true,
-    onDiarySubmit
+    initialIsPublic = true
 }) => {
     const [selectedDate, setSelectedDate] = useState<Date>(initialDate);
     const [title, setTitle] = useState(initialTitle);
@@ -124,26 +123,6 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
                     onChange={(e) => setIsPublic(e)}
                 />
             </VisibilityControlsContainer>
-            {/* <ButtonContainer>
-                <Button
-                    width="214px"
-                    height="59px"
-                    isActive={isButtonActive}
-                    fontSize="16px"
-                    onClick={() => {
-                        if (isButtonActive) {
-                            onDiarySubmit({
-                                selectedDate,
-                                title,
-                                content,
-                                isPublic
-                            });
-                        }
-                    }}
-                >
-                    다음
-                </Button>
-            </ButtonContainer> */}
         </Container>
     );
 };
