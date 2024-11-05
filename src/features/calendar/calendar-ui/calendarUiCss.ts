@@ -18,6 +18,8 @@ export const StyledCalendar = styled(Calendar).attrs({
 
         //년월선택ui
         button {
+            height: 30px;
+            line-height: 30px;
             border: none;
             border-radius: 10px;
             background-color: white;

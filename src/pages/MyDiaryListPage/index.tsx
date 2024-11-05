@@ -1,7 +1,7 @@
 import EmotionChart from '@/features/chart/ui/EmotionChart';
 import TimelineContainer from '@/widgets/timeline-container/TimelineContainer';
 import { PickSort, MyDiaryListWrapper } from './indexCss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 const MyDiaryListPage = () => {
@@ -36,7 +36,7 @@ const MyDiaryListPage = () => {
                 <TimelineContainer
                     titleTarget="나"
                     sort={sortState}
-                    email="annawa6@naver.com.com"
+                    email={email}
                 />
             </MyDiaryListWrapper>
         </div>
