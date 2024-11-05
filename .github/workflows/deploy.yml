@@ -31,7 +31,11 @@ jobs:
 
             - name: Build project
               run: |
-                  REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }} yarn build
+                  REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }} \
+                  REACT_APP_SPOTIFY_CLIENT_ID=${{ secrets.REACT_APP_SPOTIFY_CLIENT_ID }} \
+                  REACT_APP_SPOTIFY_CLIENT_SECRET=${{ secrets.REACT_APP_SPOTIFY_CLIENT_SECRET }} \
+                  REACT_APP_YOUTUBE_API_KEY=${{ secrets.REACT_APP_YOUTUBE_API_KEY }} \
+                  yarn build
 
             - name: Deploy to S3
               uses: jakejarvis/s3-sync-action@v0.5.1
