@@ -17,7 +17,6 @@ import { DiaryVisibilityControls } from '@/widgets/diary-visibility-controls';
 import { setDateFormat } from '@/widgets/date-picker/ui/setDateFormat';
 
 export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
-    onDiarySubmit,
     initialDate = new Date(), // 초기 날짜가 없으면 오늘 날짜 사용
     isActive,
     disabled,

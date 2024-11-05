@@ -1,5 +1,7 @@
-export const calendarDataFetch = async (activeMonth: string) => {
-    const userEmail = 'annawa6@naver.com.com';
+export const calendarDataFetch = async (
+    activeMonth: string,
+    userEmail: string
+) => {
     const split = activeMonth.split('-');
     try {
         const response = await fetch(

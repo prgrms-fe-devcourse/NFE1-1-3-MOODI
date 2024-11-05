@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { InputFormProps } from './InputForm.types';
+import visbilty from '@/shared/assets/visibility.svg';
+import visbiltyOff from '@/shared/assets/visibility_off.svg';
 import {
     InputContainer,
     StyledLabel,
@@ -96,11 +98,7 @@ const InputForm = ({
                             }
                         >
                             <StyledImg
-                                src={
-                                    isPasswordVisible
-                                        ? '/visibility_off.svg'
-                                        : '/visibility.svg'
-                                }
+                                src={isPasswordVisible ? visbilty : visbiltyOff}
                                 alt={
                                     isPasswordVisible
                                         ? '비밀번호 보이기'

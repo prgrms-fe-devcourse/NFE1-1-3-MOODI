@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Title from '@/shared/ui/Title/Title';
 import Info from '@/shared/ui/Info/Info';
 import Margin from '@/shared/ui/Margin/Margin';
@@ -7,42 +7,60 @@ import Button from '@/shared/ui/Button/Button';
 import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 import Span from '@/shared/ui/Span/Span';
 import { MypageSpan, ButtonStyled, MypageStyled } from './Mypage.styled';
+import useGetUser from '@/features/myPage/hook/useGetUser';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
+import usePatch from '@/features/myPage/hook/usePatch';
 
-interface Mypage {
-    userName?: string;
-    userEmail?: string;
-    gender?: string;
-}
-
-const Mypage = ({
-    userName = 'TEST',
-    userEmail = 'TEST@naver.com',
-    gender = '남성'
-}: Mypage) => {
+const Mypage = () => {
     const { addToast } = useToastStore();
+    const { email, userName } = useAuthStore();
+    const { data, isLoading, error } = useGetUser({ email });
+    const { mutate } = usePatch();
     const [name, setName] = useState<string>('');
+    const [gender, setGender] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [phoneNumber, setPhoneNumber] = useState<string>('');
+
+    useEffect(() => {
+        if (data) {
+            setName(data.username || 'TEST');
+            setGender(data.gender || '남성');
+            setPhoneNumber(data.phone_number || '010-1111-1111');
+        }
+    }, [data]);
+
     return (
         <MypageStyled>
-            <Title isLoading={false}>{`안녕하세요 ${userName}님`}</Title>
+            <Margin top={120} />
+            <Title isLoading={isLoading}>{`안녕하세요 ${userName}님`}</Title>
             <Info
-                isLoading={false}
-            >{`${userName}님의 게정 정보를 확인하세요`}</Info>
+                isLoading={isLoading}
+            >{`${userName}님의 계정 정보를 확인하세요`}</Info>
             <Margin bottom={70} />
             <InputForm
                 label="이름"
                 value={name}
                 width="500px"
                 height="52px"
-                onChange={setName}
+                onChange={setPhoneNumber}
                 placeholder="이름을 입력해주세요"
             />
             <Margin bottom={25} />
             <Span>성별</Span>
             <MypageSpan>{gender}</MypageSpan>
             <Margin bottom={30} />
-            <Span>아이디</Span>
-            <MypageSpan>{userEmail}</MypageSpan>
+            <InputForm
+                label="핸드폰 번호"
+                value={phoneNumber}
+                width="500px"
+                height="52px"
+                onChange={setName}
+                placeholder="이름을 입력해주세요"
+            />
+            <Margin bottom={25} />
+            <Margin bottom={25} />
+            <Span>이메일</Span>
+            <MypageSpan>{email}</MypageSpan>
             <Margin bottom={25} />
             <InputForm
                 label="비밀번호"
@@ -51,7 +69,7 @@ const Mypage = ({
                 width="500px"
                 height="52px"
                 onChange={setPassword}
-                placeholder="비밀번호 입력 (문자, 숫자, 특수문자 8~20자"
+                placeholder="비밀번호 입력 (문자, 숫자, 특수문자 8~20자)"
             />
             <Margin bottom={93} />
             <ButtonStyled>
@@ -71,7 +89,13 @@ const Mypage = ({
                     width="240px"
                     fontSize="16px"
                     onClick={() => {
-                        addToast('수정하기', 'success');
+                        mutate({
+                            email,
+                            username: userName,
+                            password,
+                            gender,
+                            phone_number: phoneNumber
+                        });
                     }}
                 >
                     수정하기
