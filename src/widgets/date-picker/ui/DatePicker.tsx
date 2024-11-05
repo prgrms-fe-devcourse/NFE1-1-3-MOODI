@@ -9,6 +9,7 @@ import {
 import moment from 'moment';
 import { DatePickerProps } from '../model/type';
 import { setDateFormat } from './setDateFormat';
+import calederIcon from '@/shared/assets/calendar_icon.svg';
 
 export const DatePicker: React.FC<DatePickerProps> = ({
     initialDate,
@@ -55,7 +56,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     return (
         <StyledCalendarWrapper>
             <StyledButton onClick={toggleModal}>
-                <StyledImg src="/calendar_icon.svg" />
+                <StyledImg src={calederIcon} />
             </StyledButton>
             {isModalOpen && (
                 <StyledCalendar

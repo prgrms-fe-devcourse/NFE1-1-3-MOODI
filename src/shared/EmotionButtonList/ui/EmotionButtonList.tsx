@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { StyledEmotionButtonList } from './EmotionButtonList.styled';
 import EmotionButton from '../../EmotionButton/ui/EmotionButton';
 import { Emotions } from '../../model/EmotionEnum';
+import { useToastStore } from '@/features/Toast/hooks/useToastStore';
+import { emotionMap } from '../../model/getEmotionPath';
 
 interface EmotionListProps {
     isPrimary: boolean;
@@ -15,12 +17,6 @@ interface EmotionListProps {
  * 대표 감정 모드와 서브 감정 모드를 지원하며, 초기 선택된 감정을 설정하고 최대 선택 가능 수를 제한할 수 있습니다.
  */
 
-/* ***********************************************************
-TODO - 해결
-SelectEmotionContainer.tsx:27 Warning: Cannot update a component (`SelectEmotionContainer`) while rendering a different component (`EmotionList`). To locate the bad setState() call inside `EmotionList`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
-    at EmotionList
- ********************************************************** */
-
 const EmotionList: React.FC<EmotionListProps> = ({
     isPrimary = true,
     maxSelections,
@@ -28,7 +24,7 @@ const EmotionList: React.FC<EmotionListProps> = ({
     onSelectionChange
 }) => {
     const [selectedEmotions, setSelectedEmotions] = useState<Emotions[]>([]);
-
+    const { addToast } = useToastStore();
     useEffect(() => {
         if (isPrimary) {
             if (initialSelectedEmotions.length > 0) {
@@ -61,7 +57,10 @@ const EmotionList: React.FC<EmotionListProps> = ({
                 } else if (prev.length < maxSelections) {
                     newSelection = [...prev, emotion];
                 } else {
-                    alert(`최대 ${maxSelections}개 감정만 선택할 수 있습니다.`);
+                    addToast(
+                        `최대 ${maxSelections}개 감정만 선택 가능합니다.`,
+                        'error'
+                    );
                     newSelection = prev;
                 }
             }
