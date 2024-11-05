@@ -67,7 +67,6 @@ export const StyledTextarea = styled.textarea<{
     height: string;
 }>`
     height: ${(props) => props.height};
-    width: calc(100% - 32px);
     padding: 16px 16px;
     font-size: 16px;
     color: #000000;
