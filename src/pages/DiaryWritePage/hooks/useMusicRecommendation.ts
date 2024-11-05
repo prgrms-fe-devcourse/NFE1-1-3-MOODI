@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { fetchMusicRecommendation } from '@/entities/music';
-import {
-    DiaryDescDataType,
-    gptAnswerType,
-    MoodDataType
-} from '@/entities/music/model/type';
+import { gptAnswerType, MoodDataType } from '@/entities/music/model/type';
+import { DiaryDescDataType } from '@/shared/model/diaryType';
 
 export const useMusicRecommendation = () => {
     const [recommendedMusicList, setRecommendedMusicList] =

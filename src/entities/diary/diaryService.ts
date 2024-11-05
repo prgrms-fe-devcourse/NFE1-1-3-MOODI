@@ -1,10 +1,6 @@
 import { postDiaryApi } from '@/shared/api/diary';
-import { PostDiaryType } from '@/shared/model/diaryType';
-import {
-    DiaryDescDataType,
-    MoodDataType,
-    MusicItem
-} from '../music/model/type';
+import { DiaryDescDataType, PostDiaryType } from '@/shared/model/diaryType';
+import { MoodDataType, MusicItem } from '../music/model/type';
 
 export const diaryService = {
     async submitDiary(diary: PostDiaryType) {

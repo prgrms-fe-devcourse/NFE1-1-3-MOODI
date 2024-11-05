@@ -57,3 +57,8 @@ export interface PostDiaryType {
     music_id: string;
     artist: string;
 }
+export interface DiaryDescDataType {
+    title: string;
+    content: string;
+    isPublic: boolean;
+}

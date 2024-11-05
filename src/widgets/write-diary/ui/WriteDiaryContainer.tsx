@@ -15,6 +15,7 @@ import Button from '@/shared/ui/Button/Button';
 import { DatePicker } from '@/widgets/date-picker';
 import { DiaryVisibilityControls } from '@/widgets/diary-visibility-controls';
 import { setDateFormat } from '@/widgets/date-picker/ui/setDateFormat';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     initialDate = new Date(), // 초기 날짜가 없으면 오늘 날짜 사용
@@ -31,8 +32,29 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     const [isPublic, setIsPublic] = useState(initialIsPublic);
     const [isButtonActive, setIsButtonActive] = useState(false);
 
+    const { date } = useParams(); // 작성을 선택한 날짜
+    const navigate = useNavigate();
+
     const [existingDiaryDates, setExistingDiaryDates] = useState<string[]>([]); // 일기 작성된 날짜 배열
     const [isEditing, setIsEditing] = useState(false); // 일기 수정 페이지 인지, 초기 날짜(오늘)가 일기 작성된 날짜 배열에 있으면 일기 수정 페이지
+
+    const formatDateWithDot = (dateStr: string | undefined): string => {
+        if (dateStr) {
+            // "2024-11-05"
+            const [year, month, day] = dateStr.split('-');
+            // "2024. 11. 05"
+            return `${year}. ${month}. ${day}`;
+        }
+        return `날짜 선택에 오류가 있어요.`;
+    };
+
+    const formatDateWithHy = (selecteddate: Date): string => {
+        const year = selecteddate.getFullYear();
+        const month = String(selecteddate.getMonth() + 1).padStart(2, '0');
+        const day = String(selecteddate.getDate()).padStart(2, '0');
+
+        return `${year}-${month}-${day}`;
+    };
 
     const userEmail = 'perfectTest@naver.com'; // 샘플 계정
 
@@ -58,21 +80,18 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     }, []);
 
     useEffect(() => {
-        setIsEditing(existingDiaryDates.includes(setDateFormat(initialDate)));
-    }, [existingDiaryDates, initialDate]);
-
-    useEffect(() => {
         setIsButtonActive(title.trim() !== '' && content.trim() !== '');
     }, [title, content]);
 
     useEffect(() => {
         if (isButtonActive) {
-            onDiarySubmit({ selectedDate, title, content, isPublic });
+            onDiarySubmit({ title, content, isPublic });
         }
-    }, [selectedDate, title, content, isPublic]);
+    }, [title, content, isPublic]);
 
-    const handleDateSelect = (date: Date) => {
-        setSelectedDate(date);
+    const handleDateSelect = (selecteddate: Date) => {
+        console.log(selecteddate);
+        navigate(`/diaryWrite/${formatDateWithHy(selecteddate)}`);
     };
 
     const handleTitleChange = (value: string) => {
@@ -86,7 +105,7 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     return (
         <Container>
             <SelectDateContainer>
-                <DateContainer>{setDateFormat(selectedDate)}</DateContainer>
+                <DateContainer>{formatDateWithDot(date)}</DateContainer>
                 <DatePickeContainer>
                     {isEditing ? null : (
                         <DatePicker

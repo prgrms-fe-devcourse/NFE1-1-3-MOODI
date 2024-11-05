@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import {
-    DiaryDescDataType,
-    MoodDataType,
-    MusicItem
-} from '@/entities/music/model/type';
+import { MoodDataType, MusicItem } from '@/entities/music/model/type';
+import { DiaryDescDataType } from '@/shared/model/diaryType';
 
 export const useDiaryForm = () => {
     const [userDiaryState, setUserDiaryState] =
