@@ -34,7 +34,7 @@ export const emotionDescriptions: Record<Emotions, string> = {
     [Emotions.Not_sure]: '모르겠어요',
     [Emotions.Embarrassed]: '부끄러워요',
     [Emotions.Surprised]: '놀라워요',
-    [Emotions.Blank]: '아무 생각이 없어요',
+    [Emotions.Blank]: '아무생각이 없어요',
     [Emotions.Sad]: '슬퍼요',
     [Emotions.Depressed]: '우울해요',
     [Emotions.Disappointed]: '실망스러워요',
