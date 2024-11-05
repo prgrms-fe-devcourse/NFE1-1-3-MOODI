@@ -1,5 +1,6 @@
 import { Calendar, CalendarType } from 'react-calendar';
 import styled from 'styled-components';
+import plusImage from '@/shared/assets/calendar_plus.svg';
 
 export const StyledCalendar = styled(Calendar).attrs({
     calendarType: 'gregory' as CalendarType
@@ -111,7 +112,7 @@ export const StyledCalendar = styled(Calendar).attrs({
                 height: 20px;
                 background-size: contain;
                 background-repeat: no-repeat;
-                background-image: url('@/shared/assets/calendar_plus.svg');
+                background-image: url(${plusImage});
             }
         }
 

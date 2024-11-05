@@ -51,15 +51,5 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(process.env)
         })
-    ],
-    devServer: {
-        historyApiFallback: true,
-        hot: true,
-        port: 3000,
-        static: {
-            directory: path.join(__dirname, 'public')
-        },
-        compress: true,
-        open: true
-    }
+    ]
 };

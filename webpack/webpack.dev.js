@@ -6,8 +6,10 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'eval',
     devServer: {
+        historyApiFallback: true,
+        hot: true,
         port: 3000,
-        hot: true
+        open: true
     },
     plugins: [
         new webpack.DefinePlugin({

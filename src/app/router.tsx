@@ -7,7 +7,6 @@ import { DiaryWritePage } from '@/pages/DiaryWritePage';
 import SignPage from '@/pages/SignPage/SignPage';
 import MyPage from '@/pages/MyPage/MyPage';
 
-
 const router = createBrowserRouter([
     {
         path: '/',
@@ -36,7 +35,6 @@ const router = createBrowserRouter([
             {
                 path: '/my-page',
                 element: <MyPage />
-
             }
         ]
     }
