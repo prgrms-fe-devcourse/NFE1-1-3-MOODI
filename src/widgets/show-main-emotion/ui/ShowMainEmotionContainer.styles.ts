@@ -14,6 +14,13 @@ export const Container = styled.div`
     font-family: 'Pretendard', sans-serif;
 `;
 
+export const SubContainer = styled.div`
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 export const EmotionContainer = styled.div`
     position: absolute;
     display: flex;
@@ -28,7 +35,6 @@ export const EmotionContainer = styled.div`
     padding: 20px;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 60px;
     gap: 10px;
 
     font-weight: normal;
