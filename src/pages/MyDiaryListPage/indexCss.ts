@@ -9,7 +9,7 @@ export const MyDiaryListWrapper = styled.div`
 
 export const PickSort = styled.div<{ sortState: string }>`
     position: absolute;
-    top: 0;
+    top: 150px;
     right: 0;
     display: flex;
     gap: 1rem;

@@ -2,9 +2,11 @@ import EmotionChart from '@/features/chart/ui/EmotionChart';
 import TimelineContainer from '@/widgets/timeline-container/TimelineContainer';
 import { PickSort, MyDiaryListWrapper } from './indexCss';
 import { useEffect, useState } from 'react';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 const MyDiaryListPage = () => {
     const [sortState, setSortState] = useState('lastest');
+    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
     useEffect(() => {
         console.log(sortState);
     }, [sortState]);
@@ -36,7 +38,7 @@ const MyDiaryListPage = () => {
                 <TimelineContainer
                     titleTarget="나"
                     sort={sortState}
-                    email="perfectTest@naver.com"
+                    email={email}
                 />
             </MyDiaryListWrapper>
         </div>
