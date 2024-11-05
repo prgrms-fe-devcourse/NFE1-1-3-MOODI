@@ -16,10 +16,11 @@ import {
     WidgetWrapper
 } from './DiaryWritePage.styled';
 import { useEffect, useRef } from 'react';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 // TODO - 이미 일기가 작성되어있는 날의 경우 수정, 삭제가 가능하도록 처리
 export const DiaryWritePage = () => {
-    const testUserEmail = 'wookgod01@naver.com.com';
+    const userEmail = useAuthStore((state) => state.email);
     const { date } = useParams();
     const navigate = useNavigate();
     const { addToast } = useToastStore();
@@ -76,9 +77,11 @@ export const DiaryWritePage = () => {
                 userDiaryState!,
                 userEmotionState!,
                 selectedMusic!,
-                testUserEmail,
+                userEmail,
                 date || ''
             );
+
+            console.log(diaryData);
 
             const { success, error } =
                 await diaryService.submitDiary(diaryData);
@@ -94,17 +97,27 @@ export const DiaryWritePage = () => {
         }
     };
 
+    const callFetchRecommendations = async () => {
+        try {
+            await fetchRecommendations(
+                userDiaryState,
+                userEmotionState,
+                (errorMessage) => addToast(errorMessage, 'error')
+            );
+        } catch (error) {
+            addToast(
+                '음악 추천에 실패했어요. 잠시 후 다시 시도해주세요.',
+                'error'
+            );
+        }
+    };
+
     const handleEmotionNext = async () => {
         if (!validators.isEmotionValid(userEmotionState)) {
             return;
         }
-
         handleNextStep();
-        await fetchRecommendations(
-            userDiaryState,
-            userEmotionState,
-            (errorMessage) => addToast(errorMessage, 'error')
-        );
+        callFetchRecommendations();
     };
 
     return (
@@ -174,7 +187,6 @@ export const DiaryWritePage = () => {
                         </Button>
                     </ButtonContainer>
                 </WidgetWrapper>
-
                 <WidgetWrapper ref={musicRef}>
                     <SelectMusicContainer
                         onMusicSelect={setSelectedMusic}
@@ -182,6 +194,7 @@ export const DiaryWritePage = () => {
                         isActive={currentStep === 3}
                         disabled={currentStep !== 3}
                         isLoading={isLoading}
+                        onRecommend={callFetchRecommendations}
                     />
                     <DisabledOverlay disabled={currentStep !== 3} />
                     <ButtonContainer>

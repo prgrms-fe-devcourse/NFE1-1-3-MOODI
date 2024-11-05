@@ -15,3 +15,11 @@ export const SearchInputWrapper = styled.div<{ isVisible: boolean }>`
     overflow: hidden;
     transition: all 0.2s ease-in-out;
 `;
+
+export const MusicListContainer = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    position: relative;
+`;

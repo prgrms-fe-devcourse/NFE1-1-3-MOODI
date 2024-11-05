@@ -55,3 +55,7 @@ export interface MoodDataType {
     emotion: string | null;
     subEmotions: (string | null)[];
 }
+
+export interface ReRecommendGptButtonProps {
+    onClick: () => void;
+}

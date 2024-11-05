@@ -1,4 +1,5 @@
 export { fetchGptRecommend } from './api/fetchGptRecommend';
+export { ReRecommendGptButton } from './ui/ReRecommendGptButton';
 export { youtubeSearch } from './api/fetchMusicList';
 export { spotifySearch } from './api/fetchMusicList';
 export { fetchMusicRecommendation } from './api/fetchMusicRecommendation';
