@@ -10,10 +10,12 @@ const MyDiaryListPage = () => {
     useEffect(() => {
         console.log(sortState);
     }, [sortState]);
+    const { email, userName } = useAuthStore();
+
     return (
         /* eslint-disable jsx-a11y/click-events-have-key-events */
         <div>
-            <EmotionChart userName="홍길동" userEmail="perfectTest@naver.com" />
+            <EmotionChart userName={userName} userEmail={email} />
             <MyDiaryListWrapper>
                 <PickSort sortState={sortState}>
                     <div
