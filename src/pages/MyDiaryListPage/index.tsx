@@ -7,10 +7,6 @@ import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 const MyDiaryListPage = () => {
     const [sortState, setSortState] = useState('lastest');
     const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
-    useEffect(() => {
-        console.log(sortState);
-    }, [sortState]);
-    const { email, userName } = useAuthStore();
 
     return (
         /* eslint-disable jsx-a11y/click-events-have-key-events */
