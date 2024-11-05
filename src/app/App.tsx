@@ -16,14 +16,7 @@ const App: React.FC = () => {
         <QueryClientProvider client={queryClient}>
             <GlobalStyles />
             <ToastContainer />
-            {/* <RouterProvider router={router} /> */}
-            <ReactionSelector
-                diaryId={36}
-                userEmail="annawa6@naver.com.com"
-                isHorizontal
-                isAddBtnVisible
-                token={token}
-            />
+            <RouterProvider router={router} />
         </QueryClientProvider>
     );
 };
