@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 dotenv.config();
 
@@ -50,6 +51,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(process.env)
-        })
+        }),
+        new FaviconsWebpackPlugin('./public/favicon.ico')
     ]
 };
