@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, StyledButton, StyledImg } from './VisibilityButton.styled';
 import { VisibilityButtonProps } from '../model/type';
+import privateIcon from '@/shared/assets/private.svg';
+import publickIcon from '@/shared/assets/public.svg';
 
 export const VisibilityButton = ({
     isPublic,
@@ -16,7 +18,7 @@ export const VisibilityButton = ({
                 aria-label={isPublic ? '공개' : '비공개'}
             >
                 <StyledImg
-                    src={isPublic ? '/public.svg' : '/private.svg'}
+                    src={isPublic ? `${publickIcon}` : `${privateIcon}`}
                     alt={isPublic ? '공개' : '비공개'}
                 />
             </StyledButton>
