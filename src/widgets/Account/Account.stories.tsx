@@ -4,7 +4,7 @@ import Account from './Account';
 
 const meta: Meta<typeof Account> = {
   component: Account,
-  title: 'Widgets/ui/Account',
+  title: 'Account',
   tags: ['autodocs'],
   argTypes: {},
 };

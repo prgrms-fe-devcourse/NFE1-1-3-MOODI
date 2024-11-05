@@ -8,7 +8,7 @@ import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 import { ButtonStyled, LoginStyled } from './Login.styled';
 import Span from '@/shared/ui/Span/Span';
 import useLogin from '@/features/login/hooks/useLogin';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { addToast } = useToastStore();
@@ -72,7 +72,9 @@ const Login = () => {
                 </ButtonStyled>
             </form>
             <Margin bottom={28} />
-            <Span isCenter>계정을 잃어버리셨나요?</Span>
+            <Link to="/account">
+                <Span isCenter>계정을 잃어버리셨나요?</Span>
+            </Link>
         </LoginStyled>
     );
 };

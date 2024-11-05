@@ -1,3 +1,4 @@
+import ReactionSelector from '@/widgets/reaction-selector/ui/ReactionSelector';
 import {
     Wrapper,
     Top,
@@ -44,6 +45,8 @@ const ContentBox: React.FC<ContentBoxProps> = ({
     } else {
         timeAgo = `${diffInMinutes}분전`;
     }
+    const token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pbmpvb24iLCJlbWFpbCI6ImFubmF3YTZAbmF2ZXIuY29tLmNvbSIsImlhdCI6MTczMDc5MzYwMywiZXhwIjoxNzMwODA0NDAzfQ.Rr6DsZb7MPkOeDVelLpkZxGDB0FRDfFVBryrQliuN8g';
 
     return (
         <Wrapper>
@@ -54,7 +57,15 @@ const ContentBox: React.FC<ContentBoxProps> = ({
             <Paragraph>{content}</Paragraph>
             <Bottom>
                 <Time>{timeAgo}</Time>
-                <Reaction>{id}</Reaction>
+                <Reaction>
+                    <ReactionSelector
+                        diaryId={id}
+                        userEmail="annawa6@naver.com.com"
+                        isHorizontal={false}
+                        isAddBtnVisible={false}
+                        token={token}
+                    />
+                </Reaction>
             </Bottom>
             <Emotion imgPath={getEmoticonPath(emotion)} />
         </Wrapper>

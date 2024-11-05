@@ -1,12 +1,14 @@
 import Header from '@/widgets/header/ui/Header';
-import React from 'react';
 import { Outlet } from 'react-router-dom';
+import AuthProvider from '../AuthProvider';
 
 const Layout = () => {
     return (
         <div>
-            <Header />
-            <Outlet />
+            <AuthProvider>
+                <Header />
+                <Outlet />
+            </AuthProvider>
         </div>
     );
 };

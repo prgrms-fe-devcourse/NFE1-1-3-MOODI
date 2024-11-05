@@ -10,16 +10,18 @@ import { MypageSpan, ButtonStyled, MypageStyled } from './Mypage.styled';
 import useGetUser from '@/features/myPage/hook/useGetUser';
 import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 import usePatch from '@/features/myPage/hook/usePatch';
+import { useNavigate } from 'react-router-dom';
 
 const Mypage = () => {
     const { addToast } = useToastStore();
-    const { email, userName } = useAuthStore();
+    const { email, userName, setUserInfo } = useAuthStore();
     const { data, isLoading, error } = useGetUser({ email });
     const { mutate } = usePatch();
     const [name, setName] = useState<string>('');
     const [gender, setGender] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [phoneNumber, setPhoneNumber] = useState<string>('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (data) {
@@ -79,6 +81,8 @@ const Mypage = () => {
                     width="240px"
                     fontSize="16px"
                     onClick={() => {
+                        setUserInfo('', '', false);
+                        navigate('/');
                         addToast('로그아웃', 'success');
                     }}
                 >
