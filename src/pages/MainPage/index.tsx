@@ -14,6 +14,7 @@ const MainPage = () => {
                     titleTarget="다른 사용자들"
                     sort="lastest"
                     email=""
+                    ispublic="1"
                 />
             </TimeLineListWrapper>
             <MoveTopButton />

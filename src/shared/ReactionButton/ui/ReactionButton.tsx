@@ -17,7 +17,7 @@ interface ReactionButtonProps {
 export const ReactionButton = ({
     emotion,
     reactionCnt,
-    isHorizontal = true,
+    isHorizontal,
     isClicked,
     onClick
 }: ReactionButtonProps) => {
