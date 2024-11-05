@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    // width: 100%;
+    width: 100%;
+    height: 100%;
     background-color: #ffffff;
     border-radius: 10px;
     padding: 30px;
@@ -10,6 +11,13 @@ export const Container = styled.div`
     font-size: 16px;
     font-weight: bold;
     font-family: 'Pretendard', sans-serif;
+`;
+
+export const SubContainer = styled.div`
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const MoodContainer = styled.div`
