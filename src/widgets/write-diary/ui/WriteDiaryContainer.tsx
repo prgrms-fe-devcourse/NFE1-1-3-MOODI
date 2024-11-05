@@ -22,7 +22,8 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     disabled,
     initialTitle = '',
     initialContent = '',
-    initialIsPublic = true
+    initialIsPublic = true,
+    onDiarySubmit
 }) => {
     const [selectedDate, setSelectedDate] = useState<Date>(initialDate);
     const [title, setTitle] = useState(initialTitle);
