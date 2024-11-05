@@ -73,7 +73,6 @@ export const spotifySearch = async (
         });
         return spotifyResponse.data.tracks.items[0] as SpotifyResponse;
     } catch (error) {
-        console.log('스포티파이 데이터 패치 에러 : ', error);
         throw new Error('스포티파이 검색 실패');
     }
 };
@@ -91,7 +90,6 @@ export const youtubeSearch = async ({
     artistName: string;
 }) => {
     try {
-        console.log('유튜브 검색이 실행되다.');
         const youtubeResponse = await youtubeApi.get('/search', {
             params: {
                 q: `${trackName} ${artistName}`,
@@ -103,7 +101,6 @@ export const youtubeSearch = async ({
         const youtubeVideo = youtubeResponse.data.items[0] as YouTubeResponse;
         return youtubeVideo.id.videoId;
     } catch (error) {
-        console.log('유튜브 데이터 패치 에러 : ', error);
         throw new Error('유튜브 검색 실패');
     }
 };

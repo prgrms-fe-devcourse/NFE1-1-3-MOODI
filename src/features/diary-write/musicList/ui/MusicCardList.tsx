@@ -52,10 +52,6 @@ export const MusicCardList = ({
             );
         }
 
-        // if (responseMusicList.length === 0) {
-        //     return <EmptyMusicCard />;
-        // }
-
         return responseMusicList.map((music) => (
             <MusicCard
                 key={`${music.youtubeId}-${music.title}`}

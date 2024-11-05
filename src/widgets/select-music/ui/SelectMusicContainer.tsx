@@ -1,5 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import { Container, SearchInputWrapper } from './SelectMusicContainer.styled';
+import {
+    Container,
+    MusicListContainer,
+    SearchInputWrapper
+} from './SelectMusicContainer.styled';
 import {
     MusicSearchInput,
     SearchModeButtonGroup,
@@ -9,7 +13,7 @@ import {
     SearchType,
     SEARCH_TYPE
 } from '@/features/diary-write/search-mode-selector/model/type';
-import { useMusicSearch } from '@/entities/music';
+import { ReRecommendGptButton, useMusicSearch } from '@/entities/music';
 import { SelectMusicContainerProps } from '../model/type';
 import { MusicItem } from '@/entities/music/model/type';
 
@@ -19,7 +23,8 @@ export const SelectMusicContainer = ({
     gptRecommendMusicList,
     isLoading,
     isActive,
-    disabled
+    disabled,
+    onRecommend
 }: SelectMusicContainerProps) => {
     const [selectedType, setSelectedType] = useState<SearchType>(
         SEARCH_TYPE.GPT
@@ -72,17 +77,22 @@ export const SelectMusicContainer = ({
             <SearchInputWrapper isVisible={selectedType === SEARCH_TYPE.USER}>
                 <MusicSearchInput onSearch={handleSearchChange} />
             </SearchInputWrapper>
-            <MusicCardList
-                type={selectedType}
-                selectedMusic={selectedMusic}
-                responseMusicList={
-                    selectedType === SEARCH_TYPE.USER
-                        ? userMusicList
-                        : gptMusicList
-                }
-                onChange={handleMusicSelect}
-                isLoading={isLoading}
-            />
+            <MusicListContainer>
+                {selectedType === SEARCH_TYPE.GPT ? (
+                    <ReRecommendGptButton onClick={onRecommend} />
+                ) : null}
+                <MusicCardList
+                    type={selectedType}
+                    selectedMusic={selectedMusic}
+                    responseMusicList={
+                        selectedType === SEARCH_TYPE.USER
+                            ? userMusicList
+                            : gptMusicList
+                    }
+                    onChange={handleMusicSelect}
+                    isLoading={isLoading}
+                />
+            </MusicListContainer>
         </Container>
     );
 };
