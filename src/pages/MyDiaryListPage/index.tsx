@@ -37,6 +37,7 @@ const MyDiaryListPage = () => {
                     titleTarget="나"
                     sort={sortState}
                     email={email}
+                    ispublic=""
                 />
             </MyDiaryListWrapper>
         </div>

@@ -16,22 +16,26 @@ interface TimelineContainerProps {
     titleTarget: string;
     sort: string;
     email: string;
+    ispublic: string;
 }
 
 const TimelineContainer: React.FC<TimelineContainerProps> = ({
     titleTarget,
     sort,
-    email
+    email,
+    ispublic
 }) => {
     const queryClient = useQueryClient();
     const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
-        useInfiniteFetch(sort, email);
+        useInfiniteFetch(sort, email, ispublic);
 
     const { ref, inView } = useInView();
 
     // sort가 변경될 때 쿼리 캐시를 명시적으로 초기화
     useEffect(() => {
-        queryClient.resetQueries({ queryKey: ['timeline', sort, email] });
+        queryClient.resetQueries({
+            queryKey: ['timeline', sort, email, ispublic]
+        });
     }, [sort, email, queryClient]);
 
     useEffect(() => {
