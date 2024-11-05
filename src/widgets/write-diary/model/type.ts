@@ -1,9 +1,4 @@
-export interface DiaryDescDataType {
-    selectedDate: Date;
-    title: string;
-    content: string;
-    isPublic: boolean;
-}
+import { DiaryDescDataType } from '@/shared/model/diaryType';
 
 export interface WriteDiaryContainerProps {
     onDiarySubmit: (data: DiaryDescDataType) => void;

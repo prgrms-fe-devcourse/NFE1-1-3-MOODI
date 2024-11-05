@@ -17,6 +17,7 @@ import {
 } from './DiaryWritePage.styled';
 import { useEffect, useRef } from 'react';
 
+// TODO - 이미 일기가 작성되어있는 날의 경우 수정, 삭제가 가능하도록 처리
 export const DiaryWritePage = () => {
     const testUserEmail = 'wookgod01@naver.com.com';
     const { date } = useParams();
