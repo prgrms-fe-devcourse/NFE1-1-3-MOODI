@@ -52,6 +52,6 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(process.env)
         }),
-        new FaviconsWebpackPlugin('./public/favicon.ico')
+        new FaviconsWebpackPlugin('./public/favicon.png')
     ]
 };
