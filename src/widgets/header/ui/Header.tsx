@@ -3,10 +3,18 @@ import { Container, Logo, Nav, NavItem, LoginButton } from './Header.styled';
 import LogoImage from '@/shared/assets/logo.svg';
 import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 import { Link, useNavigate } from 'react-router-dom';
+import useLogout from '@/features/login/hooks/useLogout';
 
 const Header = () => {
     const navigate = useNavigate();
-    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
+    const { userName, isLoggedin } = useAuthStore();
+    const { handleLogout } = useLogout();
+
+    const handleLogoutClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        handleLogout();
+    };
+
     return (
         <Container>
             <Logo>
@@ -28,10 +36,12 @@ const Header = () => {
                         <NavItem>마이페이지</NavItem>
                     </Link>
                 )}
-                {!isLoggedin && (
+                {!isLoggedin ? (
                     <Link to="/login">
                         <NavItem>로그인</NavItem>
                     </Link>
+                ) : (
+                    <NavItem onClick={handleLogoutClick}>로그아웃</NavItem>
                 )}
             </Nav>
         </Container>
