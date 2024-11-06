@@ -57,10 +57,15 @@ const ContentBox: React.FC<ContentBoxProps> = ({
             <Paragraph>{content}</Paragraph>
             <Bottom>
                 <Time>{timeAgo}</Time>
-                <Reaction>
+                <Reaction
+                    onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }}
+                >
                     <ReactionSelector
                         diaryId={id}
-                        userEmail="user2@example.com"
+                        userEmail="annawa6@naver.com"
                         isHorizontal
                         isAddBtnVisible={false}
                         token={token}

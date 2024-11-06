@@ -18,7 +18,7 @@ export const StyledReactionButton = styled.button<reactionBtnProps>`
         clicked ? theme.colors.orange_selected : theme.colors.white_bg};
     border: 1px solid
         ${({ clicked }) =>
-            clicked ? theme.colors.orange_primary : theme.colors.gray_normal};
+            clicked ? theme.colors.orange_primary : 'rgba(0,0,0,0.2)'};
     border-radius: ${({ isHorizontal }) => (isHorizontal ? '30px' : '20px')};
     cursor: pointer;
     transition:
