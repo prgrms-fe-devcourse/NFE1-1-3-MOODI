@@ -24,7 +24,8 @@ export const SelectMusicContainer = ({
     isLoading,
     isActive,
     disabled,
-    onRecommend
+    onRecommend,
+    initialData
 }: SelectMusicContainerProps) => {
     const [selectedType, setSelectedType] = useState<SearchType>(
         SEARCH_TYPE.GPT
@@ -44,7 +45,9 @@ export const SelectMusicContainer = ({
         return gptMusic && gptMusic.data ? [gptMusic.data] : [];
     }, [gptMusic]);
 
-    const [selectedMusic, setSelectedMusic] = useState<MusicItem | null>(null);
+    const [selectedMusic, setSelectedMusic] = useState<MusicItem | null>(
+        initialData
+    );
 
     const handleMusicSelect = (music: MusicItem | null) => {
         setSelectedMusic(music);

@@ -13,11 +13,12 @@ import { Emotions } from '@/shared/model/EmotionEnum';
 
 // TODO - 초기값이 undefined로 들어오는데 null로 들어오도록 변경
 export const EmotionButtonGroup: React.FC<EmotionButtonGroupProps> = ({
-    initialKeywords = [null, null, null, null, null],
+    initialKeywords,
     onKeywordsChange
 }) => {
-    const [keywords, setKeywords] =
-        useState<(Emotions | null)[]>(initialKeywords);
+    const [keywords, setKeywords] = useState<(Emotions | null)[]>(
+        initialKeywords || Array(5).fill(null)
+    );
     const [activeButton, setActiveButton] = useState(0);
     const [lastClicked, setLastClicked] = useState<
         'keyword' | 'emotion' | null

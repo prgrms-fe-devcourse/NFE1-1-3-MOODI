@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { useDiaryForm } from '../hooks/useDiaryForm';
 import { useStepNavigation } from '../hooks/useStepNavigation';
 import { useMusicRecommendation } from '../hooks/useMusicRecommendation';
@@ -17,11 +17,17 @@ import {
 } from './DiaryWritePage.styled';
 import { useEffect, useRef } from 'react';
 import { useAuthStore } from '@/features/login/hooks/useAuthStore';
+import { DiaryWritePageProps } from '../model/type';
+import { DiaryType } from '@/shared/model/diaryType';
+import { ConditionType } from '@/shared/model/conditionTypes';
 
-// TODO - 이미 일기가 작성되어있는 날의 경우 수정, 삭제가 가능하도록 처리
-export const DiaryWritePage = () => {
+export const DiaryWritePage = ({ mode }: DiaryWritePageProps) => {
     const userEmail = useAuthStore((state) => state.email);
     const { date } = useParams();
+
+    const { id } = useParams();
+    const preLoadDiaryData = useLoaderData() as DiaryType;
+
     const navigate = useNavigate();
     const { addToast } = useToastStore();
     const {
@@ -43,6 +49,35 @@ export const DiaryWritePage = () => {
     const emotionRef = useRef<HTMLDivElement>(null);
     const musicRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+        console.log(userDiaryState, userEmotionState, selectedMusic);
+    }, [userDiaryState, userEmotionState, selectedMusic]);
+
+    // 수정 모드 초기값
+    const initialdiary = {
+        title: preLoadDiaryData.title || '',
+        content: preLoadDiaryData.content || '',
+        isPublic: preLoadDiaryData.is_public || false
+    };
+
+    const parsedSubEmotions = preLoadDiaryData.sub_emotion
+        ? (JSON.parse(preLoadDiaryData.sub_emotion) as (string | null)[])
+        : [];
+
+    const initialEmotion = {
+        mood: (preLoadDiaryData.mood as ConditionType) || null,
+        emotion: preLoadDiaryData.emotion || '',
+        subEmotions: parsedSubEmotions
+    };
+
+    const initialMusic = {
+        title: preLoadDiaryData.music_id || '',
+        artist: preLoadDiaryData.artist || '',
+        thumbnailUrl: preLoadDiaryData.music_imgurl || '',
+        youtubeId: preLoadDiaryData.music_id || ''
+    };
+
+    // 위젯 단계
     useEffect(() => {
         const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
             ref.current?.scrollIntoView({
@@ -67,10 +102,7 @@ export const DiaryWritePage = () => {
         }
     }, [currentStep]);
 
-    useEffect(() => {
-        console.log(currentStep);
-    }, [currentStep]);
-
+    // 제출
     const handleSubmitAll = async () => {
         try {
             const diaryData = diaryService.formatDiaryData(
@@ -80,8 +112,6 @@ export const DiaryWritePage = () => {
                 userEmail,
                 date || ''
             );
-
-            console.log(diaryData);
 
             const { success, error } =
                 await diaryService.submitDiary(diaryData);
@@ -97,6 +127,35 @@ export const DiaryWritePage = () => {
         }
     };
 
+    // 수정
+    const handleEditSubmit = async () => {
+        try {
+            if (!id) {
+                throw new Error('일기 ID를 가져올 수 없어요.');
+            }
+
+            const diaryData = diaryService.formatDiaryEditData(
+                userDiaryState!,
+                userEmotionState!,
+                selectedMusic!,
+                userEmail,
+                id
+            );
+
+            const { success, error } = await diaryService.editDiary(diaryData);
+
+            if (success) {
+                addToast('일기를 수정했어요.', 'success');
+                navigate('/');
+            } else {
+                addToast('일기 수정에 실패했습니다.', 'error');
+            }
+        } catch (error) {
+            addToast('일기 수정에 실패했습니다.', 'error');
+        }
+    };
+
+    // gpt 추천
     const callFetchRecommendations = async () => {
         try {
             await fetchRecommendations(
@@ -112,12 +171,25 @@ export const DiaryWritePage = () => {
         }
     };
 
+    // 다름 버튼 클릭
     const handleEmotionNext = async () => {
         if (!validators.isEmotionValid(userEmotionState)) {
             return;
         }
         handleNextStep();
         callFetchRecommendations();
+    };
+
+    const handleButtonClick = () => {
+        if (!validators.isMusicValid(selectedMusic)) {
+            return;
+        }
+
+        if (mode === 'edit') {
+            handleEditSubmit();
+        } else {
+            handleSubmitAll();
+        }
     };
 
     return (
@@ -128,6 +200,9 @@ export const DiaryWritePage = () => {
                         onDiarySubmit={setUserDiaryState}
                         isActive={currentStep === 1}
                         disabled={currentStep !== 1}
+                        initialTitle={initialdiary?.title || ''}
+                        initialContent={initialdiary?.content || ''}
+                        initialIsPublic={initialdiary?.isPublic || false}
                     />
                     <DisabledOverlay disabled={currentStep !== 1} />
                     <ButtonContainer>
@@ -153,6 +228,9 @@ export const DiaryWritePage = () => {
                         onMoodSelect={setUserEmotionState}
                         isActive={currentStep === 2}
                         disabled={currentStep !== 2}
+                        initialmood={initialEmotion?.mood}
+                        initialemotion={initialEmotion?.emotion}
+                        initialsubemotions={initialEmotion?.subEmotions}
                     />
                     <DisabledOverlay disabled={currentStep !== 2} />
                     <ButtonContainer>
@@ -195,6 +273,7 @@ export const DiaryWritePage = () => {
                         disabled={currentStep !== 3}
                         isLoading={isLoading}
                         onRecommend={callFetchRecommendations}
+                        initialData={initialMusic}
                     />
                     <DisabledOverlay disabled={currentStep !== 3} />
                     <ButtonContainer>
@@ -214,14 +293,10 @@ export const DiaryWritePage = () => {
                             fontSize="16px"
                             height="60px"
                             isActive={validators.isMusicValid(selectedMusic)}
-                            onClick={() => {
-                                if (validators.isMusicValid(selectedMusic)) {
-                                    handleSubmitAll();
-                                }
-                            }}
+                            onClick={handleButtonClick}
                             width="200px"
                         >
-                            게시하기
+                            {mode === 'edit' ? '수정하기' : '게시하기'}
                         </Button>
                     </ButtonContainer>
                 </WidgetWrapper>

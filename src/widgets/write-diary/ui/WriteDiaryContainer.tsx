@@ -21,9 +21,9 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     initialDate = new Date(), // 초기 날짜가 없으면 오늘 날짜 사용
     isActive,
     disabled,
-    initialTitle = '',
-    initialContent = '',
-    initialIsPublic = true,
+    initialTitle,
+    initialContent,
+    initialIsPublic,
     onDiarySubmit
 }) => {
     const [selectedDate, setSelectedDate] = useState<Date>(initialDate);
@@ -31,6 +31,12 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     const [content, setContent] = useState(initialContent);
     const [isPublic, setIsPublic] = useState(initialIsPublic);
     const [isButtonActive, setIsButtonActive] = useState(false);
+
+    useEffect(() => {
+        setTitle(initialTitle);
+        setContent(initialContent);
+        setIsPublic(initialIsPublic);
+    }, [initialTitle, initialContent, initialIsPublic]);
 
     const { date } = useParams(); // 작성을 선택한 날짜
     const navigate = useNavigate();
