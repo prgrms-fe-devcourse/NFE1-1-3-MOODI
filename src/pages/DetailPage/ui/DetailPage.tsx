@@ -9,7 +9,11 @@ import {
     MusicContainer,
     MoodContainer,
     MainEmotionContainer,
-    SubEmotionContainer
+    SubEmotionContainer,
+    ReactionContainer,
+    ButtonContainer,
+    ShareButtonContainer,
+    ReactionShareWrap
 } from './DetailPage.styled';
 import { ShowMusicContainer } from '@/widgets/show-music';
 import { ShowMoodContainer } from '@/widgets/show-mood';
@@ -18,13 +22,19 @@ import { ShowSubEmotionContainer } from '@/widgets/show-sub-emotion';
 
 import { emotionMapping, Emotions } from '@/shared/model/EmotionEnum';
 import { ConditionType } from '@/shared/model/conditionTypes';
+import DiaryText from '@/widgets/diary-text/ui/DiaryText';
+import ReactionSelector from '@/widgets/reaction-selector/ui/ReactionSelector';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
+import Button from '@/shared/ui/Button/Button';
+import { ShareButton } from '@/entities/ShareButton';
 
 interface DiaryData {
+    id: number;
     title: string;
     content: string;
     is_public: boolean;
-    title_date: Date;
-    updated_date: Date;
+    title_date: string;
+    updated_date: string;
     author_email: string;
     // author_username: string;
 
@@ -40,6 +50,9 @@ interface DiaryData {
 }
 
 export const DetailPage = () => {
+    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
+    const token = localStorage.getItem('token') || ''; // 임시
+
     const { id } = useParams();
     const [data, setData] = useState<DiaryData | null>(null);
 
@@ -65,21 +78,37 @@ export const DetailPage = () => {
 
     // 구조 분해로 변수 할당
     const {
+        id: diaryId,
         title,
+        author_email: autherEmail,
         content,
         is_public: isPublic,
+        title_date: titleDate,
+        updated_date: updatedDate,
 
         mood,
         emotion,
         sub_emotion: subEmotion,
-        title_date: titleDate,
-        updated_date: updatedDate,
 
         music_url: youtubeId,
         music_imgurl: albumCover,
         music_title: songTitle,
         artist: artistName
     } = data;
+
+    const transTitleDate = new Date(titleDate).toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric'
+    });
+
+    const transUpdatedDate = new Date(updatedDate).toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+    });
 
     // 서브 감정을 매핑
     const transSubEmotion = JSON.parse(subEmotion).map(
@@ -88,7 +117,17 @@ export const DetailPage = () => {
 
     return (
         <Container>
-            <ContentContainer>{content}</ContentContainer>
+            <ContentContainer>
+                <DiaryText
+                    titleDate={transTitleDate}
+                    title={title}
+                    author={autherEmail}
+                    updateDate={`작성일 ${transUpdatedDate}`}
+                    diaryContent={content}
+                    isPublic={isPublic}
+                    onVisibilityChange={() => !isPublic}
+                />
+            </ContentContainer>
 
             <Wrap>
                 <EmotionMoodWrap>
@@ -118,9 +157,46 @@ export const DetailPage = () => {
                 </MusicContainer>
             </Wrap>
 
-            {/* <ReactionContainer></ReactionContainer> */}
+            <ReactionShareWrap>
+                <ReactionContainer>
+                    <ReactionSelector
+                        diaryId={diaryId}
+                        userEmail={email}
+                        isHorizontal={false}
+                        isAddBtnVisible={isLoggedin}
+                        token={token}
+                    />
+                </ReactionContainer>
+                <ShareButtonContainer>
+                    <ShareButton />
+                </ShareButtonContainer>
+            </ReactionShareWrap>
 
-            {/* <ButtonContainer></ButtonContainer> */}
+            {isLoggedin && email === autherEmail && (
+                <ButtonContainer>
+                    <Button
+                        isActive={false}
+                        height="55px"
+                        width="100%"
+                        fontSize="20px"
+                        onClick={() => {
+                            console.log('수정버튼 클릭');
+                        }}
+                    >
+                        수정하기
+                    </Button>
+                    <Button
+                        height="55px"
+                        width="100%"
+                        fontSize="20px"
+                        onClick={() => {
+                            console.log('삭제버튼 클릭');
+                        }}
+                    >
+                        삭제하기
+                    </Button>
+                </ButtonContainer>
+            )}
         </Container>
     );
 };

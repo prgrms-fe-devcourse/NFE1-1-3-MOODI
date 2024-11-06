@@ -22,6 +22,13 @@ const CalendarUi: React.FC = () => {
     const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
 
+    // 오늘날짜 이후로 클릭 불가
+    const isFutureDate = (date: Date) => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // 오늘 날짜의 시간을 0으로 설정하여 비교
+        return date > today; // 미래 날짜인지 확인
+    };
+
     // fetchedData에 데이터를 저장
     const loadDates = async () => {
         const data = await calendarDataFetch(activeMonth, email);
@@ -48,6 +55,9 @@ const CalendarUi: React.FC = () => {
             (entry) => entry.title_date === dateString
         );
 
+        if (isFutureDate(dateparam)) {
+            return 'futureDate';
+        }
         return isCheckedDate ? 'diary-date' : 'nodiary-date';
     };
 
@@ -87,6 +97,7 @@ const CalendarUi: React.FC = () => {
                 handleTileClick(date, event, (path) => navigate(path))
             }
             tileContent={getTileContent}
+            tileDisabled={({ date }) => isFutureDate(date)}
         />
     );
 };

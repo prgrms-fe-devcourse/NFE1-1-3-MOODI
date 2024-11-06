@@ -32,6 +32,7 @@ export const Name = styled.p`
 `;
 
 export const Bottom = styled.div`
+    width: 100%;
     height: 30px;
     display: flex;
     align-items: center;
@@ -44,7 +45,7 @@ export const Time = styled.div`
 `;
 
 export const Reaction = styled.div`
-    width: 100%;
+    width: 80%;
 `;
 
 export const Emotion = styled.div<{ imgPath: string | null }>`

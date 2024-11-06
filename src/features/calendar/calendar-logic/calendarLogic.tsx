@@ -12,7 +12,7 @@ export const handleTileClick = (
     const dateString = moment(date).format('YYYY-MM-DD');
 
     if (id) {
-        onNavigate(`/diary/${id}`);
+        onNavigate(`/detail/${id}`);
     } else {
         onNavigate(`/diaryWrite/${dateString}`);
     }

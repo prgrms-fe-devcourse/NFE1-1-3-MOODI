@@ -118,6 +118,15 @@ export const StyledCalendar = styled(Calendar).attrs({
             }
         }
 
+        // 오늘 이후의 disabled날
+        .futureDate {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            &:hover {
+                background-color: white;
+                cursor: default;
+            }
+        }
+
         // 현재날짜
         .react-calendar__tile--now {
             background-color: #ffeee9;
