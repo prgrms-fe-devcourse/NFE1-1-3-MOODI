@@ -50,10 +50,12 @@ export interface gptQueryParamsType {
 }
 
 export type gptAnswerType = string[];
+
+// TODO - 이 타입 삭제
 export interface MoodDataType {
-    mood: ConditionType;
-    emotion: string | null;
-    subEmotions: (string | null)[];
+    mood: ConditionType | undefined;
+    emotion: string | null | undefined;
+    subEmotions: (string | null)[] | undefined;
 }
 
 export interface ReRecommendGptButtonProps {

@@ -1,11 +1,24 @@
-import { postDiaryApi } from '@/shared/api/diary';
-import { DiaryDescDataType, PostDiaryType } from '@/shared/model/diaryType';
+import { postDiaryApi, putDiaryApi } from '@/shared/api/diary';
+import {
+    DiaryDescDataType,
+    PostDiaryType,
+    putDiaryType
+} from '@/shared/model/diaryType';
 import { MoodDataType, MusicItem } from '../music/model/type';
 
 export const diaryService = {
     async submitDiary(diary: PostDiaryType) {
         try {
             await postDiaryApi(diary);
+            return { success: true };
+        } catch (error) {
+            return { success: false, error };
+        }
+    },
+
+    async editDiary(diary: putDiaryType) {
+        try {
+            await putDiaryApi(diary);
             return { success: true };
         } catch (error) {
             return { success: false, error };
@@ -35,6 +48,36 @@ export const diaryService = {
                   )
                 : '',
             date: date || '',
+            music_title: selectedMusic?.title || '',
+            music_imgurl: selectedMusic?.thumbnailUrl || '',
+            artist: selectedMusic?.artist || '',
+            music_id: selectedMusic?.youtubeId || ''
+        };
+    },
+
+    formatDiaryEditData(
+        userDiaryState: DiaryDescDataType,
+        userEmotionState: MoodDataType,
+        selectedMusic: MusicItem,
+        userEmail: string,
+        id: string
+    ): putDiaryType {
+        return {
+            title: userDiaryState?.title || '',
+            content: userDiaryState?.content || '',
+            is_public: userDiaryState?.isPublic ?? false,
+            music_url: selectedMusic?.youtubeId || '',
+            author_email: userEmail,
+            mood: userEmotionState?.mood || '',
+            emotion: userEmotionState?.emotion || '',
+            sub_emotion: userEmotionState?.subEmotions
+                ? JSON.stringify(
+                      userEmotionState.subEmotions.filter(
+                          (emotion) => emotion !== null && emotion.trim() !== ''
+                      )
+                  )
+                : '',
+            id: id || '',
             music_title: selectedMusic?.title || '',
             music_imgurl: selectedMusic?.thumbnailUrl || '',
             artist: selectedMusic?.artist || '',

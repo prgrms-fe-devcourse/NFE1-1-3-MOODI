@@ -5,7 +5,8 @@ import {
     DiaryType,
     EmotionData,
     MusicData,
-    PostDiaryType
+    PostDiaryType,
+    putDiaryType
 } from '../model/diaryType';
 
 const api = defaultApi();
@@ -62,10 +63,40 @@ export const getDiaryApi = async (
  */
 export const postDiaryApi = async (diary: PostDiaryType) => {
     try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('토큰을 가져올 수 없어요.');
+        }
         const response = await api.post('/diary', diary, {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${token.replace(/"/g, '')}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        if (error instanceof Error) {
+            alert(error.message);
+        }
+        return null;
+    }
+};
+
+/**
+ * 일기를 스정합니다.
+ * @param diaryData
+ * @returns
+ */
+export const putDiaryApi = async (diary: putDiaryType) => {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('토큰을 가져올 수 없어요.');
+        }
+        const response = await api.patch('/diary', diary, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token.replace(/"/g, '')}`
             }
         });
         return response.data;

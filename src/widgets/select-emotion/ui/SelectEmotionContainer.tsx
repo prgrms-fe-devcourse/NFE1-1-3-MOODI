@@ -16,23 +16,32 @@ export const SelectEmotionContainer = ({
     onMoodSelect,
     onNext,
     isActive,
-    disabled
+    disabled,
+    initialmood,
+    initialemotion,
+    initialsubemotions
 }: SelectEmotionContainerProps) => {
     const { addToast } = useToastStore();
-    const [moodState, setMoodState] = useState<MoodState>(INITIAL_MOOD_STATE);
+    const [moodState, setMoodState] = useState<MoodState>({
+        mood: initialmood,
+        emotion: initialemotion,
+        subEmotions: initialsubemotions
+    });
 
     const handleConditionChange = (condition: ConditionType) => {
-        setMoodState((prev) => ({
-            ...prev,
-            mood: condition
-        }));
+        setMoodState((prev) => {
+            const newState = {
+                ...prev,
+                mood: condition
+            };
+            onMoodSelect(newState);
+            return newState;
+        });
     };
 
     const handleEmotionChange = (emotion: (Emotions | null)[]) => {
         const korEmotion = emotion.map((item) => {
-            if (!item) {
-                return null;
-            }
+            if (!item) return null;
             try {
                 const info = getEmotionInfo(item);
                 return info.description;
@@ -41,25 +50,52 @@ export const SelectEmotionContainer = ({
                 return null;
             }
         });
-        setMoodState((prev) => ({
-            ...prev,
-            emotion: korEmotion[0], // 첫 번째는 메인 감정
-            subEmotions: korEmotion.slice(1) // 나머지는 서브 감정
-        }));
+
+        setMoodState((prev) => {
+            const newState = {
+                ...prev,
+                emotion: korEmotion[0],
+                subEmotions: korEmotion.slice(1)
+            };
+            onMoodSelect(newState);
+            return newState;
+        });
     };
 
-    useEffect(() => {
-        onMoodSelect(moodState);
-    }, [moodState]);
+    const getInitialKeywords = (): (Emotions | null)[] => {
+        const defaultKeywords = Array(5).fill(null);
+        if (!initialemotion && !initialsubemotions) {
+            return defaultKeywords;
+        }
+        const convertToEmotions = (
+            emotionStr: string | null | undefined
+        ): Emotions | null => {
+            if (!emotionStr) return null;
+
+            return (
+                Object.values(Emotions).find(
+                    (emotion) =>
+                        getEmotionInfo(emotion).description === emotionStr
+                ) || null
+            );
+        };
+        const emotions = [
+            convertToEmotions(initialemotion),
+            ...(initialsubemotions?.map((emotion) =>
+                convertToEmotions(emotion)
+            ) || [])
+        ].filter((emotion): emotion is Emotions => emotion !== null);
+        return [...emotions, ...Array(5 - emotions.length).fill(null)];
+    };
 
     return (
         <Container>
             <ConditionButtonGroup
-                selectedCondition={moodState.mood}
+                selectedCondition={moodState.mood || null}
                 onConditionChange={handleConditionChange}
             />
             <EmotionButtonGroup
-                initialKeywords={[null, null, null, null, null]}
+                initialKeywords={getInitialKeywords()}
                 onKeywordsChange={handleEmotionChange}
             />
         </Container>

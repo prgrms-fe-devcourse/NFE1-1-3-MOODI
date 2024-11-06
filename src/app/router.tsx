@@ -8,6 +8,9 @@ import SignPage from '@/pages/SignPage/SignPage';
 import MyPage from '@/pages/MyPage/MyPage';
 import { DetailPage } from '@/pages/DetailPage';
 import AccountPage from '@/pages/AccountPage/AccountPage';
+import defaultApi from '@/shared/api/api';
+
+const api = defaultApi();
 
 const router = createBrowserRouter([
     {
@@ -28,7 +31,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/diaryWrite/:date',
-                element: <DiaryWritePage />
+                element: <DiaryWritePage mode="create" />
+            },
+            {
+                path: '/diaryWrite/:id/edit',
+                element: <DiaryWritePage mode="edit" />,
+                loader: async ({ params }) => {
+                    const preLoadDiary = await api.get(`/diary/${params.id}`);
+                    return preLoadDiary.data;
+                }
             },
             {
                 path: '/join',
