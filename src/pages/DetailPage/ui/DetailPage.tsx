@@ -51,7 +51,7 @@ interface DiaryData {
 
 export const DetailPage = () => {
     const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
-    const token = localStorage.getItem('token') || ''; // 임시
+    const token = localStorage.getItem('token') || '';
 
     const { id } = useParams();
     const [data, setData] = useState<DiaryData | null>(null);
