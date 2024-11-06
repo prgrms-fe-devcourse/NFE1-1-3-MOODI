@@ -8,7 +8,8 @@ import {
     StyledDiaryTextContainer,
     StyledDiaryTitle,
     StyledDiaryTitleContainer,
-    StyledDiaryUpdateDate
+    StyledDiaryUpdateDate,
+    StyledVisibilityButton
 } from './DiaryText.styled';
 import { VisibilityButton } from '@/features/diary-write';
 
@@ -27,11 +28,13 @@ const DiaryText = ({
             <StyledDiaryDate>{titleDate}</StyledDiaryDate>
             <StyledDiaryTitleContainer>
                 <StyledDiaryTitle>{title}</StyledDiaryTitle>
-                <VisibilityButton
-                    isPublic={isPublic}
-                    isActive={false}
-                    onClick={() => onVisibilityChange(!isPublic)} // isPublic 값을 반전시켜서 전달
-                />
+                <StyledVisibilityButton>
+                    <VisibilityButton
+                        isPublic={isPublic}
+                        isActive={false}
+                        onClick={() => onVisibilityChange(!isPublic)} // isPublic 값을 반전시켜서 전달
+                    />
+                </StyledVisibilityButton>
             </StyledDiaryTitleContainer>
             <StyledDiaryAuthor>{author}</StyledDiaryAuthor>
             <StyledDiaryUpdateDate>{updateDate}</StyledDiaryUpdateDate>

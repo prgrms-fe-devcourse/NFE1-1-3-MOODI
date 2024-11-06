@@ -1,11 +1,14 @@
 import theme from '@/app/styles/theme';
 import styled from 'styled-components';
 
-export const StyledDiaryTextContainer = styled.div``;
+export const StyledDiaryTextContainer = styled.div`
+    width: 100%;
+`;
 
 export const StyledDiaryTitleContainer = styled.p`
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+    align-items: center;
     width: 100%;
     margin: 40px 0 0 0;
     padding: 0;
@@ -20,6 +23,7 @@ export const StyledDiaryDate = styled.p`
 `;
 
 export const StyledDiaryTitle = styled.p`
+    width: 100%;
     font-size: 28px;
     font-weight: 600;
     text-align: center;
@@ -27,6 +31,10 @@ export const StyledDiaryTitle = styled.p`
     margin: 0;
     padding: 0;
 `;
+export const StyledVisibilityButton = styled.div`
+    position: absolute;
+`;
+
 export const StyledDiaryAuthor = styled.p`
     font-size: 16px;
     font-weight: 500;
@@ -43,6 +51,8 @@ export const StyledDiaryUpdateDate = styled.p`
     padding: 40px 0 0 0;
 `;
 export const StyledDiaryContent = styled.p`
+    line-height: 180%;
+    min-height: 400px;
     font-size: 16px;
     font-weight: 500;
     color: ${theme.colors.gray_dark};
