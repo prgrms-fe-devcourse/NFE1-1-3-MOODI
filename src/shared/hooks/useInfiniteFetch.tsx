@@ -6,8 +6,9 @@ const fetchTimeline = async (
     email: string,
     ispublic: string
 ) => {
+    const apiUrl = process.env.REACT_APP_API_URL;
     const response = await fetch(
-        `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?limit=10&sort_by=${sort}&page=${page}&user_email=${email}&is_public=${ispublic}`
+        `${apiUrl}/diary?limit=10&sort_by=${sort}&page=${page}&user_email=${email}&is_public=${ispublic}`
     );
     if (!response.ok) {
         throw new Error('Network response was not ok');
