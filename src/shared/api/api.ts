@@ -8,9 +8,6 @@ const defaultApi = (option?: AxiosRequestConfig): AxiosInstance => {
     instance.interceptors.response.use(
         (response) => response,
         (error) => {
-            if (process.env.NODE_ENV !== 'production') {
-                console.error('API Error:', error);
-            }
             return Promise.reject(error);
         }
     );
