@@ -21,6 +21,7 @@
         "recharts": "^2.13.0",
         "storybook": "^8.3.0",
         "styled-components": "^6.1.13",
+        "terser-webpack-plugin": "^5.3.10",
         "webpack-merge": "^6.0.1",
         "zustand": "^4.5.5"
     },
