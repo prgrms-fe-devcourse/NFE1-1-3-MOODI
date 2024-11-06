@@ -162,7 +162,7 @@ export const DetailPage = () => {
                     <ReactionSelector
                         diaryId={diaryId}
                         userEmail={email}
-                        isHorizontal
+                        isHorizontal={false}
                         isAddBtnVisible={isLoggedin}
                         token={token}
                     />
