@@ -14,28 +14,15 @@ import {
     ResponsiveContainer
 } from 'recharts';
 import isDailyEmotion from '../lib/isDailyEmotion';
-import { ScaleLoader } from 'react-spinners';
 
 const emotions = ['매우 나쁨', '나쁨', '보통', '좋음', '매우 좋음'];
 
 interface ChartProps {
     data: DailyConditionType[] | WeeklyConditionSummaryType[];
-    isLoading: boolean;
 }
 
-const Chart = ({ data, isLoading }: ChartProps) => {
-    return isLoading ? (
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '400px'
-            }}
-        >
-            <ScaleLoader color="#DBDBDB" />
-        </div>
-    ) : (
+const Chart = ({ data }: ChartProps) => {
+    return (
         <ResponsiveContainer width="100%" height={400}>
             <LineChart
                 data={data}
