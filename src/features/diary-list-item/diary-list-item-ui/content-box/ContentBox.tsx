@@ -47,8 +47,8 @@ const ContentBox: React.FC<ContentBoxProps> = ({
         timeAgo = `${diffInMinutes}분전`;
     }
     const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
-    const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Iuq5gOuvvOykgCIsImVtYWlsIjoiYW5uYXdhNkBuYXZlci5jb20iLCJpYXQiOjE3MzA4NTUwNzAsImV4cCI6MTczMDg2NTg3MH0.CHiBt6xvfygJc0CwdPYrPSigfejnkJZStwAxfE8CHXE';
+
+    const token = localStorage.getItem('token') || '';
 
     return (
         <Wrapper>
