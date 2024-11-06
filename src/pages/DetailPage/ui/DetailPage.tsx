@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
     Container,
     ContentContainer,
@@ -30,6 +30,7 @@ import { ShareButton } from '@/entities/ShareButton';
 import { ScaleLoader } from 'react-spinners';
 
 import defaultApi from '@/shared/api/api';
+import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 
 interface DiaryData {
     id: number;
@@ -55,6 +56,8 @@ interface DiaryData {
 export const DetailPage = () => {
     const { email, isLoggedin } = useAuthStore();
     const token = localStorage.getItem('token') || '';
+    const { addToast } = useToastStore();
+    const navigate = useNavigate();
 
     const { id } = useParams();
     const [data, setData] = useState<DiaryData | null>(null);
@@ -120,6 +123,7 @@ export const DetailPage = () => {
     );
 
     const api = defaultApi();
+    /*
     const deleteDiary = async () => {
         try {
             const response = await api.delete(
@@ -139,29 +143,31 @@ export const DetailPage = () => {
             return null;
         }
     };
+    
+*/
 
-    // const deleteDiary = async () => {
-    //     try {
-    //         const response = await fetch(
-    //             `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary/${id}`,
-    //             {
-    //                 method: 'DELETE',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                     Authorization: `Bearer ${token}`
-    //                 }
-    //             }
-    //         );
+    const deleteDiary = async () => {
+        try {
+            const response = await fetch(
+                `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?id=${id}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token.replace(/"/g, '')}`
+                    }
+                }
+            );
 
-    //         if (response.ok) {
-    //             console.log('삭제 성공!');
-    //         } else {
-    //             console.error('삭제 실패:', response.status);
-    //         }
-    //     } catch (error) {
-    //         console.error('에러 발생:', error);
-    //     }
-    // };
+            if (response.ok) {
+                addToast('삭제 성공!', 'success');
+            } else {
+                addToast('삭제 실패!', 'warning');
+            }
+        } catch (error) {
+            addToast('에러 발생!', 'error');
+        }
+    };
 
     return (
         <Container>
@@ -237,7 +243,10 @@ export const DetailPage = () => {
                         height="55px"
                         width="100%"
                         fontSize="20px"
-                        onClick={deleteDiary}
+                        onClick={() => {
+                            deleteDiary();
+                            navigate('/');
+                        }}
                     >
                         삭제하기
                     </Button>
