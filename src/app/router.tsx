@@ -62,9 +62,7 @@ const RootRoute = ({ children }: { children: ReactNode }) => {
     return children;
 };
 
-
 const api = defaultApi();
-
 
 const router = createBrowserRouter([
     {
@@ -104,7 +102,6 @@ const router = createBrowserRouter([
                 )
             },
             {
-
                 path: '/diary',
                 element: (
                     <ProtectedRoute>
