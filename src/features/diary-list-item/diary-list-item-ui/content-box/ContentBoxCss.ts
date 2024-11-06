@@ -44,9 +44,7 @@ export const Time = styled.div`
 `;
 
 export const Reaction = styled.div`
-    width: 200px;
-    height: 30px;
-    border: 1px solid black;
+    width: 100%;
 `;
 
 export const Emotion = styled.div<{ imgPath: string | null }>`
