@@ -141,6 +141,10 @@ export const DetailPage = () => {
         }
     };
 
+    const handleClickEditButton = () => {
+        navigate(`/diarywrite/${id}/edit`);
+    };
+
     return (
         <Container>
             <ContentContainer>
@@ -201,13 +205,14 @@ export const DetailPage = () => {
             {isLoggedin && email === autherEmail && (
                 <ButtonContainer>
                     <Button
-                        isActive={false}
+                        isActive
                         height="55px"
                         width="100%"
                         fontSize="20px"
                         onClick={() => {
-                            console.log('수정버튼 클릭');
+                            handleClickEditButton();
                         }}
+                        hasBorder
                     >
                         수정하기
                     </Button>
