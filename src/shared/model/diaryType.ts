@@ -23,6 +23,7 @@ export interface MusicData {
 }
 
 export interface DiaryType {
+    title_date?: string | undefined;
     id: number;
     title: string;
     content: string;
@@ -58,6 +59,8 @@ export interface PostDiaryType {
     artist: string;
 }
 
+// Date 없음
+// 다이어리 id 추가됨
 export interface putDiaryType {
     id: string;
     title: string;

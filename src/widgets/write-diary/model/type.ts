@@ -9,4 +9,5 @@ export interface WriteDiaryContainerProps {
     initialContent: string;
     initialIsPublic: boolean;
     initialData?: DiaryDescDataType | null;
+    editTargetDate?: string;
 }

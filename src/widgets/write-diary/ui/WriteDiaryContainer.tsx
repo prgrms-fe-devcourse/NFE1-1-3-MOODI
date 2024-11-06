@@ -24,7 +24,8 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     initialTitle,
     initialContent,
     initialIsPublic,
-    onDiarySubmit
+    onDiarySubmit,
+    editTargetDate
 }) => {
     const [selectedDate, setSelectedDate] = useState<Date>(initialDate);
     const [title, setTitle] = useState(initialTitle);
@@ -111,7 +112,10 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     return (
         <Container>
             <SelectDateContainer>
-                <DateContainer>{formatDateWithDot(date)}</DateContainer>
+                <DateContainer>
+                    {formatDateWithDot(editTargetDate).split('T')[0] ||
+                        formatDateWithDot(date)}
+                </DateContainer>
                 <DatePickeContainer>
                     {isEditing ? null : (
                         <DatePicker

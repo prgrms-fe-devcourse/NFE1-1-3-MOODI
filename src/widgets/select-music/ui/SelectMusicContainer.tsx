@@ -41,9 +41,18 @@ export const SelectMusicContainer = ({
     const userMusicList = useMemo(() => {
         return userMusic && userMusic.data ? [userMusic.data] : [];
     }, [userMusic]);
+
+    console.log(initialData);
+
     const gptMusicList = useMemo(() => {
+        if (initialData) {
+            return [
+                initialData,
+                ...(gptMusic && gptMusic.data ? [gptMusic.data] : [])
+            ];
+        }
         return gptMusic && gptMusic.data ? [gptMusic.data] : [];
-    }, [gptMusic]);
+    }, [gptMusic, initialData]);
 
     const [selectedMusic, setSelectedMusic] = useState<MusicItem | null>(
         initialData

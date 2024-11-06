@@ -21,6 +21,7 @@ import { DiaryWritePageProps } from '../model/type';
 import { DiaryType } from '@/shared/model/diaryType';
 import { ConditionType } from '@/shared/model/conditionTypes';
 
+// TODO - 로직 분리
 export const DiaryWritePage = ({ mode }: DiaryWritePageProps) => {
     const userEmail = useAuthStore((state) => state.email);
     const { date } = useParams();
@@ -49,33 +50,64 @@ export const DiaryWritePage = ({ mode }: DiaryWritePageProps) => {
     const emotionRef = useRef<HTMLDivElement>(null);
     const musicRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        console.log(userDiaryState, userEmotionState, selectedMusic);
-    }, [userDiaryState, userEmotionState, selectedMusic]);
-
     // 수정 모드 초기값
-    const initialdiary = {
-        title: preLoadDiaryData.title || '',
-        content: preLoadDiaryData.content || '',
-        isPublic: preLoadDiaryData.is_public || false
-    };
+    const initialdiary =
+        mode === 'edit'
+            ? {
+                  title: preLoadDiaryData?.title || '',
+                  content: preLoadDiaryData?.content || '',
+                  isPublic: preLoadDiaryData?.is_public || false
+              }
+            : {
+                  title: '',
+                  content: '',
+                  isPublic: false
+              };
 
-    const parsedSubEmotions = preLoadDiaryData.sub_emotion
-        ? (JSON.parse(preLoadDiaryData.sub_emotion) as (string | null)[])
-        : [];
+    const parsedSubEmotions =
+        mode === 'edit' && preLoadDiaryData?.sub_emotion
+            ? (JSON.parse(preLoadDiaryData.sub_emotion) as (string | null)[])
+            : [];
 
-    const initialEmotion = {
-        mood: (preLoadDiaryData.mood as ConditionType) || null,
-        emotion: preLoadDiaryData.emotion || '',
-        subEmotions: parsedSubEmotions
-    };
+    const initialEmotion =
+        mode === 'edit'
+            ? {
+                  mood: (preLoadDiaryData?.mood as ConditionType) || null,
+                  emotion: preLoadDiaryData?.emotion || '',
+                  subEmotions: parsedSubEmotions
+              }
+            : {
+                  mood: null,
+                  emotion: '',
+                  subEmotions: []
+              };
 
-    const initialMusic = {
-        title: preLoadDiaryData.music_id || '',
-        artist: preLoadDiaryData.artist || '',
-        thumbnailUrl: preLoadDiaryData.music_imgurl || '',
-        youtubeId: preLoadDiaryData.music_id || ''
-    };
+    const initialMusic =
+        mode === 'edit'
+            ? {
+                  title: preLoadDiaryData?.music_title || '',
+                  artist: preLoadDiaryData?.artist || '',
+                  thumbnailUrl: preLoadDiaryData?.music_imgurl || '',
+                  youtubeId: preLoadDiaryData?.music_id || ''
+              }
+            : {
+                  title: '',
+                  artist: '',
+                  thumbnailUrl: '',
+                  youtubeId: ''
+              };
+
+    useEffect(() => {
+        setUserDiaryState(initialdiary);
+        setUserEmotionState(initialEmotion);
+        setSelectedMusic(initialMusic);
+    }, []);
+
+    useEffect(() => {
+        validators.isDiaryValid(userDiaryState);
+        validators.isEmotionValid(userEmotionState);
+        validators.isMusicValid(selectedMusic);
+    }, [userDiaryState, userEmotionState, selectedMusic]);
 
     // 위젯 단계
     useEffect(() => {
@@ -203,6 +235,7 @@ export const DiaryWritePage = ({ mode }: DiaryWritePageProps) => {
                         initialTitle={initialdiary?.title || ''}
                         initialContent={initialdiary?.content || ''}
                         initialIsPublic={initialdiary?.isPublic || false}
+                        editTargetDate={preLoadDiaryData?.title_date}
                     />
                     <DisabledOverlay disabled={currentStep !== 1} />
                     <ButtonContainer>
