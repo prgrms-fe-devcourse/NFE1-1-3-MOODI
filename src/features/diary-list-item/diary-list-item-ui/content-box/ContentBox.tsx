@@ -11,13 +11,14 @@ import {
     Emotion
 } from './ContentBoxCss';
 import { getEmoticonPath } from '@/shared/model/getEmotionPath';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 interface ContentBoxProps {
     title: string;
     time: string;
     content: string;
     emotion: string;
-    userName: string;
+    authorName: string;
     id: number;
 }
 
@@ -26,7 +27,7 @@ const ContentBox: React.FC<ContentBoxProps> = ({
     time,
     content,
     emotion,
-    userName,
+    authorName,
     id
 }) => {
     // 시간차이 계산
@@ -45,22 +46,28 @@ const ContentBox: React.FC<ContentBoxProps> = ({
     } else {
         timeAgo = `${diffInMinutes}분전`;
     }
+    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
     const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IuyCrOyaqeyekDIiLCJlbWFpbCI6InVzZXIyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzMwODI0NDI0LCJleHAiOjE3MzA4MzUyMjR9.iGY1f5Uh0bsKa_nJuVy72YeH-bYF_MK3l6VQQwAP3XE';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Iuq5gOuvvOykgCIsImVtYWlsIjoiYW5uYXdhNkBuYXZlci5jb20iLCJpYXQiOjE3MzA4NTUwNzAsImV4cCI6MTczMDg2NTg3MH0.CHiBt6xvfygJc0CwdPYrPSigfejnkJZStwAxfE8CHXE';
 
     return (
         <Wrapper>
             <Top>
                 <Title>{title}</Title>
-                <Name>{userName}</Name>
+                <Name>{authorName}</Name>
             </Top>
             <Paragraph>{content}</Paragraph>
             <Bottom>
                 <Time>{timeAgo}</Time>
-                <Reaction>
+                <Reaction
+                    onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }}
+                >
                     <ReactionSelector
                         diaryId={id}
-                        userEmail="user2@example.com"
+                        userEmail={email}
                         isHorizontal
                         isAddBtnVisible={false}
                         token={token}
