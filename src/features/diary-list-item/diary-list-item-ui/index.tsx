@@ -3,14 +3,16 @@ import ImageBox from './image-box/ImageBox';
 import ContentBox from './content-box/ContentBox';
 import { DiaryListItemType } from '../diary-list-item-type/DiaryListItemType';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 interface DiaryListItemProps {
     data: DiaryListItemType;
 }
 
 const DiaryListItemUi: React.FC<DiaryListItemProps> = ({ data }) => {
+    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
     return (
-        <Link to={`/detail/${data.id}`}>
+        <Link to={isLoggedin ? `/detail/${data.id}` : `/login/`}>
             <Wrapper>
                 <ImageBox
                     imgUrl={data.music_imgurl}
@@ -23,6 +25,7 @@ const DiaryListItemUi: React.FC<DiaryListItemProps> = ({ data }) => {
                     emotion={data.emotion}
                     authorName={data.author_username}
                     id={data.id}
+                    email={email}
                 />
             </Wrapper>
         </Link>
