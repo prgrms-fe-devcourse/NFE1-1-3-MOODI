@@ -29,7 +29,6 @@ import Button from '@/shared/ui/Button/Button';
 import { ShareButton } from '@/entities/ShareButton';
 import { ScaleLoader } from 'react-spinners';
 
-import defaultApi from '@/shared/api/api';
 import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 
 interface DiaryData {
@@ -62,12 +61,12 @@ export const DetailPage = () => {
     const { id } = useParams();
     const [data, setData] = useState<DiaryData | null>(null);
 
+    const url = process.env.REACT_APP_API_URL;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(
-                    `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary/${id}`
-                );
+                const response = await fetch(`${url}/diary/${id}`);
                 const result: DiaryData = await response.json();
                 setData(result);
             } catch (error) {
@@ -122,42 +121,15 @@ export const DetailPage = () => {
         (emo: string) => emotionMapping[emo] ?? emo
     );
 
-    const api = defaultApi();
-    /*
     const deleteDiary = async () => {
         try {
-            const response = await api.delete(
-                `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?id=${diaryId}`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    }
+            const response = await fetch(`${url}/diary?id=${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token.replace(/"/g, '')}`
                 }
-            );
-            return response.data;
-        } catch (error) {
-            if (error instanceof Error) {
-                alert(error.message);
-            }
-            return null;
-        }
-    };
-    
-*/
-
-    const deleteDiary = async () => {
-        try {
-            const response = await fetch(
-                `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?id=${id}`,
-                {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token.replace(/"/g, '')}`
-                    }
-                }
-            );
+            });
 
             if (response.ok) {
                 addToast('삭제 성공!', 'success');
@@ -218,7 +190,7 @@ export const DetailPage = () => {
                         userEmail={email}
                         isHorizontal={false}
                         isAddBtnVisible={isLoggedin}
-                        token={token}
+                        token={token.replace(/"/g, '')}
                     />
                 </ReactionContainer>
                 <ShareButtonContainer>
