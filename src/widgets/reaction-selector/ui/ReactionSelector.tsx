@@ -40,6 +40,8 @@ const ReactionSelector = ({
     const [reactions, setReactions] = useState<ReactionList[]>([]);
     const [previousEmotions, setPreviousEmotions] = useState<Emotions[]>([]);
 
+    const apiToken = token.replace(/"/g, '');
+
     const updateReactions = async (selectedEmotions: Emotions[]) => {
         const updatedReactions = [...reactions];
 
@@ -82,7 +84,7 @@ const ReactionSelector = ({
                     const selectedReaction = selectedReactions[0];
                     await deleteReaction({
                         id: selectedReaction.reaction_id,
-                        token
+                        token: apiToken
                     });
                 }
             }
@@ -164,7 +166,7 @@ const ReactionSelector = ({
         };
 
         try {
-            await postReaction(reaction, token);
+            await postReaction(reaction, apiToken);
             await getDiaryData();
         } catch (e) {
             console.error('Failed to post reaction:', e);
@@ -209,7 +211,7 @@ const ReactionSelector = ({
                         const selectedReaction = selectedReactions[0];
                         await deleteReaction({
                             id: selectedReaction.reaction_id,
-                            token
+                            token: apiToken
                         });
                         await getDiaryData();
                     }
