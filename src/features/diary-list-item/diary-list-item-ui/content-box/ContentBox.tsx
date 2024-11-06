@@ -11,7 +11,6 @@ import {
     Emotion
 } from './ContentBoxCss';
 import { getEmoticonPath } from '@/shared/model/getEmotionPath';
-import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 interface ContentBoxProps {
     title: string;
@@ -20,6 +19,7 @@ interface ContentBoxProps {
     emotion: string;
     authorName: string;
     id: number;
+    email: string;
 }
 
 const ContentBox: React.FC<ContentBoxProps> = ({
@@ -28,7 +28,8 @@ const ContentBox: React.FC<ContentBoxProps> = ({
     content,
     emotion,
     authorName,
-    id
+    id,
+    email
 }) => {
     // 시간차이 계산
     const targetDate = new Date(time);
@@ -46,7 +47,6 @@ const ContentBox: React.FC<ContentBoxProps> = ({
     } else {
         timeAgo = `${diffInMinutes}분전`;
     }
-    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
 
     const token = localStorage.getItem('token') || '';
 
