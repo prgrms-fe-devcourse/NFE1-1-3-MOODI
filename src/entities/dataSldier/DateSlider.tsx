@@ -72,7 +72,17 @@ const DateSlider = ({
     const handlePrev = () => {
         if (currentViewMode === 'week') {
             const newDate = addWeeks(currentDate, -1);
-            setCurrentDate(newDate);
+            const newMonth = getMonth(newDate) + 1;
+            const currentMonth = getMonth(currentDate) + 1;
+
+            if (newMonth !== currentMonth) {
+                const prevMonthLastWeekDate = endOfMonth(
+                    subMonths(currentDate, 1)
+                );
+                setCurrentDate(prevMonthLastWeekDate);
+            } else {
+                setCurrentDate(newDate);
+            }
         } else if (currentViewMode === 'month') {
             const newDate = subMonths(currentDate, 1);
             setCurrentDate(newDate);
@@ -84,10 +94,12 @@ const DateSlider = ({
             const newDate = addWeeks(currentDate, 1);
             const newMonth = getMonth(newDate) + 1;
             const currentMonth = getMonth(currentDate) + 1;
+
             if (newMonth !== currentMonth) {
-                setCurrentDate(
-                    new Date(getYear(newDate), getMonth(newDate), 1)
+                const nextMonthFirstWeekDate = startOfMonth(
+                    addMonths(currentDate, 1)
                 );
+                setCurrentDate(nextMonthFirstWeekDate);
             } else {
                 setCurrentDate(newDate);
             }
