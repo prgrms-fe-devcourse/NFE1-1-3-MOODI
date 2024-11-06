@@ -63,20 +63,20 @@ export const SubEmotionContainer = styled.div`
 export const ReactionShareWrap = styled.div`
     max-width: 960px;
     width: 100%;
+    height: 300px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    position: relative;
 `;
 
 export const ReactionContainer = styled.div`
     // background-color: rgb(0, 0, 0, 0.1);
-    max-width: 960px;
-    width: 100%;
-    height: 300px;
 `;
 
 export const ShareButtonContainer = styled.div`
-    // position: absolute;
+    position: absolute;
+    right: 0;
 `;
 
 export const ButtonContainer = styled.div`
