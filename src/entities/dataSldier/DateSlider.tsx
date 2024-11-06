@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import {
     MonthWeekSelectorWrapper,
     ArrowButton,
@@ -42,86 +41,88 @@ const getCurrentWeek = (date: Date) => {
     );
 };
 
-const DateSlider = ({
-    year,
-    month,
-    week,
-    viewMode: currentViewMode,
-    onDateChange
-}: MonthWeekSelectorProps) => {
-    const [currentDate, setCurrentDate] = useState(
-        new Date(year, month - 1, 1)
-    );
+const DateSlider = React.memo(
+    ({
+        year,
+        month,
+        week,
+        viewMode: currentViewMode,
+        onDateChange
+    }: MonthWeekSelectorProps) => {
+        const [currentDate, setCurrentDate] = useState(
+            new Date(year, month - 1, 1)
+        );
 
-    useEffect(() => {
-        const newYear = getYear(currentDate);
-        const newMonth = getMonth(currentDate) + 1;
-        const newWeek =
-            currentViewMode === 'week' ? getCurrentWeek(currentDate) : null;
+        useEffect(() => {
+            const newYear = getYear(currentDate);
+            const newMonth = getMonth(currentDate) + 1;
+            const newWeek =
+                currentViewMode === 'week' ? getCurrentWeek(currentDate) : null;
 
-        if (onDateChange) {
-            onDateChange({
-                year: newYear,
-                month: newMonth,
-                week: newWeek,
-                viewMode: currentViewMode
-            });
-        }
-    }, [currentDate, currentViewMode, onDateChange]);
+            if (onDateChange) {
+                onDateChange({
+                    year: newYear,
+                    month: newMonth,
+                    week: newWeek,
+                    viewMode: currentViewMode
+                });
+            }
+        }, [currentDate, currentViewMode, onDateChange]);
 
-    const handlePrev = () => {
-        if (currentViewMode === 'week') {
-            const newDate = addWeeks(currentDate, -1);
-            const newMonth = getMonth(newDate) + 1;
-            const currentMonth = getMonth(currentDate) + 1;
+        const handlePrev = () => {
+            if (currentViewMode === 'week') {
+                const newDate = addWeeks(currentDate, -1);
+                const newMonth = getMonth(newDate) + 1;
+                const currentMonth = getMonth(currentDate) + 1;
 
-            if (newMonth !== currentMonth) {
-                const prevMonthLastWeekDate = endOfMonth(
-                    subMonths(currentDate, 1)
-                );
-                setCurrentDate(prevMonthLastWeekDate);
-            } else {
+                if (newMonth !== currentMonth) {
+                    const prevMonthLastWeekDate = endOfMonth(
+                        subMonths(currentDate, 1)
+                    );
+                    setCurrentDate(prevMonthLastWeekDate);
+                } else {
+                    setCurrentDate(newDate);
+                }
+            } else if (currentViewMode === 'month') {
+                const newDate = subMonths(currentDate, 1);
                 setCurrentDate(newDate);
             }
-        } else if (currentViewMode === 'month') {
-            const newDate = subMonths(currentDate, 1);
-            setCurrentDate(newDate);
-        }
-    };
+        };
 
-    const handleNext = () => {
-        if (currentViewMode === 'week') {
-            const newDate = addWeeks(currentDate, 1);
-            const newMonth = getMonth(newDate) + 1;
-            const currentMonth = getMonth(currentDate) + 1;
+        const handleNext = () => {
+            if (currentViewMode === 'week') {
+                const newDate = addWeeks(currentDate, 1);
+                const newMonth = getMonth(newDate) + 1;
+                const currentMonth = getMonth(currentDate) + 1;
 
-            if (newMonth !== currentMonth) {
-                const nextMonthFirstWeekDate = startOfMonth(
-                    addMonths(currentDate, 1)
-                );
-                setCurrentDate(nextMonthFirstWeekDate);
-            } else {
+                if (newMonth !== currentMonth) {
+                    const nextMonthFirstWeekDate = startOfMonth(
+                        addMonths(currentDate, 1)
+                    );
+                    setCurrentDate(nextMonthFirstWeekDate);
+                } else {
+                    setCurrentDate(newDate);
+                }
+            } else if (currentViewMode === 'month') {
+                const newDate = addMonths(currentDate, 1);
                 setCurrentDate(newDate);
             }
-        } else if (currentViewMode === 'month') {
-            const newDate = addMonths(currentDate, 1);
-            setCurrentDate(newDate);
-        }
-    };
+        };
 
-    return (
-        <MonthWeekSelectorWrapper>
-            <SliderInfoContainer>
-                <ArrowButton onClick={handlePrev}>&lt;</ArrowButton>
-                <Display>
-                    {currentViewMode === 'week'
-                        ? `${year}년 ${month}월 ${week}주차`
-                        : `${year}년 ${month}월`}
-                </Display>
-                <ArrowButton onClick={handleNext}>&gt;</ArrowButton>
-            </SliderInfoContainer>
-        </MonthWeekSelectorWrapper>
-    );
-};
+        return (
+            <MonthWeekSelectorWrapper>
+                <SliderInfoContainer>
+                    <ArrowButton onClick={handlePrev}>&lt;</ArrowButton>
+                    <Display>
+                        {currentViewMode === 'week'
+                            ? `${year}년 ${month}월 ${week}주차`
+                            : `${year}년 ${month}월`}
+                    </Display>
+                    <ArrowButton onClick={handleNext}>&gt;</ArrowButton>
+                </SliderInfoContainer>
+            </MonthWeekSelectorWrapper>
+        );
+    }
+);
 
 export default DateSlider;
