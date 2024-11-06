@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
     Container,
     ContentContainer,
@@ -20,13 +20,17 @@ import { ShowMoodContainer } from '@/widgets/show-mood';
 import { ShowMainEmotionContainer } from '@/widgets/show-main-emotion';
 import { ShowSubEmotionContainer } from '@/widgets/show-sub-emotion';
 
-import { emotionMapping, Emotions } from '@/shared/model/EmotionEnum';
+import { emotionMapping } from '@/shared/model/EmotionEnum';
 import { ConditionType } from '@/shared/model/conditionTypes';
 import DiaryText from '@/widgets/diary-text/ui/DiaryText';
 import ReactionSelector from '@/widgets/reaction-selector/ui/ReactionSelector';
 import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 import Button from '@/shared/ui/Button/Button';
 import { ShareButton } from '@/entities/ShareButton';
+import { ScaleLoader } from 'react-spinners';
+
+import defaultApi from '@/shared/api/api';
+import { useToastStore } from '@/features/Toast/hooks/useToastStore';
 
 interface DiaryData {
     id: number;
@@ -36,7 +40,7 @@ interface DiaryData {
     title_date: string;
     updated_date: string;
     author_email: string;
-    // author_username: string;
+    author_name: string;
 
     mood: ConditionType;
     emotion: string;
@@ -50,8 +54,10 @@ interface DiaryData {
 }
 
 export const DetailPage = () => {
-    const { email, userName, isLoggedin, setUserInfo } = useAuthStore();
+    const { email, isLoggedin } = useAuthStore();
     const token = localStorage.getItem('token') || '';
+    const { addToast } = useToastStore();
+    const navigate = useNavigate();
 
     const { id } = useParams();
     const [data, setData] = useState<DiaryData | null>(null);
@@ -73,7 +79,7 @@ export const DetailPage = () => {
     }, [id]);
 
     if (!data) {
-        return <div>Loading...</div>; // 데이터 로딩 중 표시
+        return <ScaleLoader color="#DBDBDB" />; // 데이터 로딩 중 표시
     }
 
     // 구조 분해로 변수 할당
@@ -81,6 +87,7 @@ export const DetailPage = () => {
         id: diaryId,
         title,
         author_email: autherEmail,
+        author_name: autherName,
         content,
         is_public: isPublic,
         title_date: titleDate,
@@ -115,13 +122,60 @@ export const DetailPage = () => {
         (emo: string) => emotionMapping[emo] ?? emo
     );
 
+    const api = defaultApi();
+    /*
+    const deleteDiary = async () => {
+        try {
+            const response = await api.delete(
+                `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?id=${diaryId}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            return response.data;
+        } catch (error) {
+            if (error instanceof Error) {
+                alert(error.message);
+            }
+            return null;
+        }
+    };
+    
+*/
+
+    const deleteDiary = async () => {
+        try {
+            const response = await fetch(
+                `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?id=${id}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token.replace(/"/g, '')}`
+                    }
+                }
+            );
+
+            if (response.ok) {
+                addToast('삭제 성공!', 'success');
+            } else {
+                addToast('삭제 실패!', 'warning');
+            }
+        } catch (error) {
+            addToast('에러 발생!', 'error');
+        }
+    };
+
     return (
         <Container>
             <ContentContainer>
                 <DiaryText
                     titleDate={transTitleDate}
                     title={title}
-                    author={autherEmail}
+                    author={autherName}
                     updateDate={`작성일 ${transUpdatedDate}`}
                     diaryContent={content}
                     isPublic={isPublic}
@@ -190,7 +244,8 @@ export const DetailPage = () => {
                         width="100%"
                         fontSize="20px"
                         onClick={() => {
-                            console.log('삭제버튼 클릭');
+                            deleteDiary();
+                            navigate('/');
                         }}
                     >
                         삭제하기
