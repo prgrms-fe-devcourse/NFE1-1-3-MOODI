@@ -3,7 +3,7 @@ name: NFE1-1-8-MOODI
 on:
     push:
         branches:
-            - main
+            - 194-chore-배포-콘솔-제거
 
 jobs:
     deploy:
