@@ -1,6 +1,7 @@
 import { StyledReactionButton } from '../../ReactionButton/ui/ReactionButton.styled';
 import React from 'react';
 import { StyledEmotionIcon } from '../../EmotionIcon/ui/EmotionIcon.styled';
+import plusSvg from '@/shared/assets/reaction_plus.svg';
 
 interface ReactionAddButtonProps {
     isClicked: boolean;
@@ -25,7 +26,7 @@ const ReactionAddButton = ({
             onClick={handleClick}
         >
             <StyledEmotionIcon width="80%" height="80%">
-                <img src="./reaction_plus.svg" alt="이미지 추가" />
+                <img src={plusSvg} alt="이미지 추가" />
             </StyledEmotionIcon>
         </StyledReactionButton>
     );

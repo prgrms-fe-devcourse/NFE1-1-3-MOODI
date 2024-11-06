@@ -32,16 +32,9 @@ export const ChartWrapper = styled.div<SkeletonProps>`
     padding: 50px 90px 90px 90px;
 `;
 
-export const EmotionChartStlyed = styled.div<{ isLoading: boolean }>`
+export const EmotionChartStlyed = styled.div`
     max-width: 960px;
     margin: auto;
     padding-top: 150px;
     min-height: 940px;
-    ${({ isLoading }) =>
-        isLoading &&
-        `
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    `}
 `;

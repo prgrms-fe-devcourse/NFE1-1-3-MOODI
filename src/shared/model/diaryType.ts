@@ -23,6 +23,7 @@ export interface MusicData {
 }
 
 export interface DiaryType {
+    title_date?: string | undefined;
     id: number;
     title: string;
     content: string;
@@ -30,7 +31,7 @@ export interface DiaryType {
     music_url: string;
     mood: string;
     emotion: string;
-    sub_emotion: SubEmotionType | string;
+    sub_emotion: string;
     date: string;
     created_date: string;
     updated_date: string;
@@ -52,6 +53,26 @@ export interface PostDiaryType {
     date: string;
     author_email: string;
     music_url: string;
+    music_title: string;
+    music_imgurl: string;
+    music_id: string;
+    artist: string;
+}
+
+// Date 없음
+// 다이어리 id 추가됨
+export interface putDiaryType {
+    id: string;
+    title: string;
+    content: string;
+    is_public: boolean;
+    music_url: string;
+    mood: string;
+    emotion: string;
+    author_email: string;
+
+    sub_emotion: SubEmotionType | string;
+
     music_title: string;
     music_imgurl: string;
     music_id: string;

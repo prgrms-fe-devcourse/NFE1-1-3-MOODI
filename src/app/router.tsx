@@ -9,7 +9,9 @@ import SignPage from '@/pages/SignPage/SignPage';
 import MyPage from '@/pages/MyPage/MyPage';
 import { DetailPage } from '@/pages/DetailPage';
 import AccountPage from '@/pages/AccountPage/AccountPage';
+
 import { LandingPage } from '@/pages/LandingPage';
+import defaultApi from '@/shared/api/api';
 
 interface ProtectedRouteProps {
     children: ReactNode;
@@ -60,6 +62,10 @@ const RootRoute = ({ children }: { children: ReactNode }) => {
     return children;
 };
 
+
+const api = defaultApi();
+
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -98,6 +104,7 @@ const router = createBrowserRouter([
                 )
             },
             {
+
                 path: '/diary',
                 element: (
                     <ProtectedRoute>
@@ -106,10 +113,18 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: '/diaryWrite/:id/edit',
+                element: <DiaryWritePage mode="edit" />,
+                loader: async ({ params }) => {
+                    const preLoadDiary = await api.get(`/diary/${params.id}`);
+                    return preLoadDiary.data;
+                }
+            },
+            {
                 path: '/diaryWrite/:date',
                 element: (
                     <ProtectedRoute>
-                        <DiaryWritePage />
+                        <DiaryWritePage mode="create" />
                     </ProtectedRoute>
                 )
             },

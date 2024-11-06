@@ -4,7 +4,8 @@ export type ConditionType =
     | '보통'
     | '매우 좋음'
     | '매우 나쁨'
-    | null;
+    | null
+    | undefined;
 
 export interface DailyConditionType {
     day: 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun';

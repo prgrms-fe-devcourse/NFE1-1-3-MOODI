@@ -6,12 +6,15 @@ export interface SelectEmotionContainerProps {
     onNext?: (mood: MoodDataType) => void;
     isActive: boolean;
     disabled: boolean;
+    initialmood: ConditionType | undefined;
+    initialemotion: string | null | undefined;
+    initialsubemotions: (string | null)[] | undefined;
 }
 
 export interface MoodState {
-    mood: ConditionType;
-    emotion: string | null;
-    subEmotions: (string | null)[];
+    mood: ConditionType | undefined;
+    emotion: string | null | undefined;
+    subEmotions: (string | null)[] | undefined;
 }
 
 export const INITIAL_MOOD_STATE: MoodState = {

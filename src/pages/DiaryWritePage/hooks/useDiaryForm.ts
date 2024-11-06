@@ -12,11 +12,7 @@ export const useDiaryForm = () => {
     const validators = {
         isDiaryValid: (diary: DiaryDescDataType | null): boolean => {
             if (!diary) return false;
-            return Boolean(
-                diary.title?.trim() &&
-                    diary.content?.trim() &&
-                    typeof diary.isPublic === 'boolean'
-            );
+            return Boolean(diary.title?.trim() && diary.content?.trim());
         },
 
         isEmotionValid: (emotion: MoodDataType | null): boolean => {

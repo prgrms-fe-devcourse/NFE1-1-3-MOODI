@@ -7,4 +7,5 @@ export interface SelectMusicContainerProps {
     isActive: boolean;
     disabled: boolean;
     isLoading: boolean;
+    initialData: MusicItem | null;
 }
