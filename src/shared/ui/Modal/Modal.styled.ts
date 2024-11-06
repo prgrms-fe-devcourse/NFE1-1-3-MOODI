@@ -36,5 +36,7 @@ export const ModalStyled = styled.div`
 `;
 
 export const ModalContent = styled.div`
-    margin: 14px 0px 0px 40px;
+    /* margin: 14px 0px 0px 40px; */
+    position: relative;
+    height: 100%;
 `;
