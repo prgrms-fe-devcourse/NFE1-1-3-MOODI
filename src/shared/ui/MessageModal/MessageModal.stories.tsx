@@ -16,7 +16,7 @@ const meta: Meta<typeof MessageModal> = {
       description: '메시지 박스에 표시될 문구',
       defaultValue: '이 파일을 삭제하시겠습니까?',  
     },
-    onConfirmClicked: {
+    onClick: {
       action: 'confirmed',
       description: '확인 버튼을 클릭했을 때 실행되는 콜백 함수',
     },
@@ -52,7 +52,7 @@ const Template: Story = (args) => {
 export const Default: Story = {
   args: {
     message: '이 파일을 삭제하시겠습니까?',
-    onConfirmClicked: () => console.log('삭제 확인!'),  
+    onClick: () => console.log('삭제 확인!'),  
     isCancelButtonVisible: true,  
   },
 };
@@ -60,7 +60,7 @@ export const Default: Story = {
 export const ConfirmOnly: Story = {
   args: {
     message: '정말로 삭제하시겠습니까?',  
-    onConfirmClicked: () => console.log('삭제 확인!'),  
+    onClick: () => console.log('삭제 확인!'),  
     isCancelButtonVisible: false, 
   },
 };

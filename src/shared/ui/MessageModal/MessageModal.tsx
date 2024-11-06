@@ -9,14 +9,14 @@ import Button from '../Button/Button';
 
 interface MessageModalProps {
     message: string;
-    onConfirmClicked: () => void;
+    onClick: () => void;
     isCancelButtonVisible?: boolean;
 }
 
 /** 사용자에게 메시지를 보여주고 확인/취소를 선택할 수 있도록하는 컴포넌트입니다. */
 const MessageModal = ({
     message,
-    onConfirmClicked,
+    onClick,
     isCancelButtonVisible
 }: MessageModalProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,7 +26,7 @@ const MessageModal = ({
     };
 
     const handleConfirm = () => {
-        onConfirmClicked();
+        onClick();
         closeModal();
     };
 
