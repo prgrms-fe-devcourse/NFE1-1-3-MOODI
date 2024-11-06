@@ -21,7 +21,7 @@ const DiaryListItemUi: React.FC<DiaryListItemProps> = ({ data }) => {
                     time={data.updated_date}
                     content={data.content}
                     emotion={data.emotion}
-                    userName={data.author_username}
+                    authorName={data.author_username}
                     id={data.id}
                 />
             </Wrapper>
