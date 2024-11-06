@@ -12,6 +12,7 @@ import useGetMood from '@/shared/hooks/useGetMood';
 import isWeekly from '../lib/isWeekly';
 import useToday from '../hooks/useToday';
 import DateSlider from '@/entities/dataSldier/DateSlider';
+import { ScaleLoader } from 'react-spinners';
 
 interface EmotionChartProps {
     userName: string;
@@ -43,53 +44,63 @@ const EmotionChart = ({
     const { data, isLoading } = useGetMood(moodParams);
 
     return (
-        <EmotionChartStlyed>
-            <Title isLoading={isLoading}>{userName}님의 감정그래프</Title>
-            <InfoStyled isLoading={isLoading}>
-                {data
-                    ? `${data.period} ${userName}님의 평균 감정은 ${data.mostFrequentEmotion === null ? '정보가 없습니다.' : `${data.mostFrequentEmotion} 입니다.`}`
-                    : '데이터를 불러오는 중입니다...'}
-            </InfoStyled>
-
-            <ButtonContainer isLoading={isLoading}>
-                <ChartButtonStlyed
-                    onClick={() => {
-                        handleChangeViewMode('month');
-                        handleChangeWeek({ weekParmam: null });
-                    }}
-                >
-                    월간 변경
-                </ChartButtonStlyed>
-                <ChartButtonStlyed
-                    onClick={() => {
-                        handleChangeViewMode('week');
-                        handleChangeWeek({ weekParmam: currentWeek || 1 });
-                    }}
-                >
-                    주간 변경
-                </ChartButtonStlyed>
-            </ButtonContainer>
-            <ChartWrapper isLoading={isLoading}>
-                <DateSlider
-                    year={currentYear}
-                    month={currentMonth}
-                    week={currentWeek}
-                    viewMode={viewMode}
-                    onDateChange={(newDate) => {
-                        handleChangeYear({ yearParmam: newDate.year });
-                        handleChangeMonth({ monthParmam: newDate.month });
-                        handleChangeWeek({ weekParmam: newDate.week });
-                        handleChangeViewMode(newDate.viewMode);
-                    }}
-                />
-                {!isLoading &&
-                    data &&
-                    (isWeekly(data) ? (
-                        <Chart data={data.allEmotions} />
-                    ) : (
-                        <Chart data={data.weeklyResults} />
-                    ))}
-            </ChartWrapper>
+        <EmotionChartStlyed isLoading={isLoading}>
+            {isLoading ? (
+                <ScaleLoader color="#DBDBDB" />
+            ) : (
+                <>
+                    <Title isLoading={isLoading}>
+                        {userName}님의 감정그래프
+                    </Title>
+                    <InfoStyled isLoading={isLoading}>
+                        {data
+                            ? `${data.period} ${userName}님의 평균 감정은 ${data.mostFrequentEmotion === null ? '정보가 없습니다.' : `${data.mostFrequentEmotion} 입니다.`}`
+                            : '데이터를 불러오는 중입니다...'}
+                    </InfoStyled>
+                    <ButtonContainer isLoading={isLoading}>
+                        <ChartButtonStlyed
+                            onClick={() => {
+                                handleChangeViewMode('month');
+                                handleChangeWeek({ weekParmam: null });
+                            }}
+                        >
+                            월간 변경
+                        </ChartButtonStlyed>
+                        <ChartButtonStlyed
+                            onClick={() => {
+                                handleChangeViewMode('week');
+                                handleChangeWeek({
+                                    weekParmam: currentWeek || 1
+                                });
+                            }}
+                        >
+                            주간 변경
+                        </ChartButtonStlyed>
+                    </ButtonContainer>
+                    <ChartWrapper isLoading={isLoading}>
+                        <DateSlider
+                            year={currentYear}
+                            month={currentMonth}
+                            week={currentWeek}
+                            viewMode={viewMode}
+                            onDateChange={(newDate) => {
+                                handleChangeYear({ yearParmam: newDate.year });
+                                handleChangeMonth({
+                                    monthParmam: newDate.month
+                                });
+                                handleChangeWeek({ weekParmam: newDate.week });
+                                handleChangeViewMode(newDate.viewMode);
+                            }}
+                        />
+                        {data &&
+                            (isWeekly(data) ? (
+                                <Chart data={data.allEmotions} />
+                            ) : (
+                                <Chart data={data.weeklyResults} />
+                            ))}
+                    </ChartWrapper>
+                </>
+            )}
         </EmotionChartStlyed>
     );
 };
