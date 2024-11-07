@@ -1,9 +1,26 @@
 import styled from 'styled-components';
 
+const breakpoints = {
+    mobile: '550px',
+    desktop: '1024px'
+};
+
+const media = {
+    mobile: `@media screen and (min-width: ${breakpoints.mobile})`,
+    desktop: `@media screen and (min-width: ${breakpoints.desktop})`
+};
+
 export const StyledEmotionIcon = styled.div<{ width: string; height: string }>`
     position: relative;
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
+
+    ${media.mobile} {
+    }
+
+    ${media.desktop} {
+        width: ${({ width }) => width};
+        height: ${({ height }) => height};
+    }
+
     & > img {
         position: absolute;
         top: 0;

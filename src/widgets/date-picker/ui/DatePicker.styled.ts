@@ -4,7 +4,6 @@ import 'react-calendar/dist/Calendar.css';
 
 export const StyledCalendarWrapper = styled.div`
     position: relative;
-    width: 330px;
     display: flex;
     justify-content: right;
 `;
