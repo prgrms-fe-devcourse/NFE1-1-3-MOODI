@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 export const AccountStyled = styled.div`
-    width: 500px;
+    max-width: 500px;
     margin: auto;
+    @media (max-width: 760px) {
+        width: 90%;
+    }
 `;
 
 export const ModalStyled = styled.div`
