@@ -33,4 +33,7 @@ export const StyledButton = styled.button.withConfig({
             return props.hasBorder ? '#FFF4F1' : '#E13600'; // hasBorder에 따른 배경색
         }};
     }
+    @media (max-width: 760px) {
+        width: 100%;
+    }
 `;

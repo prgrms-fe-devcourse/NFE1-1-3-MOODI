@@ -25,18 +25,22 @@ export const ModalStyled = styled.div`
         margin-bottom: 30px;
     }
 
-    svg {
-        font-size: 30px;
+    button {
+        z-index: 10;
         position: absolute;
         top: 18px;
         right: 20px;
-        color: #838383;
+        border: none;
+        background: none;
         cursor: pointer;
+        svg {
+            font-size: 30px;
+            color: #838383;
+        }
     }
 `;
 
 export const ModalContent = styled.div`
-    /* margin: 14px 0px 0px 40px; */
     position: relative;
     height: 100%;
 `;

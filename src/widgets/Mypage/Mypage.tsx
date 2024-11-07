@@ -112,7 +112,6 @@ const Mypage = () => {
                     수정하기
                 </Button>
             </ButtonStyled>
-            <Margin bottom={28} />
         </MypageStyled>
     );
 };

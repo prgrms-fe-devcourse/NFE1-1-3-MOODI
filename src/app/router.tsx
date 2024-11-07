@@ -144,10 +144,14 @@ const router = createBrowserRouter([
             {
                 path: '/account',
                 element: (
-                    <ProtectedRoute>
+                    <PublicRoute>
                         <AccountPage />
-                    </ProtectedRoute>
+                    </PublicRoute>
                 )
+            },
+            {
+                path: '*',
+                element: <AccountPage />
             }
         ]
     }

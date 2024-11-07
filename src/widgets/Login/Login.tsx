@@ -5,7 +5,7 @@ import Margin from '@/shared/ui/Margin/Margin';
 import InputForm from '@/shared/ui/InputForm/InputForm';
 import Button from '@/shared/ui/Button/Button';
 import { useToastStore } from '@/features/Toast/hooks/useToastStore';
-import { ButtonStyled, LoginStyled } from './Login.styled';
+import { ButtonStyled, LoginStyled, LoginFormStlyed } from './Login.styled';
 import Span from '@/shared/ui/Span/Span';
 import useLogin from '@/features/login/hooks/useLogin';
 import { Link, useNavigate } from 'react-router-dom';
@@ -27,7 +27,7 @@ const Login = () => {
             <Title isLoading={false}>로그인</Title>
             <Info isLoading={false}>무디와 일기쓰고 노래 추천 받기</Info>
             <Margin bottom={70} />
-            <form onSubmit={handleSubmit}>
+            <LoginFormStlyed onSubmit={handleSubmit}>
                 <InputForm
                     label="이메일 입력"
                     value={email}
@@ -70,7 +70,7 @@ const Login = () => {
                         로그인
                     </Button>
                 </ButtonStyled>
-            </form>
+            </LoginFormStlyed>
             <Margin bottom={28} />
             <Link to="/account">
                 <Span isCenter>계정을 잃어버리셨나요?</Span>

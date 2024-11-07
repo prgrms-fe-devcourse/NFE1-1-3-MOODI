@@ -1,8 +1,4 @@
 import React from 'react';
-import {
-    DailyConditionType,
-    WeeklyConditionSummaryType
-} from '@/shared/model/conditionTypes';
 
 import {
     LineChart,
@@ -13,8 +9,13 @@ import {
     Tooltip,
     ResponsiveContainer
 } from 'recharts';
-import isDailyEmotion from '../lib/isDailyEmotion';
 import { ScaleLoader } from 'react-spinners';
+import {
+    DailyConditionType,
+    WeeklyConditionSummaryType
+} from '@/shared/model/conditionTypes';
+import isDailyEmotion from '../lib/isDailyEmotion';
+import { useMediaQuery } from 'react-responsive';
 
 const emotions = ['매우 나쁨', '나쁨', '보통', '좋음', '매우 좋음'];
 
@@ -24,6 +25,8 @@ interface ChartProps {
 }
 
 const Chart = ({ data, isLoading }: ChartProps) => {
+    const isMobile = useMediaQuery({ maxWidth: 640 }); // 화면 너비가 600px 이하인 경우
+
     return isLoading ? (
         <div
             style={{
@@ -36,7 +39,7 @@ const Chart = ({ data, isLoading }: ChartProps) => {
             <ScaleLoader color="#DBDBDB" />
         </div>
     ) : (
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={isMobile ? 300 : 400}>
             <LineChart
                 data={data}
                 margin={{ top: 20, right: 10, left: 10, bottom: 20 }}
@@ -50,6 +53,7 @@ const Chart = ({ data, isLoading }: ChartProps) => {
                             dy={10}
                             height={50}
                             axisLine={false}
+                            tick={{ fontSize: isMobile ? 10 : 12 }}
                         />
                         <YAxis
                             type="category"
@@ -59,6 +63,7 @@ const Chart = ({ data, isLoading }: ChartProps) => {
                             domain={emotions}
                             ticks={emotions}
                             allowDuplicatedCategory={false}
+                            tick={{ fontSize: isMobile ? 10 : 12 }}
                         />
                         <Line
                             type="monotone"
@@ -76,6 +81,7 @@ const Chart = ({ data, isLoading }: ChartProps) => {
                             dy={10}
                             height={50}
                             axisLine={false}
+                            tick={{ fontSize: isMobile ? 10 : 12 }}
                         />
                         <YAxis
                             type="category"
@@ -85,6 +91,7 @@ const Chart = ({ data, isLoading }: ChartProps) => {
                             domain={emotions}
                             ticks={emotions}
                             allowDuplicatedCategory={false}
+                            tick={{ fontSize: isMobile ? 10 : 12 }}
                         />
                         <Line
                             type="monotone"

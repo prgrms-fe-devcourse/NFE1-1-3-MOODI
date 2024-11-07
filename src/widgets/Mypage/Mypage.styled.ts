@@ -9,11 +9,17 @@ export const MypageSpan = styled.span`
 export const ButtonStyled = styled.div`
     display: flex;
     justify-content: space-between;
+    margin: auto;
+    @media (max-width: 760px) {
+        gap: 10px;
+    }
 `;
 
 export const MypageStyled = styled.div`
-    width: 90%;
     max-width: 500px;
     margin: auto;
     padding-bottom: 150px;
+    @media (max-width: 760px) {
+        width: 90%;
+    }
 `;
