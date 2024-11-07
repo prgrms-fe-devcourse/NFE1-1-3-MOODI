@@ -14,6 +14,11 @@ export const Container = styled.div`
     font-size: 16px;
     font-weight: bold;
     font-family: 'Pretendard', sans-serif;
+
+    @media (max-width: 768px) {
+        gap: 10px;
+        align-items: start;
+    }
 `;
 
 export const SubContainer = styled.div`

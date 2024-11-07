@@ -16,7 +16,7 @@ export const ContentContainer = styled.div`
     align-items: center;
     margin-top: 150px;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         margin-top: 50px;
     }
 `;
@@ -29,7 +29,7 @@ export const Wrap = styled.div`
 
     gap: 10px;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         flex-direction: column;
     }
 `;
@@ -56,21 +56,24 @@ export const EmotionWrap = styled.div`
     flex: 1;
     width: 100%;
     display: flex;
-
     gap: 10px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 export const MainEmotionContainer = styled.div`
     flex: 1.2;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         flex: 1;
     }
 `;
 export const SubEmotionContainer = styled.div`
     flex: 2;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         flex: 1;
     }
 `;
@@ -84,7 +87,7 @@ export const ReactionShareWrap = styled.div`
     align-items: center;
     position: relative;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         flex-direction: column;
         margin: 50px 0;
         gap: 20px;
@@ -99,7 +102,7 @@ export const ShareButtonContainer = styled.div`
     position: absolute;
     right: 0;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         position: static;
     }
 `;

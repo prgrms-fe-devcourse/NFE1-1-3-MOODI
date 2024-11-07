@@ -6,20 +6,20 @@ const breakpoints = {
 };
 
 const media = {
-    mobile: `@media screen and (min-width: ${breakpoints.mobile})`,
-    desktop: `@media screen and (min-width: ${breakpoints.desktop})`
+    mobile: `@media screen and (max-width: ${breakpoints.mobile})`,
+    desktop: `@media screen and (max-width: ${breakpoints.desktop})`
 };
 
 export const StyledEmotionIcon = styled.div<{ width: string; height: string }>`
     position: relative;
 
     ${media.mobile} {
+        width: 25px;
+        height: 25px;
     }
 
-    ${media.desktop} {
-        width: ${({ width }) => width};
-        height: ${({ height }) => height};
-    }
+    width: ${({ width }) => width};
+    height: ${({ height }) => height};
 
     & > img {
         position: absolute;

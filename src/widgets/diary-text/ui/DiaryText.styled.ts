@@ -13,7 +13,7 @@ export const StyledDiaryTitleContainer = styled.p`
     margin: 40px 0 0 0;
     padding: 0;
 
-    @media (max-width: 550px) {
+    @media (max-width: 870px) {
         flex-direction: column;
         gap: 10px;
     }
@@ -37,7 +37,7 @@ export const Wrap = styled.div`
 `;
 
 export const StyledDiaryTitle = styled.p`
-    width: 100%;
+    padding: 70px 0;
     font-size: 28px;
     font-weight: 600;
     text-align: center;
@@ -47,13 +47,12 @@ export const StyledDiaryTitle = styled.p`
 export const StyledVisibilityButton = styled.div`
     position: absolute;
 
-    @media (max-width: 550px) {
+    @media (max-width: 870px) {
         position: static;
     }
 `;
 
 export const StyledDiaryAuthor = styled.p`
-    width: 100%;
     font-size: 16px;
     font-weight: 500;
     color: #3a3a3a;
