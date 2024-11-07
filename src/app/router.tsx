@@ -148,6 +148,10 @@ const router = createBrowserRouter([
                         <AccountPage />
                     </PublicRoute>
                 )
+            },
+            {
+                path: '*',
+                element: <AccountPage />
             }
         ]
     }
