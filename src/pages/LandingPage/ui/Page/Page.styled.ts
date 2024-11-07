@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
-export const PageContainer = styled.div`
-    max-width: 960px; // 원하는 최대 너비
+export const Container = styled.div`
+    position: absolute;
+    top: 0;
     width: 100%;
-    background-color: #ffffff;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+export const PageContainer = styled.div`
+    max-width: 960px;
 `;
 export const LandingContainer = styled.div`
     margin-bottom: 30px;
