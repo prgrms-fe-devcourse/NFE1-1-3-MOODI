@@ -23,4 +23,16 @@ export const Title = styled.h1`
             opacity: 1;
         }
     }
+
+    @media (max-width: 960px) {
+        font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 14px;
+    }
 `;

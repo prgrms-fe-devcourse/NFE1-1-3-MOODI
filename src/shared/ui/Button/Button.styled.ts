@@ -24,6 +24,10 @@ export const StyledButton = styled.button.withConfig({
     border-radius: ${(props) => props.borderradius};
     transition: background-color 0.2s ease;
 
+    @media (max-width: 960px) {
+        width: 100%;
+    }
+
     &:hover {
         cursor: pointer;
         background-color: ${(props) => {
