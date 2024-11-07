@@ -134,6 +134,7 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
                     height="52px"
                     value={title}
                     onChange={handleTitleChange}
+                    maxLength={30}
                 />
             </TitleContainer>
             <ContentContainer>
@@ -145,6 +146,7 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
                     height="400px"
                     value={content}
                     onChange={handleContentChange}
+                    maxLength={400}
                 />
             </ContentContainer>
             <VisibilityControlsContainer>

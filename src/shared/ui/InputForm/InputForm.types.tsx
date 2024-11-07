@@ -13,4 +13,5 @@ export interface InputFormProps {
     options?: string[];
     onChange: (value: string) => void;
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    maxLength?: number;
 }
