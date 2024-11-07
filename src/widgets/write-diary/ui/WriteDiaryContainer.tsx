@@ -25,7 +25,8 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     initialContent,
     initialIsPublic,
     onDiarySubmit,
-    editTargetDate
+    editTargetDate,
+    listType
 }) => {
     const [selectedDate, setSelectedDate] = useState<Date>(initialDate);
     const [title, setTitle] = useState(initialTitle);
@@ -47,9 +48,7 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
 
     const formatDateWithDot = (dateStr: string | undefined): string => {
         if (dateStr) {
-            // "2024-11-05"
             const [year, month, day] = dateStr.split('-');
-            // "2024. 11. 05"
             return `${year}. ${month}. ${day}`;
         }
         return `날짜 선택에 오류가 있어요.`;
@@ -113,8 +112,9 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
         <Container>
             <SelectDateContainer>
                 <DateContainer>
-                    {formatDateWithDot(editTargetDate).split('T')[0] ||
-                        formatDateWithDot(date)}
+                    {listType === 'edit'
+                        ? formatDateWithDot(editTargetDate).split('T')[0]
+                        : formatDateWithDot(date)}
                 </DateContainer>
                 <DatePickeContainer>
                     {isEditing ? null : (
