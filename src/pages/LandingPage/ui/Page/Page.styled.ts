@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    max-width: 960px;
+    margin: auto;
+    top: 63px;
+    height: calc(100vh - 63px);
+
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 `;
 export const PageContainer = styled.div`
-    max-width: 960px;
+    width: 100%;
 `;
+
 export const LandingContainer = styled.div`
     margin-bottom: 30px;
 `;
