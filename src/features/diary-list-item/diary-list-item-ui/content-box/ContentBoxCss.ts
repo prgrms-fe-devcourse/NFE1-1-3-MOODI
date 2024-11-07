@@ -46,6 +46,10 @@ export const Time = styled.div`
 
 export const Reaction = styled.div`
     width: 80%;
+
+    @media (max-width: 960px) {
+        display: none;
+    }
 `;
 
 export const Emotion = styled.div<{ imgPath: string | null }>`

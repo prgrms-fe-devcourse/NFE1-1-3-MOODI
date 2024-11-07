@@ -113,7 +113,6 @@ const Mypage = () => {
                 </Button>
             </ButtonStyled>
             <Margin bottom={28} />
-            <Span isCenter>탈퇴하기</Span>
         </MypageStyled>
     );
 };
