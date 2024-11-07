@@ -45,7 +45,7 @@ export const SelectMusicContainer = ({
     console.log(initialData);
 
     const gptMusicList = useMemo(() => {
-        if (initialData) {
+        if (initialData && initialData.youtubeId !== '') {
             return [
                 initialData,
                 ...(gptMusic && gptMusic.data ? [gptMusic.data] : [])
