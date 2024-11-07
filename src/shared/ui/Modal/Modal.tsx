@@ -5,14 +5,16 @@ import { IoCloseOutline } from 'react-icons/io5';
 
 interface ModalProps {
     children: React.ReactNode;
-    clickEvent: React.MouseEventHandler<HTMLOrSVGElement>;
+    clickEvent: () => void;
 }
 
 const Modal = ({ children, clickEvent }: ModalProps) => {
     return (
         <Overlay>
             <ModalStyled>
-                <IoCloseOutline onClick={clickEvent} />
+                <button onClick={clickEvent} type="button">
+                    <IoCloseOutline />
+                </button>
                 <ModalContent>{children}</ModalContent>
             </ModalStyled>
         </Overlay>

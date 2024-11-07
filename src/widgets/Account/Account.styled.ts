@@ -6,9 +6,11 @@ export const AccountStyled = styled.div`
 `;
 
 export const ModalStyled = styled.div`
+    height: 100%;
     padding: 30px;
     font-size: 16px;
     display: flex;
+    justify-content: center;
     gap: 10px;
     flex-direction: column;
 `;
@@ -20,3 +22,5 @@ export const ModalInfoStyled = styled.div`
 export const ModalTitle = styled.p`
     color: rgba(0, 0, 0, 0.4);
 `;
+
+export const ModalContentStlyed = styled.div``;

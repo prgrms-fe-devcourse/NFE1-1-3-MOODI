@@ -67,6 +67,7 @@ const Account = () => {
                     height="52px"
                     onChange={setPhoneNumber}
                     placeholder="휴대폰 번호를 입력해주세요"
+                    isPhoneNumber
                 />
                 <Margin bottom={63} />
                 <Button
