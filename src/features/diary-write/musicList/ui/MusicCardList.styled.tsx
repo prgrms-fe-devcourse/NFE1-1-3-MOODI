@@ -9,6 +9,7 @@ export const Container = styled.div`
     border-radius: 35px;
     width: 100%;
     height: 400px;
+    gap: 1rem;
 `;
 
 export const HiddenYoutubeContainer = styled.div`
