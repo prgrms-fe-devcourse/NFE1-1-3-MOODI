@@ -1,6 +1,5 @@
 import CalendarContainer from '../../widgets/calendar-container/CalendarContainer';
 import TimelineContainer from '../../widgets/timeline-container/TimelineContainer';
-import MoveTopButton from '@/shared/ui/MoveTopButton/MoveTopButton';
 import { TimeLineListWrapper } from './indexCss';
 import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
@@ -17,7 +16,6 @@ const MainPage = () => {
                     ispublic="1"
                 />
             </TimeLineListWrapper>
-            <MoveTopButton />
         </>
     );
 };
