@@ -6,8 +6,8 @@ const breakpoints = {
 };
 
 const media = {
-    mobile: `@media screen and (min-width: ${breakpoints.mobile})`,
-    desktop: `@media screen and (min-width: ${breakpoints.desktop})`
+    mobile: `@media screen and (max-width: ${breakpoints.mobile})`,
+    desktop: `@media screen and (max-width: ${breakpoints.desktop})`
 };
 
 export const StyledButton = styled.button<{ isActive: boolean }>`
@@ -17,13 +17,14 @@ export const StyledButton = styled.button<{ isActive: boolean }>`
     ${media.mobile} {
         width: 150px;
         height: 50px;
+        gap: 5px;
+        flex-direction: row;
     }
 
-    ${media.desktop} {
-        width: 175px;
-        height: 134px;
-        gap: 10px;
-    }
+    width: 175px;
+    height: 134px;
+    gap: 10px;
+    flex-direction: column;
 
     border: 1px solid
         ${(props) =>
@@ -31,7 +32,6 @@ export const StyledButton = styled.button<{ isActive: boolean }>`
     border-radius: 10px;
     background-color: #ffffff;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 14px;
