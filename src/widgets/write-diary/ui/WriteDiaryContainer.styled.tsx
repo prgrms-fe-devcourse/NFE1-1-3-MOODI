@@ -11,18 +11,25 @@ export const Container = styled.div`
 
 export const SelectDateContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     width: 100%;
 `;
 
 export const DateContainer = styled.div`
+    position: absolute;
+    left: 0;
+
     font-size: 24px;
     font-weight: bold;
     font-family: 'Pretendard', sans-serif;
 `;
 
-export const DatePickeContainer = styled.div``;
+export const DatePickeContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: right;
+`;
 
 export const TitleContainer = styled.div``;
 
