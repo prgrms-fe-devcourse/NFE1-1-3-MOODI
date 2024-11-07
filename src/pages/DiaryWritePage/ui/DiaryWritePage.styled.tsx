@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+const breakpoints = {
+    mobile: '550px',
+    desktop: '1024px'
+};
+
+const media = {
+    mobile: `@media screen and (min-width: ${breakpoints.mobile})`,
+    desktop: `@media screen and (min-width: ${breakpoints.desktop})`
+};
+
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -11,8 +21,18 @@ export const Section = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 960px;
-    gap: 200px;
+    width: 90%;
+    gap: 50px;
+
+    ${media.mobile} {
+        width: 90%;
+        gap: 50px;
+    }
+
+    ${media.desktop} {
+        max-width: 960px;
+        gap: 200px;
+    }
 `;
 
 export const DisabledOverlay = styled.div<{ disabled: boolean }>`

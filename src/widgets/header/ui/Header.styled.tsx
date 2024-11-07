@@ -14,6 +14,7 @@ export const Container = styled.header`
 export const Logo = styled.div`
     display: flex;
     cursor: pointer;
+    padding: 0 10px 0 10px;
 `;
 
 export const Nav = styled.nav`

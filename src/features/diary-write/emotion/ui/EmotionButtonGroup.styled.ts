@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+const breakpoints = {
+    mobile: '550px',
+    desktop: '1024px'
+};
+
+const media = {
+    mobile: `@media screen and (min-width: ${breakpoints.mobile})`,
+    desktop: `@media screen and (min-width: ${breakpoints.desktop})`
+};
+
 export const EmotionButtonContainer = styled.div`
     max-width: 960px;
     display: flex;
@@ -11,11 +21,19 @@ export const EmotionButtonContainer = styled.div`
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
+
+    ${media.mobile} {
+        flex-direction: column;
+    }
+
+    ${media.desktop} {
+        flex-direction: row;
+    }
 `;
 
 export const MainKeywordContainer = styled.div`
