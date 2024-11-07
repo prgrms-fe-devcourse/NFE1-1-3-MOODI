@@ -57,6 +57,11 @@ export const StyledCalendar = styled(Calendar).attrs({
             background-color: rgba(0, 0, 0, 0.05);
             cursor: pointer;
         }
+
+        @media (max-width: 550px) {
+            border: none !important;
+            height: 50px;
+        }
     }
 
     //10년박스
@@ -166,4 +171,8 @@ export const DateInnerContent = styled.div<DateInnerContentProps>`
     background-size: contain;
     background-repeat: no-repeat;
     align-self: flex-end;
+
+    @media (max-width: 550px) {
+        display: none;
+    }
 `;
