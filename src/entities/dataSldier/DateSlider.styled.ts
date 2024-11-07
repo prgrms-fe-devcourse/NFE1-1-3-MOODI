@@ -10,7 +10,8 @@ export const MonthWeekSelectorWrapper = styled.div`
 export const ArrowButton = styled.button`
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
 
     &:focus {

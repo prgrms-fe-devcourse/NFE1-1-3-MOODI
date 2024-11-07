@@ -36,7 +36,7 @@ const TimelineContainer: React.FC<TimelineContainerProps> = ({
         queryClient.resetQueries({
             queryKey: ['timeline', sort, email, ispublic]
         });
-    }, [sort, email, queryClient]);
+    }, [sort, email, queryClient, ispublic]);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
