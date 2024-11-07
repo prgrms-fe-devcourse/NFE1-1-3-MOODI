@@ -25,7 +25,6 @@ import { ConditionType } from '@/shared/model/conditionTypes';
 export const DiaryWritePage = ({ mode }: DiaryWritePageProps) => {
     const userEmail = useAuthStore((state) => state.email);
     const { date } = useParams();
-
     const { id } = useParams();
     const preLoadDiaryData = useLoaderData() as DiaryType;
 
@@ -229,6 +228,7 @@ export const DiaryWritePage = ({ mode }: DiaryWritePageProps) => {
             <Section>
                 <WidgetWrapper ref={diaryRef}>
                     <WriteDiaryContainer
+                        listType={mode}
                         onDiarySubmit={setUserDiaryState}
                         isActive={currentStep === 1}
                         disabled={currentStep !== 1}
