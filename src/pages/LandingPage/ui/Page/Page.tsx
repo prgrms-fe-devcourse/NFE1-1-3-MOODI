@@ -27,9 +27,9 @@ export const LandingPage = () => {
                     <SubTitle subTitle="무디에서 감정을 담은 일기를 작성해보세요." />
                 </SubTitleContainer>
                 <Button
-                    height="79px"
-                    width="247px"
-                    fontSize="20px"
+                    height="60px"
+                    width="180px"
+                    fontSize="16px"
                     borderradius="15px"
                     onClick={handleLoginClick}
                 >
