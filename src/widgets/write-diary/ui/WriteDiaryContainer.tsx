@@ -16,6 +16,7 @@ import { DatePicker } from '@/widgets/date-picker';
 import { DiaryVisibilityControls } from '@/widgets/diary-visibility-controls';
 import { setDateFormat } from '@/widgets/date-picker/ui/setDateFormat';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 
 export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     initialDate = new Date(), // 초기 날짜가 없으면 오늘 날짜 사용
@@ -62,13 +63,14 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
         return `${year}-${month}-${day}`;
     };
 
-    const userEmail = 'perfectTest@naver.com'; // 샘플 계정
+    const { email } = useAuthStore();
+    const url = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const fetchDisabledDates = async () => {
             try {
                 const response = await fetch(
-                    `https://td3axvf8x7.execute-api.ap-northeast-2.amazonaws.com/moodi/diary?limit=40&user_email=${userEmail}`
+                    `${url}/diary?user_email=${email}`
                 ); // @ API 호출
                 const data = await response.json();
                 const dates = data.diaries.map(
