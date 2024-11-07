@@ -20,7 +20,11 @@ export const ChartButtonStlyed = styled.button`
     background-color: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.17);
     border-radius: 38px;
-    font-weight: bold;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.04);
+    }
 `;
 
 export const ChartWrapper = styled.div<SkeletonProps>`

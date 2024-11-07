@@ -42,7 +42,7 @@ const Mypage = () => {
             <InputForm
                 label="이름"
                 value={name}
-                width="500px"
+                width="100%"
                 height="52px"
                 onChange={setPhoneNumber}
                 placeholder="이름을 입력해주세요"
@@ -54,7 +54,7 @@ const Mypage = () => {
             <InputForm
                 label="핸드폰 번호"
                 value={phoneNumber}
-                width="500px"
+                width="100%"
                 height="52px"
                 onChange={setName}
                 placeholder="이름을 입력해주세요"
@@ -68,7 +68,7 @@ const Mypage = () => {
                 label="비밀번호"
                 isPassword
                 value={password}
-                width="500px"
+                width="100%"
                 height="52px"
                 onChange={setPassword}
                 placeholder="비밀번호 입력 (문자, 숫자, 특수문자 8~20자)"

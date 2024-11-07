@@ -10,4 +10,5 @@ export const IdContainerStyled = styled.div`
 export const SignStyled = styled.div`
     width: 500px;
     margin: auto;
+    padding-bottom: 150px;
 `;
