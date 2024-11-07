@@ -16,6 +16,7 @@ import { DatePicker } from '@/widgets/date-picker';
 import { DiaryVisibilityControls } from '@/widgets/diary-visibility-controls';
 import { setDateFormat } from '@/widgets/date-picker/ui/setDateFormat';
 import { useNavigate, useParams } from 'react-router-dom';
+import { EditLabel } from '@/entities/label/ui/EditLabel';
 
 export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
     initialDate = new Date(), // 초기 날짜가 없으면 오늘 날짜 사용
@@ -117,7 +118,9 @@ export const WriteDiaryContainer: React.FC<WriteDiaryContainerProps> = ({
                         : formatDateWithDot(date)}
                 </DateContainer>
                 <DatePickeContainer>
-                    {isEditing ? null : (
+                    {listType === 'edit' ? (
+                        <EditLabel />
+                    ) : (
                         <DatePicker
                             initialDate={selectedDate}
                             onSelectDate={handleDateSelect}
