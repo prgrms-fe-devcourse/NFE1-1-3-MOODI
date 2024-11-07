@@ -11,6 +11,7 @@ import useGetUser from '@/features/myPage/hook/useGetUser';
 import { useAuthStore } from '@/features/login/hooks/useAuthStore';
 import usePatch from '@/features/myPage/hook/usePatch';
 import { useNavigate } from 'react-router-dom';
+import { validateForm } from './util/validator';
 
 const Mypage = () => {
     const { addToast } = useToastStore();
@@ -31,6 +32,20 @@ const Mypage = () => {
         }
     }, [data]);
 
+    const handleUpdate = () => {
+        const isValid = validateForm(email, password, phoneNumber, addToast);
+
+        if (!isValid) return;
+
+        mutate({
+            email,
+            username: name,
+            password,
+            gender,
+            phone_number: phoneNumber
+        });
+    };
+
     return (
         <MypageStyled>
             <Margin top={120} />
@@ -44,7 +59,7 @@ const Mypage = () => {
                 value={name}
                 width="100%"
                 height="52px"
-                onChange={setPhoneNumber}
+                onChange={setName}
                 placeholder="이름을 입력해주세요"
             />
             <Margin bottom={25} />
@@ -56,10 +71,10 @@ const Mypage = () => {
                 value={phoneNumber}
                 width="100%"
                 height="52px"
-                onChange={setName}
-                placeholder="이름을 입력해주세요"
+                onChange={setPhoneNumber}
+                placeholder="전화번호를 입력해주세요"
+                isPhoneNumber
             />
-            <Margin bottom={25} />
             <Margin bottom={25} />
             <Span>이메일</Span>
             <MypageSpan>{email}</MypageSpan>
@@ -92,15 +107,7 @@ const Mypage = () => {
                     height="44px"
                     width="240px"
                     fontSize="16px"
-                    onClick={() => {
-                        mutate({
-                            email,
-                            username: userName,
-                            password,
-                            gender,
-                            phone_number: phoneNumber
-                        });
-                    }}
+                    onClick={handleUpdate}
                 >
                     수정하기
                 </Button>

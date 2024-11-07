@@ -76,7 +76,8 @@ const Sign = () => {
                 width="500px"
                 height="52px"
                 onChange={setPhoneNumber}
-                placeholder="010-1111-1111 형식으로 입력해주세요"
+                isPhoneNumber
+                placeholder="전화번호를 입력해주세요"
             />
             <Margin bottom={25} />
             <IdContainerStyled>

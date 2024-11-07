@@ -25,6 +25,7 @@ const InputForm = ({
     isPassword = false,
     isDropdown = false,
     isTextarea = false,
+    isPhoneNumber = false,
     options = ['남성', '여성'],
     onChange,
     onKeyDown
@@ -40,7 +41,14 @@ const InputForm = ({
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >
     ) => {
-        onChange(e.target.value);
+        if (isPhoneNumber) {
+            const formattedValue = e.target.value
+                .replace(/[^0-9]/g, '') // 숫자만 허용
+                .replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'); // 형식 적용
+            onChange(formattedValue);
+        } else {
+            onChange(e.target.value);
+        }
     };
 
     return (
@@ -86,6 +94,10 @@ const InputForm = ({
                         height={height}
                         onChange={handleInputChange}
                         onKeyDown={onKeyDown}
+                        pattern={
+                            isPhoneNumber ? '\\d{3}-\\d{3,4}-\\d{4}' : undefined
+                        }
+                        title="전화번호 형식은 010-1234-5678 입니다."
                     />
                     {isPassword && (
                         <TogglePasswordButton
