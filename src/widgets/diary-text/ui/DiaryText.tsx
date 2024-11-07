@@ -9,7 +9,8 @@ import {
     StyledDiaryTitle,
     StyledDiaryTitleContainer,
     StyledDiaryUpdateDate,
-    StyledVisibilityButton
+    StyledVisibilityButton,
+    Wrap
 } from './DiaryText.styled';
 import { VisibilityButton } from '@/features/diary-write';
 
@@ -27,7 +28,10 @@ const DiaryText = ({
         <StyledDiaryTextContainer>
             <StyledDiaryDate>{titleDate}</StyledDiaryDate>
             <StyledDiaryTitleContainer>
-                <StyledDiaryTitle>{title}</StyledDiaryTitle>
+                <Wrap>
+                    <StyledDiaryTitle>{title}</StyledDiaryTitle>
+                    <StyledDiaryAuthor>{author}</StyledDiaryAuthor>
+                </Wrap>
                 <StyledVisibilityButton>
                     <VisibilityButton
                         isPublic={isPublic}
@@ -36,7 +40,6 @@ const DiaryText = ({
                     />
                 </StyledVisibilityButton>
             </StyledDiaryTitleContainer>
-            <StyledDiaryAuthor>{author}</StyledDiaryAuthor>
             <StyledDiaryUpdateDate>{updateDate}</StyledDiaryUpdateDate>
             <StyledDiaryContent>{diaryContent}</StyledDiaryContent>
         </StyledDiaryTextContainer>

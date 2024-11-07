@@ -12,6 +12,11 @@ export const StyledDiaryTitleContainer = styled.p`
     width: 100%;
     margin: 40px 0 0 0;
     padding: 0;
+
+    @media (max-width: 550px) {
+        flex-direction: column;
+        gap: 10px;
+    }
 `;
 
 export const StyledDiaryDate = styled.p`
@@ -22,26 +27,39 @@ export const StyledDiaryDate = styled.p`
     padding: 0;
 `;
 
+export const Wrap = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+`;
+
 export const StyledDiaryTitle = styled.p`
     width: 100%;
     font-size: 28px;
     font-weight: 600;
     text-align: center;
-    flex-grow: 1;
     margin: 0;
     padding: 0;
 `;
 export const StyledVisibilityButton = styled.div`
     position: absolute;
+
+    @media (max-width: 550px) {
+        position: static;
+    }
 `;
 
 export const StyledDiaryAuthor = styled.p`
+    width: 100%;
     font-size: 16px;
     font-weight: 500;
     color: #3a3a3a;
     text-align: center;
     margin: 0;
-    padding: 5px 0 0 0;
+    padding: 0;
 `;
 export const StyledDiaryUpdateDate = styled.p`
     font-size: 14px;
