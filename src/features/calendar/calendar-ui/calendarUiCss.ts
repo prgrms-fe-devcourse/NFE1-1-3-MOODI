@@ -31,6 +31,9 @@ export const StyledCalendar = styled(Calendar).attrs({
                 background-color: rgba(0, 0, 0, 0.05);
                 cursor: pointer;
             }
+            @media (max-width: 960px) {
+                display: none;
+            }
         }
 
         //년월텍스트
@@ -38,6 +41,7 @@ export const StyledCalendar = styled(Calendar).attrs({
             font-size: 1rem;
             border: 1px solid rgba(0, 0, 0, 0.1);
             margin: 0 1rem;
+            display: block !important;
         }
     }
 
