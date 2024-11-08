@@ -14,6 +14,10 @@ export const PickSort = styled.div<{ sortState: string }>`
     display: flex;
     gap: 1rem;
 
+    @media (max-width: 550px) {
+        top: 190px;
+    }
+
     & > div {
         font-size: 18px;
         font-weight: 500;
