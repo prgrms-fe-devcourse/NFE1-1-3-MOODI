@@ -105,3 +105,4 @@ BackEnd
 ![image](https://github.com/user-attachments/assets/c6be79d2-52e2-4bfe-8ac1-38271b38393b)
 
 ## 폴더구조
+FSD 폴더구조 채택
