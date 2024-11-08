@@ -74,6 +74,10 @@ export const StyledButton = styled.button`
     &:hover img {
         animation: ${moveImgAnimation} 1s ease-in-out infinite;
     }
+
+    @media (max-width: 960px) {
+        display: none;
+    }
 `;
 
 export const StyledText = styled.span`
