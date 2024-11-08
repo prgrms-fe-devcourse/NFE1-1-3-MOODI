@@ -15,6 +15,10 @@ export const Box = styled.div<{ imgUrl: string }>`
     justify-content: center;
     align-items: end;
 
+    @media (max-width: 960px) {
+        width: 50px;
+    }
+
     &::after {
         content: '';
         display: block;
@@ -47,6 +51,7 @@ export const Box = styled.div<{ imgUrl: string }>`
         transition: 0.2s;
         font-size: 14px;
         padding-bottom: 8px;
+        text-align: center;
     }
 
     &:hover > p {
