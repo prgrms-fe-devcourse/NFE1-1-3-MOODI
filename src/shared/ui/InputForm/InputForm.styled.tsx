@@ -5,7 +5,10 @@ export const InputContainer = styled.div<{
 }>`
     display: flex;
     flex-direction: column;
-    max-width: ${(props) => props.width};
+    width: ${(props) => props.width};
+    @media (max-width: 760px) {
+        max-width: 100%;
+    }
     font-family: 'Pretendard', sans-serif;
 `;
 
