@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputForm from '@/shared/ui/InputForm/InputForm';
 import { Container, SearchFormWrapper } from './MusicSearchInput.styled';
-import { useState } from 'react';
+
 import { MusicSearchInputProps } from '../model/type';
 import Button from '@/shared/ui/Button/Button';
 
