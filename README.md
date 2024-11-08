@@ -1,5 +1,4 @@
-
-<img width ="96" alt="img" src="https://github.com/prgrms-fe-devcourse/NFE1-1-3-MOODI/blob/main/public/logo.svg"> 
+<img width ="96" alt="img" src="https://github.com/prgrms-fe-devcourse/NFE1-1-3-MOODI/blob/main/public/logo.svg">
 
 ## 프로젝트 소개
 
@@ -67,7 +66,8 @@
 </table>
 
 ## 기술 스택
- FrontEnd
+
+FrontEnd
 
 <p>
 
@@ -80,8 +80,7 @@
   <img src="https://img.shields.io/badge/Zustand-black?style=for-the-badge&logo=react">
 </p></p>
 
- BackEnd
-
+BackEnd
 
 ## 주요기능
 
@@ -97,14 +96,12 @@
 ![moodi_1](https://github.com/user-attachments/assets/ad2c48f9-3099-43c0-af57-516e0f7402bf)
 ![moodi_2](https://github.com/user-attachments/assets/30561f23-e8ce-4249-929f-1c7c12f43a46)
 
-
 ## 화면 설계서
-###### 🔗Figma 
+
+###### 🔗Figma
+
 <p> https://www.figma.com/design/HfJRPT9zom9TCqLSSPuSBJ/%5BMoodi%5D-%EC%95%BD%EC%8B%9D%EA%B8%B0%ED%9A%8D%EC%84%9C?node-id=0-1&t=F32FGw7hxbz11Wmv-1 </p>
 
 ![image](https://github.com/user-attachments/assets/c6be79d2-52e2-4bfe-8ac1-38271b38393b)
 
 ## 폴더구조
-
-
-
