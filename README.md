@@ -92,7 +92,8 @@ BackEnd
 😊 리액션 버튼 기능<br/>
 
 ## 아키텍처
-![20241023_051100](https://github.com/user-attachments/assets/45c0c77a-0217-48f5-90b1-40d848cbed16)
+![20241023_051532](https://github.com/user-attachments/assets/161831ca-6ad7-4b56-ab83-05e49c5f18e2)
+
 
 ## API 명세서
 https://steadfast-fuschia-4a0.notion.site/API-128752152d9580d6b35ae2fc74c61c6c
