@@ -94,8 +94,8 @@ BackEnd
 ## 아키텍처
 ![20241023_051100](https://github.com/user-attachments/assets/45c0c77a-0217-48f5-90b1-40d848cbed16)
 
-## ERD
-![moodi_2](https://github.com/user-attachments/assets/30561f23-e8ce-4249-929f-1c7c12f43a46)
+## API 명세서
+https://steadfast-fuschia-4a0.notion.site/API-128752152d9580d6b35ae2fc74c61c6c
 
 ## 화면 설계서
 
