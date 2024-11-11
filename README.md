@@ -7,7 +7,7 @@
     음악으로 하루를 기억하고 그날의 감정을 추억할수 있도록 도와줍니다.✍
 </p>
 
-###### 🔗배포링크 (http://moodi-devcourese-3team.s3-website.ap-northeast-2.amazonaws.com/)
+###### 🔗배포링크 (d1ezl5r2x1hboe.cloudfront.net/)
 
 ## 팀원 구성
 
