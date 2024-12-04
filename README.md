@@ -106,9 +106,6 @@ Infra
 ![20241023_051532](https://github.com/user-attachments/assets/161831ca-6ad7-4b56-ab83-05e49c5f18e2)
 
 
-## API 명세서
-https://steadfast-fuschia-4a0.notion.site/API-128752152d9580d6b35ae2fc74c61c6c
-
 ## 화면 설계서
 
 ###### 🔗Figma
